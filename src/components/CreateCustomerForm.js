@@ -4,7 +4,7 @@ import { useForm } from '../hooks/useForm';
 import { actions } from '../state/customer/customerActions';
 
 const CreateCustomerForm = () => {
-    const [state, dispatch] = useStateValue();
+    const [{customer}, dispatch] = useStateValue();
 
     const submitForm = values => {
         actions.addCustomer(dispatch, values);

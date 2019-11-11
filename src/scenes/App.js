@@ -7,6 +7,7 @@ import { initGoogleClient } from '../config/googleClient';
 
 //Components / Scenes
 import { Navigation, CreateCustomerForm, SplashLoading } from '../components';
+
 import Calendar from './Calendar';
 import Auth from './Auth';
 

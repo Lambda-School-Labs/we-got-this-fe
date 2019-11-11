@@ -24,7 +24,10 @@ export const actions = {
             const googleUser = await googleAuth.signIn();
 
             const token = googleUser.getAuthResponse().id_token;
+
             const credential = auth.GoogleAuthProvider.credential(token);
+
+            console.log('Token: ', token, 'Credential: ', credential);
 
             await Firebase.signInWithCredential(credential);
         } catch (error) {
