@@ -6,8 +6,13 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { initGoogleClient } from '../config/googleClient';
 
 //Components / Scenes
-import { Navigation, CreateCustomerForm, SplashLoading } from '../components';
 
+import {
+    Navigation,
+    CreateCustomerForm,
+    SplashLoading,
+    RegisterCompany,
+} from '../components';
 import Calendar from './Calendar';
 import Auth from './Auth';
 
@@ -101,6 +106,7 @@ function App() {
                 <Route path={routes.CALENDAR} component={Calendar} />
 
                 <CreateCustomerForm />
+                <RegisterCompany />
             </BrowserRouter>
         );
     }
