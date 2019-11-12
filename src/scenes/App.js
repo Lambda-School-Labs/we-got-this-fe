@@ -13,6 +13,7 @@ import {
     SideBar,
     TopBar,
     CreateTeamForm,
+    JobsCards,
 } from '../components';
 
 //Forms
@@ -82,6 +83,7 @@ function App() {
                     <CssBaseline />
                     <TopBar />
                     <SideBar />
+                    <JobsCards />
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
 
