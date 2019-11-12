@@ -14,6 +14,7 @@ export const types = {
     AUTH_UPDATE_USER_START: 'AUTH_UPDATE_USER_START',
     AUTH_UPDATE_USER_SUCCESS: 'AUTH_UPDATE_USER_SUCCESS',
     AUTH_UPDATE_USER_ERROR: 'AUTH_UPDATE_USER_ERROR',
+    CREATE_COMPANY: "CREATE_COMPANY"
 };
 
 export const actions = {
@@ -71,4 +72,20 @@ export const actions = {
             dispatch({ type: types.AUTH_UPDATE_USER_ERROR });
         }
     },
+
+    async createCompany(dispatch, values) {
+        try{
+            let newCompany = await service.createCompany(values);
+            if (!newCompany) {
+                throw new Error("Failed to create Company");
+            }
+            dispatch({
+                type: types.CREATE_COMPANY,
+                payload: newCompany,
+            });
+            return true
+        } catch (err) {
+            return Error;
+        }
+    }
 };

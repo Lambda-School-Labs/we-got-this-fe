@@ -1,82 +1,77 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import {withFormik, Form, Field} from "formik";
+import * as Yup from "yup";
+import {withState} from "../state"
+import { actions } from "../state/auth/authActions";
 
 
-export default function RegisterCompany(props) {
-    const [userCredentials, setCredentials] = useState({
-        companyName: "",
-        fullName: "",
-        email: "",
-        phone: "",
-    });
+const RegisterCompany = ({errors, touched, values, status}) => {
+    const [forms, setForms] = useState([]);
+    console.log("this is touched", touched);
+    useEffect(() => {
+        if (status) {
+            setForms([...forms, status]);
+        }
+    }, [status, forms]);
 
-    const submitHandler = event => {
-        event.preventDefault();
-    }
-
-    const changeHandler = event => {
-        setCredentials({ ...userCredentials, [event.target.name]: event.target.value})
-    }
-
-    return(
-        <div className="containerCompany">
+    return (
+        <div>
             <div>
-                <div className="cardCompany">
-                    <div className="headerCompany">
-                        <h1>Register Your Company</h1>
+            <h1>RegisterCompany</h1>
+            </div>
+            <div>
+                <Form>
+                    <div>
+                        <Field type="text" name="firstName" placeholder="First Name"/>
                     </div>
-                    <div className="cardCompany-body">
-                        <form onSubmit={submitHandler}>
-                            <div className="company-input">
-                                <input
-                                type="text"
-                                name="companyName"
-                                value={userCredentials.companyName}
-                                onChange={changeHandler}
-                                placeholder="Company Name"
-                                required
-                                />
-                            </div>
-                            <div className="company-input">
-                                <input
-                                type="text"
-                                name="fullName"
-                                value={userCredentials.fullName}
-                                onChange={changeHandler}
-                                placeholder="Full Name"
-                                required
-                                />
-                            </div>
 
-                            <div className="company-input">
-                                <input
-                                type="email"
-                                name="email"
-                                value={userCredentials.email}
-                                onChange={changeHandler}
-                                placeholder="Email"
-                                required
-                                />
-                            </div>
-
-                            <div className="company-input">
-                                <input
-                                type="text"
-                                name="phone"
-                                value={userCredentials.phone}
-                                onChange={changeHandler}
-                                placeholder="Phone Number"
-                                required
-                                />
-                            </div>
-                        
-                        </form>
-
+                    <div>
+                        <Field type="text" name="lastName" placeholder="Last Name"/>
                     </div>
-                </div>
+
+                    <div>
+                        <Field type="email" name="email" placeholder="Email"/>
+                    </div>
+
+                    <div>
+                        <Field type="text" name="company" placeholder="Company Name"/>
+                    </div>
+
+                    <div>
+                        <Field type="text" name="phoneNumber" placeholder="Phone Number" />
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </Form>
             </div>
         </div>
-    )
-
-
-
+    );
 }
+
+const FormikForm = withFormik({
+    mapPropsToValues({firstName, lastName, email, company, phoneNumber}){
+        return {
+            firstName: firstName || "",
+            lastName: lastName || "",
+            email: email || "",
+            company: company || "",
+            phoneNumber: phoneNumber || ""
+        };
+    },
+    validationSchema: Yup.object().shape({
+        firstName: Yup.string().required("Enter First Name"),
+        lastName: Yup.string().required("Enter your Last Name"),
+        email: Yup.string().email("Email Not Valid").required("Email Is Required"),
+        company: Yup.string().required("Company Name is required"),
+        phoneNumber: Yup.string().required("Phone Number is required")
+    }),
+
+    handleSubmit(values, {setStatus, props}) {
+        actions.createCompany(props.dispatch, values)
+        .then (res => {
+            console.log(res)
+        })
+    }
+})(RegisterCompany);
+
+export default withState(FormikForm);

@@ -33,6 +33,11 @@ export default function reducer(state, action) {
                 ...state,
                 currentUser: null,
             };
+        case types.CREATE_COMPANY:
+            return{
+                ...state,
+                company: payload,
+            };    
         default:
             return {
                 ...state,

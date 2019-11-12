@@ -56,4 +56,15 @@ export const service = {
 
         return updatedUser;
     },
+
+    async createCompany(values) {
+        let docRef = await db.collection('accounts').add({
+           ...values
+        });
+        let company = {}
+        let doc = await docRef.get()
+        let docId = doc.id;
+        company = {docId, ...doc.data()}
+        return company;
+    }
 };
