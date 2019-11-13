@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function SimpleCard() {
+export default function SimpleCard(props) {
       const classes = useStyles();
   return (
     <Card>
@@ -24,19 +24,16 @@ export default function SimpleCard() {
             Time
         </h2>
         <h1>
-            Client Name
+            {props.name}
         </h1>
         <div>
-            Address
+            {props.street}
         </div>
         <div>
-            Address 2
+            {props.city}, {props.state} {props.zip}
         </div>
         <div>
-            City, State Zip Code
-        </div>
-        <div>
-            Phone Number
+            {props.phone}
         </div>
         <Button>Message</Button>
         <Button>Reschedule</Button>
