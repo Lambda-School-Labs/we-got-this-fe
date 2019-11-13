@@ -83,10 +83,8 @@ function App() {
                     <CssBaseline />
                     <TopBar />
                     <SideBar />
-                    <JobsCards />
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
-
                         <Route exact path={routes.AUTH} component={Auth} />
                         <Route path={routes.HOME} component={Dashboard} />
                         <Route path={routes.PROFILE} component={Profile} />

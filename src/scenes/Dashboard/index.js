@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Firebase from '../../config/firebase';
+import JobsCards from '../../components/JobsCards';
 
 const storageRef = Firebase.getStorageRef();
 
@@ -37,6 +38,7 @@ const Dashboard = () => {
                     Upload!
                 </button>
             )}
+            <JobsCards />
         </>
     );
 };
