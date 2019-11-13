@@ -8,6 +8,7 @@ export const routes = {
     CREATE_TEAM_FORM: '/team/create',
     INVITE_TECH: '/invite-tech',
     REGISTER_COMPANY: '/register-company',
+    AUTH_REGISTER_COMPANY: '/auth/register-company',
 };
 
 export const privateRoutes = [

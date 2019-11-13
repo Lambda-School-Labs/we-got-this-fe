@@ -13,6 +13,16 @@ var firebaseConfig = {
             '566987245774-abeg79tlatngaaupsmdthc8ikouva2qo.apps.googleusercontent.com',
         measurementId: 'G-2KGS348CCJ',
     },
+    production: {
+        apiKey: 'AIzaSyDJSqxQaC6J2slKw9OG_St1KLOX0IGNK-Y',
+        authDomain: 'luxapp-8da0f.firebaseapp.com',
+        databaseURL: 'https://luxapp-8da0f.firebaseio.com',
+        projectId: 'luxapp-8da0f',
+        storageBucket: 'luxapp-8da0f.appspot.com',
+        messagingSenderId: '950025882084',
+        appId: '1:950025882084:web:0c4c11b07afb0cfed19ff1',
+        measurementId: 'G-RYHRZ7FM8V',
+    },
 }[process.env.NODE_ENV || 'development'];
 
 // firebase.initializeApp(firebaseConfig);

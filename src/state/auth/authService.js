@@ -57,6 +57,7 @@ export const service = {
         return updatedUser;
     },
 
+    //Create Company
     async createCompany(values) {
         let docRef = await db.collection('accounts').add({
            ...values

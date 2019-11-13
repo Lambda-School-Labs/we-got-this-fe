@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import firebase from '../../firebase';
+import firebase from '../../config/firebase';
 
 const SignInForm = () => {
     const [values, setValues] = useState(null);
