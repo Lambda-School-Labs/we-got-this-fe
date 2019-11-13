@@ -35,7 +35,6 @@ export default function SimpleCard(props) {
         <div>
             {props.phone}
         </div>
-        <Button>Message</Button>
         <Button>Reschedule</Button>
     </Card>
   );

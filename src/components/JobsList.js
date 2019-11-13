@@ -1,15 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import JobsCards from "./JobsCards";
-// import { getJobs } from "../utils/actions";
 
-function JobsList({ getJobs, jobs }) {
+const JobsList = ({ getJobs, jobs }) => {
+    const [jobs, setJobs] = useState([]);
+
   useEffect(() => {
-    getJobs();
-  }, [getJobs]);
+    const firestore = firebase.getFirestore();
+
+    firestore.collection('jobs')
+        .where(firebase.firestore.FieldPath.documentId(), 'in', ids)
+        .get()
+        .then(snapshot => setJobs(snapshot.docs.map(doc => doc.data())));
+}, []);
 
   return (
     <>
-      <h2>List of jobs</h2>
+      <h2>Jobs List</h2>
       <div>
         {jobs.map(job => {
           return <JobsCards  job={job} />;
@@ -19,15 +25,5 @@ function JobsList({ getJobs, jobs }) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    jobs: state.jobs,
-    isFetching: state.isFetching,
-    error: state.error
-  };
-};
 
-export default (
-  mapStateToProps,
-  { getJobs }
-)(JobsList);
+export default JobsList;
