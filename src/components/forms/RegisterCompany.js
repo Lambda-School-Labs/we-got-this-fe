@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {withFormik, Form, Field} from "formik";
 import * as Yup from "yup";
-import {withState} from "../state"
-import { actions } from "../state/auth/authActions";
+import { withState } from "../../state"
+import { actions } from "../../state/auth/authActions";
 import { routes } from '../../constants/routes';
 
 
