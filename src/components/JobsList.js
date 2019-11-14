@@ -1,29 +1,66 @@
-import React, { useEffect, useState } from "react";
-import JobsCards from "./JobsCards";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Divider from "@material-ui/core/Divider";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
 
-const JobsList = ({ getJobs, jobs }) => {
-    const [jobs, setJobs] = useState([]);
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  },
+  inline: {
+    display: "inline"
+  }
+}));
 
-  useEffect(() => {
-    const firestore = firebase.getFirestore();
-
-    firestore.collection('jobs')
-        .where(firebase.firestore.FieldPath.documentId(), 'in', ids)
-        .get()
-        .then(snapshot => setJobs(snapshot.docs.map(doc => doc.data())));
-}, []);
+export default function AlignItemsList() {
+  const classes = useStyles();
 
   return (
-    <>
-      <h2>Jobs List</h2>
-      <div>
-        {jobs.map(job => {
-          return <JobsCards  job={job} />;
-        })}
-      </div>
-    </>
+    <List className={classes.root}>
+      <ListItem alignItems="flex-start">
+        {/* <ListItemAvatar>
+          <Avatar alt="" src="" />
+        </ListItemAvatar> */}
+        <ListItemText
+          primary="name"
+          secondary={<React.Fragment>{"street"}</React.Fragment>}
+        />
+      </ListItem>
+      <Divider variant="inset" component="li" />
+      <ListItem alignItems="flex-start">
+        {/* <ListItemAvatar>
+          <Avatar alt="" src="" />
+        </ListItemAvatar> */}
+        <ListItemText
+          primary="name"
+          secondary={
+            <React.Fragment>
+              {"street"}
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+      <Divider variant="inset" component="li" />
+      <ListItem alignItems="flex-start">
+        {/* <ListItemAvatar>
+          <Avatar alt="" src="" />
+        </ListItemAvatar> */}
+        <ListItemText
+          primary="name"
+          secondary={
+            <React.Fragment>
+              {" street"}
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+    </List>
   );
 }
-
-
-export default JobsList;
