@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStateValue } from '../../state';
 import { useForm } from '../../hooks/useForm';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, TextareaAutosize } from '@material-ui/core';
 import Column from '../../components/styles/containers/Column';
 import Row from '../../components/styles/containers/Row'
 import Grid from '@material-ui/core/Grid';
@@ -23,11 +23,15 @@ const useStyles = makeStyles({
 });
 
 const CustomerForm = ({ errors, touched, values, status }) => {
-    const [state, dispatch] = useStateValue();
+    const [state, setState] = useState([]); 
+    console.log("custardmer form", touched);
     const classes = useStyles();
-    const submitForm = values => {
-        actions.addCustomer(dispatch, values);
-    };
+    useEffect(() => {
+        if (status) {
+            setState([...state, status]);
+        }
+    }, [status, state]);
+    
     return (
         <Form>
             
@@ -53,7 +57,7 @@ const CustomerForm = ({ errors, touched, values, status }) => {
                 <p className="error">{errors.email}</p>
             )}
 
-            <Field component="select" className="payment-select" name="payment">
+            <Field component="select" className="payment-select" name="payment" placeholder="Choose a Payment Method">
                 <option>Choose a Payment Method </option>
                 <option value="role">Cash</option>
                 <option value="role">Check</option>
@@ -97,7 +101,7 @@ const CustomerForm = ({ errors, touched, values, status }) => {
                 <p className="error">{errors.zipcode}</p>
             )}
 
-            <Field type="text" name="notes" placeholder="Special Notes" />
+            <textarea type="text" name="notes" placeholder="Special Notes" />
             {touched.zipcode && errors.notes && (
                 <p className="error">{errors.notes}</p>
             )}
@@ -110,21 +114,47 @@ const CustomerForm = ({ errors, touched, values, status }) => {
 };
 
 const CreateCustomerForm = withFormik({
-    mapPropsToValues({ name, email, password, tos }) {
+    mapPropsToValues({firstName, lastName, email, phonenumber, serviceaddress, city, state, zipcode}){
         return {
-            tos: tos || false,
-            password: password || '',
-            email: email || '',
-            name: name || '',
+            firstName: firstName || "",
+            lastName: lastName || "",
+            email: email || "",
+            phonenumber: phonenumber || "",
+            serviceaddress: serviceaddress || "",
+            city: city || "",
+            state: state || "",
+            zipcode: zipcode || ""
         };
     },
 
     validationSchema: Yup.object().shape({
-        name: Yup.string().required('You didnt complete the Form'),
-        email: Yup.string().required(),
-        password: Yup.string(),
-        tos: Yup.boolean().oneOf([true], 'Must Accept Terms and Conditions'),
+        firstName: Yup.string()
+        .required('Must enter a First Name'),
+    lastName: Yup.string()
+        .required('Must enter a Last Name'),
+    phonenumber: Yup.number()
+        .required('Must enter a Number'),
+    serviceaddress: Yup.string()
+        .required('Must enter an Address'),
+    email: Yup.string()
+        .required('Must enter an Email'),
+    city: Yup.string()
+        .required('Must enter an City'),
+    state: Yup.string()
+        .required('Must enter a State'),
+    zip: Yup.number()
+        .required('Must enter an Zip')
     }),
+
+    handleSubmit(values, {setStatus, props, resetForm}) {
+        actions.addCustomer(props.dispatch, values)
+        .then (res => {
+            if (res == true) {
+                props.history.push("/");
+            }
+        });
+        resetForm();
+    }
 })(CustomerForm);
 
 export default CreateCustomerForm;

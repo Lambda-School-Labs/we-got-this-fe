@@ -10,16 +10,10 @@ export default function reducer(state, action) {
     let { payload } = action;
 
     switch (action.type) {
-        case types.ADD_CUSTOMER_START:
+        case types.ADD_CUSTOMER:
             return {
                 ...state,
-                loadingNewCustomer: true,
-            };
-        case types.ADD_CUSTOMER_SUCCESS:
-            return {
-                ...state,
-                loadingNewCustomer: false,
-                customers: [...state.customers, payload],
+                customers: payload,
             };
         default:
             return {
