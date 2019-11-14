@@ -1,11 +1,25 @@
 import React from 'react';
 import { useStateValue } from '../../state';
 import { useForm } from '../../hooks/useForm';
+import { makeStyles } from '@material-ui/core';
+import Column from '../../components/styles/containers/Column';
+import Row from '../../components/styles/containers/Row'
 
 import { createCustomer } from '../../state/customer/customerReducer';
 import { actions } from '../../state/customer/customerActions';
 import { Form, Field, withFormik, Formik } from 'formik';
 import * as Yup from 'yup';
+
+const useStyles = makeStyles({
+    flex: props => ({
+        display: 'flex',
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: props.justify,
+        alignItems: props.align,
+        padding: props.padding,
+    }),
+});
 
 const CustomerForm = ({ errors, touched, values, status }) => {
     const [state, dispatch] = useStateValue();
@@ -15,6 +29,7 @@ const CustomerForm = ({ errors, touched, values, status }) => {
     };
     return (
         <Form>
+            <Column>
             <Field type="text" name="firstname" placeholder="First Name" />
             {touched.name && errors.name && (
                 <p className="error">{errors.firstname}</p>
@@ -52,7 +67,8 @@ const CustomerForm = ({ errors, touched, values, status }) => {
                 <option value="role">Internet</option>
                 <option value="role">Employee Refferal</option>
             </Field>
-
+            </Column>
+                <Column>     
             <Field
                 type="text"
                 name="serviceaddress"
@@ -83,6 +99,7 @@ const CustomerForm = ({ errors, touched, values, status }) => {
             )}
 
             <button type="submit">Submit</button>
+            </Column>
         </Form>
     );
 };
