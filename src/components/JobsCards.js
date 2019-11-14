@@ -21,7 +21,10 @@ export default function SimpleCard(props) {
   return (
     <Card>
         <h2>
-            Time
+            {props.date}
+        </h2>
+        <h2>
+            {props.time}
         </h2>
         <h1>
             {props.name}
