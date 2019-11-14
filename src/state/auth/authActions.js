@@ -14,7 +14,8 @@ export const types = {
     AUTH_UPDATE_USER_START: 'AUTH_UPDATE_USER_START',
     AUTH_UPDATE_USER_SUCCESS: 'AUTH_UPDATE_USER_SUCCESS',
     AUTH_UPDATE_USER_ERROR: 'AUTH_UPDATE_USER_ERROR',
-    CREATE_COMPANY: "CREATE_COMPANY"
+    CREATE_COMPANY: "CREATE_COMPANY",
+    COMPANY_LIST: "COMPANY_LIST"
 };
 
 export const actions = {
@@ -87,5 +88,18 @@ export const actions = {
         } catch (err) {
             return Error;
         }
+    },
+
+    async getCompany(dispatch, values){
+        try{
+            
+            let companyInfo = await service.getCompany(values);
+            console.log(companyInfo);
+
+            dispatch({type: types.COMPANY_LIST,
+            payload: companyInfo});
+        }catch (error) {
+                dispatch({type: types.AUTH_ERROR});
+            }
     }
 };

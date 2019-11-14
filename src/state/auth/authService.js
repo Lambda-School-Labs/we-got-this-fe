@@ -6,7 +6,7 @@ export const service = {
     //
     //GET OR CREATE CURRENT USER
     async getOrCreateCurrentUser(authUser) {
-        let { email, displayName, photoURL } = authUser;
+        let { email, displayName, photoURL} = authUser;
 
         let currentUser;
         let querySnapshot = await db
@@ -57,6 +57,7 @@ export const service = {
         return updatedUser;
     },
 
+    //CREATE COMPANY
     async createCompany(values) {
         let docRef = await db.collection('accounts').add({
            ...values
@@ -66,5 +67,17 @@ export const service = {
         let docId = doc.id;
         company = {docId, ...doc.data()}
         return company;
+    },
+
+    //GET COMPANY
+    async getCompany(accountId) {
+        let currentCompany;
+        let querySnapshot = await db.collection("accounts").where("company", "==", accountId).get()
+        querySnapshot.forEach(function(doc) {
+            let docId = doc.id;
+            currentCompany = { docId, ...doc.data() };
+        })
+        return currentCompany;
+
     }
 };

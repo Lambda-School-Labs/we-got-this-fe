@@ -37,7 +37,12 @@ export default function reducer(state, action) {
             return{
                 ...state,
                 company: payload,
-            };    
+            }; 
+        case types.COMPANY_LIST:
+            return {
+                ...state,
+                currentCompany: payload,
+            };   
         default:
             return {
                 ...state,
