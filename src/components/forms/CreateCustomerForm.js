@@ -4,6 +4,7 @@ import { useForm } from '../../hooks/useForm';
 import { makeStyles } from '@material-ui/core';
 import Column from '../../components/styles/containers/Column';
 import Row from '../../components/styles/containers/Row'
+import Grid from '@material-ui/core/Grid';
 
 import { createCustomer } from '../../state/customer/customerReducer';
 import { actions } from '../../state/customer/customerActions';
@@ -11,25 +12,27 @@ import { Form, Field, withFormik, Formik } from 'formik';
 import * as Yup from 'yup';
 
 const useStyles = makeStyles({
-    flex: props => ({
+    column: {
         display: 'flex',
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: props.justify,
-        alignItems: props.align,
-        padding: props.padding,
-    }),
+        flexDirection: 'column'
+    },
+    controls: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    },
 });
 
 const CustomerForm = ({ errors, touched, values, status }) => {
     const [state, dispatch] = useStateValue();
-
+    const classes = useStyles();
     const submitForm = values => {
         actions.addCustomer(dispatch, values);
     };
     return (
         <Form>
-            <Column>
+            
+            <Grid container spacing={3}>
+            <Grid item className={classes.column} xs={6}>
             <Field type="text" name="firstname" placeholder="First Name" />
             {touched.name && errors.name && (
                 <p className="error">{errors.firstname}</p>
@@ -67,8 +70,9 @@ const CustomerForm = ({ errors, touched, values, status }) => {
                 <option value="role">Internet</option>
                 <option value="role">Employee Refferal</option>
             </Field>
-            </Column>
-                <Column>     
+            </Grid>
+            
+            <Grid item className={classes.column} xs={6} >     
             <Field
                 type="text"
                 name="serviceaddress"
@@ -98,8 +102,9 @@ const CustomerForm = ({ errors, touched, values, status }) => {
                 <p className="error">{errors.notes}</p>
             )}
 
-            <button type="submit">Submit</button>
-            </Column>
+            <div className={classes.controls}> <button type="button">Cancel</button> <button type="submit">Submit</button> </div>
+            </Grid>
+            </Grid>
         </Form>
     );
 };
