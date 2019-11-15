@@ -11,6 +11,7 @@ export const types = {
 
     AUTH_LOGOUT: 'AUTH_LOGOUT',
 
+<<<<<<< HEAD
 
     CREATE_COMPANY: "CREATE_COMPANY",
     COMPANY_LIST: "COMPANY_LIST",
@@ -18,6 +19,12 @@ export const types = {
 
 
 
+=======
+    AUTH_UPDATE_USER_START: 'AUTH_UPDATE_USER_START',
+    AUTH_UPDATE_USER_SUCCESS: 'AUTH_UPDATE_USER_SUCCESS',
+    AUTH_UPDATE_USER_ERROR: 'AUTH_UPDATE_USER_ERROR',
+    CREATE_COMPANY: "CREATE_COMPANY"
+>>>>>>> dev
 };
 
 export const actions = {
@@ -30,12 +37,9 @@ export const actions = {
             const token = googleUser.getAuthResponse().id_token;
             const credential = auth.GoogleAuthProvider.credential(token);
 
-            let result = await Firebase.signInWithCredential(credential);
-            console.log('Firebase credential: ', result);
-            return true;
+            await Firebase.signInWithCredential(credential);
         } catch (error) {
-            console.log(error);
-            return false;
+            dispatch({ type: types.AUTH_ERROR });
         }
     },
 
@@ -80,22 +84,20 @@ export const actions = {
     },
 
     async createCompany(dispatch, values) {
-        try {
+        try{
             let newCompany = await service.createCompany(values);
             if (!newCompany) {
-                throw new Error('Failed to create Company');
+                throw new Error("Failed to create Company");
             }
             dispatch({
                 type: types.CREATE_COMPANY,
                 payload: newCompany,
             });
-            return true;
+            return true
         } catch (err) {
             return Error;
         }
     },
-
-
     async getCompany(dispatch, values){
         try{
             
@@ -108,5 +110,4 @@ export const actions = {
                 dispatch({type: types.AUTH_ERROR});
             }
     }
-
 };

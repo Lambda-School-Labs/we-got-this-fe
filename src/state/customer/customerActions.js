@@ -1,27 +1,23 @@
 import { service } from './customerService';
 
 export const types = {
-    ADD_CUSTOMERS_START: 'ADD_CUSTOMERS_START',
-    ADD_CUSTOMER_SUCCESS: 'ADD_CUSTOMER_SUCCESS',
-    ADD_CUSTOMER_ERROR: 'ADD_CUSTOMER_ERROR',
+    ADD_CUSTOMER: 'ADD_CUSTOMER',
 };
 
 export const actions = {
-    async addCustomer(dispatch, customer) {
+    async addCustomer(dispatch, values) {
         try {
-            dispatch({ type: types.ADD_CUSTOMER_START });
-
-            let newCustomer = await service.addCustomer(customer);
+            let newCustomer = await service.addCustomer(values);
             if (!newCustomer) {
-                throw new Error('Customer failed');
+                throw new Error('Adding customer failed');
             }
-
             dispatch({
-                type: types.ADD_CUSTOMER_SUCCESS,
+                type: types.ADD_CUSTOMER,
                 payload: newCustomer,
             });
+            return true;
         } catch (err) {
-            dispatch({ type: types.ADD_CUSTOMER_ERROR, payload: err });
+            return err;
         }
     },
 };

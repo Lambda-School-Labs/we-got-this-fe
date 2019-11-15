@@ -6,7 +6,7 @@ export const service = {
     //
     //GET OR CREATE CURRENT USER
     async getOrCreateCurrentUser(authUser) {
-        let { email, displayName, photoURL} = authUser;
+        let { email, displayName, photoURL } = authUser;
 
         let currentUser;
         let querySnapshot = await db
@@ -41,42 +41,42 @@ export const service = {
     //Edit Admin
     async editAdmin(updateAdmin) {
         let docRef = await db
-        .collection("accounts")
-        .doc(`${updateAdmin.docRef}`)
-        .put({
-            ...updateAdmin,
-        });
+            .collection('accounts')
+            .doc(`${updateAdmin.docRef}`)
+            .put({
+                ...updateAdmin,
+            });
 
         let updatedAdmin = null;
         docRef.get().then(doc => {
             let docRef = doc.id;
-            updatedAdmin = {docRef, ...doc.data() };
+            updatedAdmin = { docRef, ...doc.data() };
         });
         return updatedAdmin;
     },
 
-
-    //Create Company
     async createCompany(values) {
         let docRef = await db.collection('accounts').add({
-           ...values
+            ...values,
         });
-        let company = {}
-        let doc = await docRef.get()
+        let company = {};
+        let doc = await docRef.get();
         let docId = doc.id;
-        company = {docId, ...doc.data()}
+        company = { docId, ...doc.data() };
         return company;
     },
 
     //GET COMPANY
     async getCompany(accountId) {
         let currentCompany;
-        let querySnapshot = await db.collection("accounts").where("company", "==", accountId).get()
+        let querySnapshot = await db
+            .collection('accounts')
+            .where('company', '==', accountId)
+            .get();
         querySnapshot.forEach(function(doc) {
             let docId = doc.id;
             currentCompany = { docId, ...doc.data() };
-        })
+        });
         return currentCompany;
-
-    }
+    },
 };
