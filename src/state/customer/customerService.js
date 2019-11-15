@@ -3,14 +3,14 @@ const db = Firebase.getFirestore();
 
 export const service = {
     async addCustomer(values) {
-        let docRef = db.collection('customers').add({
-            ...values
+        let docRef = await db.collection('customers').add({
+            ...values,
         });
 
-        let customers = {}
-        let doc = await docRef.get()
+        let customers = {};
+        let doc = await docRef.get();
         let docId = doc.id;
-        customers = {docId, ...doc.data()}
+        customers = { docId, ...doc.data() };
 
         return customers;
     },
