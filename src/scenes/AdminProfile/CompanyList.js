@@ -2,8 +2,9 @@ import React, {useEffect, useState} from "react";
 import {useStateValue} from "../../state";
 import CompanyCard from "./CompanyCard"
 import {actions} from "../../state/auth/authActions";
+import EditAdminForm from "./EditAdminForm";
 
-const CompanyList = (values) => {
+const CompanyList = () => {
     const [{auth}, dispatch] = useStateValue();
 
     useEffect(() => {
@@ -11,6 +12,7 @@ const CompanyList = (values) => {
     },[]);
     return (
         <div>{auth.currentCompany && <CompanyCard company={auth.currentCompany}/>}
+        <EditAdminForm/>
         </div>
     );
 }

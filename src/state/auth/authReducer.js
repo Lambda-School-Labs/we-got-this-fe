@@ -42,6 +42,11 @@ export default function reducer(state, action) {
             return {
                 ...state,
                 currentCompany: payload,
+            };
+        case types.EDIT_ADMIN:
+            return {
+                ...state,
+                currentAdmin: payload,
             };   
         default:
             return {

@@ -38,23 +38,21 @@ export const service = {
         return currentUser;
     },
 
-    //
-    //UPDATE CURRENT USER
-    async updateCurrentUser(updateUserInfo) {
+    //Edit Admin
+    async editAdmin(updateAdmin) {
         let docRef = await db
-            .collection('users')
-            .doc(`${updateUserInfo.docRef}`)
-            .put({
-                ...updateUserInfo,
-            });
-
-        let updatedUser = null;
-        docRef.get().then(doc => {
-            let docRef = doc.id;
-            updatedUser = { docRef, ...doc.data() };
+        .collection("accounts")
+        .doc(`${updateAdmin.docRef}`)
+        .put({
+            ...updateAdmin,
         });
 
-        return updatedUser;
+        let updatedAdmin = null;
+        docRef.get().then(doc => {
+            let docRef = doc.id;
+            updatedAdmin = {docRef, ...doc.data() };
+        });
+        return updatedAdmin;
     },
 
     //CREATE COMPANY

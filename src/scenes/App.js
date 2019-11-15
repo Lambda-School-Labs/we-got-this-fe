@@ -66,7 +66,7 @@ function App() {
         Firebase.onAuthStateChanged(user => {
             if (user !== null) {
                 actions.getOrCreateCurrentUser(dispatch, user);
-                setIsLoading(false);
+                                setIsLoading(false);
             } else {
                 setIsLoading(false);
             }
