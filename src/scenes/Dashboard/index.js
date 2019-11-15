@@ -39,8 +39,6 @@ const Dashboard = () => {
                     Upload!
                 </button>
             )}
-            {/* <JobsCards /> */}
-            <JobsList />
         </>
     );
 };
