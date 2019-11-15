@@ -47,13 +47,21 @@ const SideBar = () => {
             </div>
             <Divider />
             <List>
-                {privateRoutes.map(route => (
-                    <ListItem button onClick={() => history.push(route.path)}>
+                {privateRoutes.map((route, index) => (
+                    <ListItem
+                        button
+                        key={index}
+                        onClick={() => history.push(route.path)}
+                    >
                         {route.name}
                     </ListItem>
                 ))}
-                {publicRoutes.map(route => (
-                    <ListItem button onClick={() => history.push(route.path)}>
+                {publicRoutes.map((route, index) => (
+                    <ListItem
+                        button
+                        key={index}
+                        onClick={() => history.push(route.path)}
+                    >
                         {route.name}
                     </ListItem>
                 ))}

@@ -1,15 +1,22 @@
 import React from 'react';
 import { useStateValue } from '../../state';
-import CompanyList from "../AdminProfile/CompanyList";
 
+import { actions } from '../../state/auth/authActions';
 
 const Me = () => {
-    const [{ auth }] = useStateValue();
+    const [{ auth }, dispatch] = useStateValue();
     return (
-    <div><h1>Me is {auth.currentUser && auth.currentUser.displayName} </h1>
-    <CompanyList/>
-            
-            </div>);
+        <>
+            <h1>Me is {auth.currentUser && auth.currentUser.displayName} </h1>
+            <button
+                onClick={() => {
+                    actions.logout(dispatch);
+                }}
+            >
+                Sign Out
+            </button>
+        </>
+    );
 };
 
 export default Me;

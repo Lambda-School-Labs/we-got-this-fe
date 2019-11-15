@@ -1,10 +1,12 @@
 import React from 'react';
 import { Formik } from "formik";
-// import { useForm } from '../hooks/useForm';
 import * as Yup from "yup";
 import Error from '../Error';
 import { actions } from '../../state/auth/authActions';
 import { useStateValue } from '../../state';
+
+
+
 
 const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -26,8 +28,10 @@ const validationSchema = Yup.object().shape({
     notes: Yup.string()
         .max(255, 'Must be shorter than 255')
 })
+
 const InviteTech = () => {
 const [state, dispatch] = useStateValue();
+
     return (
         <Formik
             initialValues={{
@@ -40,13 +44,16 @@ const [state, dispatch] = useStateValue();
                 city: '',
                 zip: ''
             }}
+
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true)
+
                 actions.inviteTech(dispatch, values)
                 .then(res => {
                     console.log('RES...' , res)
                 })
+
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
                     resetForm();
@@ -54,11 +61,13 @@ const [state, dispatch] = useStateValue();
                     console.log('SS..', setSubmitting)
                 }, 500);
             }}>
+
     
             {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
             
                 <form className='Form' onSubmit={handleSubmit}>
                     <div className='tech-form-left'>
+
                         <div>
                             <input onChange={handleChange} name='firstName' placeholder='First Name' value={values.firstName} onBlur={handleBlur} className={touched.firstName && errors.firstName ? 'has-error' : null} />
                             <Error touched={touched.firstName} message={errors.firstName} />
@@ -79,8 +88,10 @@ const [state, dispatch] = useStateValue();
                             <textarea onChange={handleChange} name='notes' placeholder='Notes' value={values.notes} onBlur={handleBlur} className={touched.notes && errors.notes ? 'has-error' : null} />
                             <Error touched={touched.notes} message={errors.notes} />
                         </div>
+
                     </div> {/* it-form-top-left end */}
                     <div className='tech-form-right'>
+
                         <div>
                             <input onChange={handleChange} name='email' placeholder='Email' value={values.email} onBlur={handleBlur} className={touched.email && errors.email ? 'has-error' : null} />
                             <Error touched={touched.email} message={errors.email} />
@@ -101,6 +112,7 @@ const [state, dispatch] = useStateValue();
                             <button id='tech-cancel'>Cancel</button>
                             <button type='submit' disabled={isSubmitting}>Submit</button>
                         </div> {/* tech-buttons end */}
+
                     </div> {/* tech-form-right end */}
                 </form> /* Form end */
             )}

@@ -11,9 +11,13 @@ export const types = {
 
     AUTH_LOGOUT: 'AUTH_LOGOUT',
 
+
     CREATE_COMPANY: "CREATE_COMPANY",
     COMPANY_LIST: "COMPANY_LIST",
     EDIT_ADMIN: "EDIT_ADMIN"
+
+
+
 };
 
 export const actions = {
@@ -26,9 +30,12 @@ export const actions = {
             const token = googleUser.getAuthResponse().id_token;
             const credential = auth.GoogleAuthProvider.credential(token);
 
-            await Firebase.signInWithCredential(credential);
+            let result = await Firebase.signInWithCredential(credential);
+            console.log('Firebase credential: ', result);
+            return true;
         } catch (error) {
-            dispatch({ type: types.AUTH_ERROR });
+            console.log(error);
+            return false;
         }
     },
 
@@ -73,20 +80,21 @@ export const actions = {
     },
 
     async createCompany(dispatch, values) {
-        try{
+        try {
             let newCompany = await service.createCompany(values);
             if (!newCompany) {
-                throw new Error("Failed to create Company");
+                throw new Error('Failed to create Company');
             }
             dispatch({
                 type: types.CREATE_COMPANY,
                 payload: newCompany,
             });
-            return true
+            return true;
         } catch (err) {
             return Error;
         }
     },
+
 
     async getCompany(dispatch, values){
         try{
@@ -100,4 +108,5 @@ export const actions = {
                 dispatch({type: types.AUTH_ERROR});
             }
     }
+
 };
