@@ -2,16 +2,13 @@ import Firebase from '../../config/firebase';
 const db = Firebase.getFirestore();
 
 export const service = {
-    async addCustomer(values) {
-        let docRef = await db.collection('customers').add({
-            ...values,
+    async addCustomer(customer) {
+        let docRef = db.collection('customers').add({
+            ...customer,
         });
 
-        let customers = {};
-        let doc = await docRef.get();
-        let docId = doc.id;
-        customers = { docId, ...doc.data() };
+        let data = await docRef.get();
 
-        return customers;
+        return data;
     },
 };

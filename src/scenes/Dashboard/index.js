@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import Firebase from '../../config/firebase';
-import JobsCards from '../../components/JobsCards';
-import JobsList from '../../components/JobsList';
 
 const storageRef = Firebase.getStorageRef();
 
