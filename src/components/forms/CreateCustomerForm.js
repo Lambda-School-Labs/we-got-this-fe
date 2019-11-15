@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useStateValue } from '../../state';
-import { useForm } from '../../hooks/useForm';
 import { makeStyles, TextareaAutosize } from '@material-ui/core';
-import Column from '../../components/styles/containers/Column';
-import Row from '../../components/styles/containers/Row';
 import Grid from '@material-ui/core/Grid';
 import { withState } from '../../state';
 
-import { createCustomer } from '../../state/customer/customerReducer';
 import { actions } from '../../state/customer/customerActions';
 import { Form, Field, withFormik, Formik } from 'formik';
 import * as Yup from 'yup';

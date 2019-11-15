@@ -14,8 +14,7 @@ export const CreateCustomerForm = createCustomerForm;
 export const CreateTeamForm = createTeamForm;
 export const UserList = userList;
 
-export const InviteTech = inviteTech
-
+export const InviteTech = inviteTech;
 
 export const SplashLoading = splashLoading;
 export const RegisterCompany = registerCompany;
