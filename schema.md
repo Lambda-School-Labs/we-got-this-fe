@@ -40,7 +40,6 @@ How do I contact this person?
             "email": "jackie@jackiescleaning.com",
             "primary_phone": "(432) 456-1940",
             "secondary_phone": "(432) 456-1943",
-            "company": "jackies_cleaning_4321",
             "admin": true,
             "disabled": true,
             "photoUrl": "string-the-photo.com"
@@ -158,11 +157,6 @@ Who worked this job?
         "customer": "customer_id_1234423",
         "details": {
             "scheduled_date": "10/31/19",
-            "rescheduled_dates": [
-                "11/4/19",
-                "11/5/19",
-                "11/19/19"
-            ],
             "time": "9:00 A.M.",
 			"start_time": 9434582903423,
 			"end_time": 9874589032345,
@@ -173,6 +167,7 @@ Who worked this job?
             "state": "ID",
             "zip": "87540"
         },
+        "team": "Team B",
         "techs": [
             {
                 "user_id": "susy_smith_123124",
