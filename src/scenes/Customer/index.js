@@ -8,6 +8,8 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Job from '../Job';
 import { useStateValue } from '../../state';
 import { makeStyles } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles({
     row: {
@@ -25,6 +27,8 @@ const Customer = ({ match }) => {
     const [loading, setLoading] = useState(true);
     const [{ customers }, dispatch] = useStateValue();
     const classes = useStyles();
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     useEffect(() => {
         if (customers.currentCustomer) {
@@ -49,7 +53,9 @@ const Customer = ({ match }) => {
                             customer={customers.currentCustomer}
                         />
                     </div>
-                    <Route path={`${match.path}/:job_id`} component={Job} />
+                    {!mobile && (
+                        <Route path={routes.JOB_DETAILS} component={Job} />
+                    )}
                 </div>
             )}
         </>

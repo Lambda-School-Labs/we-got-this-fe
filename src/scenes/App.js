@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 //
 //Config
 import { initGoogleClient } from '../config/googleClient';
 
 //Components / Scenes
 import {
-    CreateCustomerForm,
     SplashLoading,
     RegisterCompany,
     InviteTech,
@@ -24,6 +23,7 @@ import Profile from './Profile';
 import Customers from './Customers';
 import Customer from './Customer';
 import Techs from './Techs';
+import Job from './Job';
 
 //Styles
 import RootContainer from '../components/styles/containers/RootContainer';
@@ -40,7 +40,8 @@ import { actions } from '../state/auth/authActions';
 import Firebase from '../config/firebase';
 
 import { CssBaseline } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -60,6 +61,8 @@ function App() {
     const [{ auth }, dispatch] = useStateValue();
     const [isLoading, setIsLoading] = useState(true);
     const classes = useStyles();
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     useEffect(() => {
         //Initiliaze Google API
@@ -86,37 +89,48 @@ function App() {
                     <TopBar />
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
-
-                        <Route exact path={routes.HOME} component={Calendar} />
-                        <Route exact path={routes.AUTH} component={Auth} />
-                        <Route path={routes.PROFILE} component={Profile} />
-                        <Route path={routes.TECHS} component={Techs} />
-                        <Route path={routes.JOBS} component={Jobs} />
-                        <Route
-                            exact
-                            path={routes.CUSTOMERS}
-                            component={Customers}
-                        />
-                        <Route
-                            path={routes.CUSTOMER_PROFILE}
-                            component={Customer}
-                        />
-                        <Route
-                            path={routes.AUTH_REGISTER_COMPANY}
-                            component={RegisterCompany}
-                        />
-                        <Route
-                            path={routes.REGISTER_COMPANY}
-                            component={RegisterCompany}
-                        />
-                        <Route
-                            path={routes.INVITE_TECH}
-                            component={InviteTech}
-                        />
-                        <Route
-                            path={routes.CREATE_TEAM_FORM}
-                            component={CreateTeamForm}
-                        />
+                        <Switch>
+                            <Route
+                                exact
+                                path={routes.HOME}
+                                component={Calendar}
+                            />
+                            <Route exact path={routes.AUTH} component={Auth} />
+                            <Route path={routes.PROFILE} component={Profile} />
+                            <Route path={routes.TECHS} component={Techs} />
+                            <Route path={routes.JOBS} component={Jobs} />
+                            <Route
+                                exact
+                                path={routes.CUSTOMERS}
+                                component={Customers}
+                            />
+                            {mobile ? (
+                                <>
+                                    <Route
+                                        exact
+                                        path={routes.CUSTOMER_PROFILE}
+                                        component={Customer}
+                                    />
+                                    <Route
+                                        path={routes.JOB_DETAILS}
+                                        component={Job}
+                                    />
+                                </>
+                            ) : (
+                                <Route
+                                    path={routes.CUSTOMER_PROFILE}
+                                    component={Customer}
+                                />
+                            )}
+                            <Route
+                                path={routes.INVITE_TECH}
+                                component={InviteTech}
+                            />
+                            <Route
+                                path={routes.CREATE_TEAM_FORM}
+                                component={CreateTeamForm}
+                            />
+                        </Switch>
                     </main>
                 </div>
             </BrowserRouter>

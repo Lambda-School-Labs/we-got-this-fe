@@ -10,6 +10,25 @@ const Jobs = () => {
         setFiles(e.target.files);
     };
 
+    const handleUpload = () => {
+        let uploadTask = storageRef.child('images/scott').put(files[0]);
+        uploadTask.on(
+            'state_changed',
+            snapshot => {
+                //progress
+            },
+            error => {
+                //error handler
+                console.log(error);
+            },
+            () => {
+                uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+                    console.log('The download URL is: ', downloadURL);
+                });
+            }
+        );
+    };
+
     return (
         <>
             <h1>Dashboard</h1>{' '}
@@ -22,21 +41,7 @@ const Jobs = () => {
                     handleFiles(e);
                 }}
             />
-            {files !== null && (
-                <button
-                    onClick={() => {
-                        console.log('Clicked!');
-                        storageRef
-                            .child('images/me')
-                            .put(files[0])
-                            .then(snapshot => {
-                                console.log(snapshot);
-                            });
-                    }}
-                >
-                    Upload!
-                </button>
-            )}
+            {files !== null && <button onClick={handleUpload}>Upload!</button>}
         </>
     );
 };
