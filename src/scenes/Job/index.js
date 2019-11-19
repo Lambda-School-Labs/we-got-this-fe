@@ -69,7 +69,7 @@ const Job = ({ location, history }) => {
                             textColor="primary"
                         >
                             <Tab label="Photos" />
-                            <Tab label="Notes" />
+                            <Tab label="Job Notes" />
                         </Tabs>
                         <PhotosPanel value={value} index={0} job={job} />
                         <NotesPanel value={value} index={1} job={job} />

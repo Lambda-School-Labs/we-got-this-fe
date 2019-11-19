@@ -185,16 +185,23 @@ Who worked this job?
         "type": ["Recurring", "Special"],
         "approved_checklist_url": "urltochecklist.com",
         "confirmed_checklist_url": "urltochekclistconfirmed.com",
-        "pre_photos": [
-            "url_to_photo_1.com",
-            "url_to_photo_2.com",
-            "url_to_photo_3.com",
+        "photos": [
+            {
+                url: "url_to_photo_1.com",
+                tag: "kitchen",
+                note: "note about this photo"
+            },
+            {
+                url: "url_to_photo_2.com",
+                tag: "kitchen",
+                note: "note about this photo"
+            },
+            {
+                url: "url_to_photo_3.com",
+                tag: "bathroom",
+                note: "note about this photo"
+            }
         ]
-        "post_photos: [
-            "url_to_photo_4.com",
-            "url_to_photo_5.com",
-            "url_to_photo_6.com"
-        ],
         "notes": "This place was a disaster and now it's beautiful"
     }
 }
