@@ -4,8 +4,15 @@ import { useStateValue } from '../../state';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { useTheme, makeStyles } from '@material-ui/core';
-import { Tab, Tabs } from '@material-ui/core';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
+import {
+    Tab,
+    Tabs,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+} from '@material-ui/core';
 
 import PhotosPanel from './components/PhotosPanel';
 import NotesPanel from './components/NotesPanel';
@@ -29,6 +36,8 @@ const teams = techsArray => {
 
 const Job = ({ location, history }) => {
     const [value, setValue] = useState(0);
+    const [open, setOpen] = useState(false);
+    const [note, setNote] = useState('');
     const [{ customers }, dipatch] = useStateValue();
     const [job, setJob] = useState(null);
     const classes = useStyles();
@@ -45,6 +54,14 @@ const Job = ({ location, history }) => {
 
     const handleChange = (e, newVal) => {
         setValue(newVal);
+    };
+
+    const handleNoteChange = e => {
+        setNote(e.target.value);
+    };
+
+    const handleSubmit = () => {
+        console.log('The submitted note is!: ', note);
     };
 
     return (
@@ -70,9 +87,39 @@ const Job = ({ location, history }) => {
                         >
                             <Tab label="Photos" />
                             <Tab label="Job Notes" />
+                            {value == 0 ? (
+                                <Button variant="contained" color="primary">
+                                    Add Photo
+                                </Button>
+                            ) : (
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => setOpen(true)}
+                                >
+                                    Add Note
+                                </Button>
+                            )}
                         </Tabs>
                         <PhotosPanel value={value} index={0} job={job} />
                         <NotesPanel value={value} index={1} job={job} />
+                        <Dialog open={open}>
+                            <DialogContent>
+                                <form>
+                                    <input
+                                        type="text"
+                                        value={note}
+                                        onChange={handleNoteChange}
+                                    />
+                                </form>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onCLick={() => setOpen(false)}>
+                                    Cancel
+                                </Button>
+                                <Button onClick={handleSubmit}>Submit</Button>
+                            </DialogActions>
+                        </Dialog>
                     </div>
                 </>
             )}

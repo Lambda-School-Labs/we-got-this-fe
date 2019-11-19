@@ -6,6 +6,7 @@ import {
     DialogActions,
     Button,
     Paper,
+    Grid,
     DialogContent,
 } from '@material-ui/core';
 
@@ -26,13 +27,21 @@ const PhotosPanel = ({ value, index, job }) => {
                     setSelectedImg(job.approved_checklist_url);
                 }}
             >
-                {job &&
-                    job.photos.map(photo => (
-                        <Paper>
-                            <img src={photo.url} width="200" height="200" />
-                            <p>{photo.note}</p>
-                        </Paper>
-                    ))}
+                <Grid container spacing={2}>
+                    {job.photos &&
+                        job.photos.map(photo => (
+                            <Grid item xs={6} spacing={1}>
+                                <Paper>
+                                    <img
+                                        src={photo.url}
+                                        width="200"
+                                        height="200"
+                                    />
+                                    <p>{photo.note}</p>
+                                </Paper>
+                            </Grid>
+                        ))}
+                </Grid>
             </ButtonBase>
             <Dialog open={open}>
                 <DialogContent>
