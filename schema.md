@@ -40,23 +40,17 @@ How do I contact this person?
             "email": "jackie@jackiescleaning.com",
             "primary_phone": "(432) 456-1940",
             "secondary_phone": "(432) 456-1943",
-            "admin": true,
+            "role": ["admin", "tech", "superadmin"],
             "disabled": true,
             "photoUrl": "string-the-photo.com"
         },
         "susy_smith_123124": {
             "name": "Susy Smith",
-            "contact": {
-                "email": "susy@jackiescleaning.com",
-                "primary_phone": "(432) 863-1293
-            },
-            "company": "jackies_cleaning_4321",
-            "admin": false,
-            "jobs": [
-                "job_frankie_customer_123342354",
-                "job_julia_customer_9829349",
-                "job_julia_customer_98938973",
-            ]
+            "email": "susy@jackiescleaning.com",
+            "primary_phone": "(432) 863-1293
+            "role": ["admin", "tech", "superadmin"],
+            "disabled": false,
+            "photoUrl": null
         }
 }
 ```
@@ -138,6 +132,24 @@ What jobs do we have scheduled for them?
         }
     }
 }
+
+```
+
+# Teams
+
+"teams": {
+"doc-id": {
+"name": "420 Blazers",
+"users": [
+"user_id_1",
+"user_id_2",
+"user_id_3
+]
+}
+}
+
+```
+
 
 ```
 
