@@ -1,19 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-    Toolbar,
-    Tooltip,
     Table,
     TableBody,
     TableCell,
     TableHead,
     TableRow,
-    Paper,
     Button,
-    IconButton,
-    Typography,
 } from '@material-ui/core';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import { Link } from 'react-router-dom';
 import { routes } from '../../../constants/routes';
 import { actions } from '../../../state/customer/customerActions';
@@ -61,23 +55,17 @@ const CustomerTable = ({ customers }) => {
                             return (
                                 <TableRow key={customer.name}>
                                     <TableCell component="th" scope="row">
-                                        {/* <Link
-                                            to={{
-                                                pathname: `${routes.CUSTOMERS}/${customer.docId}`,
-                                            }}
-                                            //Set Current Customer from here
-                                            //Can't use state on location because
-                                            //otherwise the /customers/:customer_id
-                                            //will reload and check location.state on /customers/:customer_id/:job_id
-                                            onClick={() =>
+                                        <Link
+                                            to={`${routes.CUSTOMERS}/${customer.docId}`}
+                                            onClick={() => {
                                                 actions.setCurrentCustomer(
                                                     dispatch,
                                                     customer
-                                                )
-                                            }
-                                        > */}
-                                        {customer.name}
-                                        {/* </Link> */}
+                                                );
+                                            }}
+                                        >
+                                            {customer.name}
+                                        </Link>
                                     </TableCell>
                                     <TableCell align="right">
                                         {customer.firstServiceDate ||
