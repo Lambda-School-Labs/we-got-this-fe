@@ -61,7 +61,7 @@ const CustomerTable = ({ customers }) => {
                             return (
                                 <TableRow key={customer.name}>
                                     <TableCell component="th" scope="row">
-                                        <Link
+                                        {/* <Link
                                             to={{
                                                 pathname: `${routes.CUSTOMERS}/${customer.docId}`,
                                             }}
@@ -75,9 +75,9 @@ const CustomerTable = ({ customers }) => {
                                                     customer
                                                 )
                                             }
-                                        >
-                                            {customer.name}
-                                        </Link>
+                                        > */}
+                                        {customer.name}
+                                        {/* </Link> */}
                                     </TableCell>
                                     <TableCell align="right">
                                         {customer.firstServiceDate ||
@@ -94,8 +94,16 @@ const CustomerTable = ({ customers }) => {
                                         <Button
                                             variant="outlined"
                                             color="primary"
+                                            component={Link}
+                                            to={`${routes.CUSTOMERS}/${customer.docId}`}
+                                            onClick={() => {
+                                                actions.setCurrentCustomer(
+                                                    dispatch,
+                                                    customer
+                                                );
+                                            }}
                                         >
-                                            Schedule
+                                            View Details
                                         </Button>
                                     </TableCell>
                                 </TableRow>

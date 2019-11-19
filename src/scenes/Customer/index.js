@@ -38,6 +38,7 @@ const Customer = ({ match }) => {
 
     return (
         <>
+            {/* Needs to be styling properly... too big */}
             <IconButton component={Link} to={routes.CUSTOMERS}>
                 <ArrowBackIcon />
                 Customers

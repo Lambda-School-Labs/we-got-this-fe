@@ -11,6 +11,7 @@ const Customers = () => {
     const [{ customers }, dispatch] = useStateValue();
 
     useEffect(() => {
+        //Check if the customers in State is there
         if (customers.customers.length == 0) {
             console.log('asking for customers');
             actions.getCustomers(dispatch).then(res => {
@@ -19,10 +20,12 @@ const Customers = () => {
         } else {
             setLoading(false);
         }
-    }, [customers.customers.length, customers.length, dispatch]);
+    }, [customers.customers.length, dispatch]);
 
     return (
         <div>
+            {/* BS Styling the puts the title 
+            and button in a row... needs to be it's own component */}
             <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <h1>Customers</h1>
                 <Tooltip title="Filter">
