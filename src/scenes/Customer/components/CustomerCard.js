@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 
 //styles
-import { styled } from '@material-ui/core/styles';
+import { styled, withTheme } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 
 //State
@@ -23,8 +23,8 @@ import { actions } from '../../../state/customer/customerActions';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        width: '40%',
-        margin: theme.spacing(1),
+        // width: '40%',
+        // margin: theme.spacing(1),
     },
 }));
 
@@ -34,6 +34,10 @@ const Title = styled(Box)({
     justifyContent: 'flex-start',
     alignItems: 'center',
 });
+
+const CustomerDetails = styled(withTheme(Grid))(props => ({
+    margin: props.theme.spacing(1),
+}));
 
 /*
     Displays information about a specific customer.
@@ -66,37 +70,32 @@ const CustomerCard = ({ customer }) => {
     let fullAddress = `${address.street} ${address.city}, ${address.state} ${address.zipcode}`;
 
     return (
-        <Grid component={Paper} container spacing={2} className={classes.root}>
+        <Grid component={Paper} container item>
             <Grid item>
                 <CustomerImage
                     img={customer.img}
-                //    https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?)'
+                    //    https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?)'
                 />
             </Grid>
-            <Grid item xs={6} sm container>
-                <Grid item xs>
-                    <Title>
-                        <Typography variant="h6">{customer.name}</Typography>
-                        <DialogWrapper
-                            trigger={click => (
-                                <IconButton
-                                    size="small"
-                                    onClick={() => click()}
-                                >
-                                    <EditIcon />
-                                </IconButton>
-                            )}
-                            dialogContent={close => (
-                                <EditCustomerForm handleClose={close} />
-                            )}
-                            title="Create New Customer"
-                            size="sm"
-                        />
-                    </Title>
-                    <p>{fullAddress}</p>
-                    <p>{customer.contact.phone}</p>
-                </Grid>
-            </Grid>
+            <CustomerDetails item>
+                <Title>
+                    <Typography variant="h6">{customer.name}</Typography>
+                    <DialogWrapper
+                        trigger={click => (
+                            <IconButton size="small" onClick={() => click()}>
+                                <EditIcon />
+                            </IconButton>
+                        )}
+                        dialogContent={close => (
+                            <EditCustomerForm handleClose={close} />
+                        )}
+                        title="Edit Customer"
+                        size="sm"
+                    />
+                </Title>
+                <p>{fullAddress}</p>
+                <p>{customer.contact.phone}</p>
+            </CustomerDetails>
         </Grid>
     );
 };

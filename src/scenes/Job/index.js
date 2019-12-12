@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useStateValue } from '../../state';
+import moment from 'moment';
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,6 +13,7 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
+    Grid,
 } from '@material-ui/core';
 
 import PhotosPanel from './components/PhotosPanel';
@@ -65,7 +67,7 @@ const Job = ({ location, history }) => {
     };
 
     return (
-        <>
+        <Grid container item>
             {!job ? (
                 <h2>Loading...</h2>
             ) : (
@@ -76,8 +78,12 @@ const Job = ({ location, history }) => {
                             {customers.currentCustomer.name}
                         </IconButton>
                     )}
-                    <div className={classes.column}>
-                        <h1>{job.details.schedule_date}</h1>
+                    <Grid item>
+                        <h2>
+                            {moment(job.details.arrivalWindowStart).format(
+                                'LL'
+                            )}
+                        </h2>
                         <p>Serviced By: Get this to work</p>
                         <Tabs
                             value={value}
@@ -120,10 +126,10 @@ const Job = ({ location, history }) => {
                                 <Button onClick={handleSubmit}>Submit</Button>
                             </DialogActions>
                         </Dialog>
-                    </div>
+                    </Grid>
                 </>
             )}
-        </>
+        </Grid>
     );
 };
 

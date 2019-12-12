@@ -1,23 +1,10 @@
 import React from 'react';
 
 //Components
-import { Paper, Typography, Button, Box } from '@material-ui/core';
+import { Paper, Typography, Grid } from '@material-ui/core';
 
 //Styling
-import { styled, withTheme } from '@material-ui/core/styles';
-
-const NotesCard = styled(withTheme(Paper))(props => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    flexGrow: 1,
-    padding: props.theme.spacing(1),
-    margin: props.theme.spacing(1),
-}));
-
-const EditButton = styled(Button)({
-    alignSelf: 'flex-end',
-});
+import { makeStyles } from '@material-ui/core/styles';
 
 /*
     Displays extra information about a customer and their needs,
@@ -37,15 +24,25 @@ const EditButton = styled(Button)({
             "schedule": null
         }
 */
+const useStyles = makeStyles(theme => ({
+    root: {
+        padding: theme.spacing(1),
+        height: '100%',
+    },
+}));
+
 const CustomerNotes = ({ customer }) => {
+    const classes = useStyles();
     return (
-        <NotesCard>
-            <Box>
-                <Typography variant="h6">Customer Notes</Typography>
-                {customer.notes || 'No notes yet'}
-            </Box>
-            <EditButton color="primary">Edit</EditButton>
-        </NotesCard>
+        <Grid
+            component={Paper}
+            item
+            className={classes.root}
+            justify="space-between"
+        >
+            <Typography variant="h6">Customer Notes</Typography>
+            {customer.notes || 'No notes yet'}
+        </Grid>
     );
 };
 

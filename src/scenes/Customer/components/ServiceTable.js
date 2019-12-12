@@ -27,9 +27,6 @@ const useStyles = makeStyles(theme => ({
         overflowX: 'auto',
         marginBottom: theme.spacing(2),
     },
-    table: {
-        minWidth: 650,
-    },
     header: {
         '& th': {
             fontWeight: 600,
@@ -72,7 +69,7 @@ const ServiceTable = ({ jobs, match, location }) => {
 
     return (
         <>
-            <Table className={classes.table} size="small">
+            <Table size="small">
                 <TableHead>
                     <TableRow className={classes.header}>
                         <TableCell>Service Date</TableCell>
@@ -100,6 +97,7 @@ const ServiceTable = ({ jobs, match, location }) => {
                                         <Button
                                             variant="outlined"
                                             color="primary"
+                                            size="small"
                                             component={Link}
                                             to={{
                                                 pathname: `${match.url}/${job.docId}`,

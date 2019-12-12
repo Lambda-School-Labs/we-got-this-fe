@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#2678C0',
     },
     content: {
+        flexGrow: 1,
         width: `calc(100% - ${drawerWidth}px)`,
         padding: theme.spacing(2),
         [theme.breakpoints.down('xs')]: {
