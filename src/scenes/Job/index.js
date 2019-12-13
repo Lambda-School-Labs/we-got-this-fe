@@ -24,6 +24,8 @@ import LightBox from './components/LightBox';
 const useStyles = makeStyles(theme => ({
     root: {
         marginLeft: theme.spacing(2),
+        flexGrow: 1,
+        width: '100%',
     },
 }));
 
@@ -69,7 +71,7 @@ const Job = ({ location, history }) => {
     };
 
     return (
-        <Grid container item className={classes.root}>
+        <Grid container item className={classes.root} alignItems="stretch">
             {!job ? (
                 <h2>Loading...</h2>
             ) : (

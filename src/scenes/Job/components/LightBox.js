@@ -58,7 +58,7 @@ const ViewPhoto = ({ handleClose }) => {
     );
 };
 
-const NewPhoto = ({ handleClose }) => {
+export const NewPhoto = ({ handleClose }) => {
     const [{ customers }, dispatch] = useStateValue();
     const [uploadedImg, setUploadedImg] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -67,9 +67,13 @@ const NewPhoto = ({ handleClose }) => {
     const theme = useTheme();
 
     const handleChange = e => {
+        let file = e.target.files[0];
+
         let uploadTask = storageRef
-            .child(`customers/${customers.currentCustomer.docId}/jobs/`)
-            .put(e.target.files[0]);
+            .child(
+                `customers/${customers.currentCustomer.docId}/jobs/${location.state}/${file.name}`
+            )
+            .put(file);
 
         uploadTask.on(
             'state_changed',

@@ -74,7 +74,14 @@ const Customer = ({ match }) => {
 
     return (
         <Grid container spacing={1} wrap="nowrap">
-            <Grid container item spacing={2}>
+            <Grid
+                container
+                item
+                spacing={2}
+                justify="flex-start"
+                alignItems="flex-start"
+                alignContent="flex-start"
+            >
                 <Grid item xs={12}>
                     <IconButton
                         size="small"
