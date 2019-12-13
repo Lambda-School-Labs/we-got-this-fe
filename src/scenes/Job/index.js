@@ -5,7 +5,7 @@ import moment from 'moment';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { useTheme, makeStyles, styled } from '@material-ui/core/styles';
 import {
     Tab,
     Tabs,
@@ -14,18 +14,20 @@ import {
     DialogActions,
     DialogContent,
     Grid,
+    Box,
 } from '@material-ui/core';
 
 import PhotosPanel from './components/PhotosPanel';
 import NotesPanel from './components/NotesPanel';
+import LightBox from './components/LightBox';
 
-const useStyles = makeStyles({
-    column: {
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
+const useStyles = makeStyles(theme => ({
+    root: {
+        marginLeft: theme.spacing(2),
     },
-});
+}));
+
+const Buttons = styled(Box)({});
 
 const teams = techsArray => {
     let team = techsArray.reduce((acc, curr) => {
@@ -67,7 +69,7 @@ const Job = ({ location, history }) => {
     };
 
     return (
-        <Grid container item>
+        <Grid container item className={classes.root}>
             {!job ? (
                 <h2>Loading...</h2>
             ) : (
@@ -85,28 +87,35 @@ const Job = ({ location, history }) => {
                             )}
                         </h2>
                         <p>Serviced By: Get this to work</p>
-                        <Tabs
-                            value={value}
-                            onChange={handleChange}
-                            indicatorColor="primary"
-                            textColor="primary"
-                        >
-                            <Tab label="Photos" />
-                            <Tab label="Job Notes" />
-                            {value == 0 ? (
-                                <Button variant="contained" color="primary">
-                                    Add Photo
-                                </Button>
-                            ) : (
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={() => setOpen(true)}
+                        <Grid container>
+                            <Grid item>
+                                <Tabs
+                                    value={value}
+                                    onChange={handleChange}
+                                    indicatorColor="primary"
+                                    textColor="primary"
+                                    scrollButtons="off"
                                 >
-                                    Add Note
-                                </Button>
-                            )}
-                        </Tabs>
+                                    <Tab label="Photos" />
+                                    <Tab label="Job Notes" />
+                                </Tabs>
+                            </Grid>
+                            <Grid item>
+                                {value == 0 ? (
+                                    <LightBox />
+                                ) : (
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="small"
+                                        fullWidth
+                                        onClick={() => setOpen(true)}
+                                    >
+                                        Add Note
+                                    </Button>
+                                )}
+                            </Grid>
+                        </Grid>
                         <PhotosPanel value={value} index={0} job={job} />
                         <NotesPanel value={value} index={1} job={job} />
                         <Dialog open={open}>

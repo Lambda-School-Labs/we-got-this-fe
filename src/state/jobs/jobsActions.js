@@ -202,4 +202,16 @@ export const actions = {
             return error;
         }
     },
+    async uploadJobImage(dispatch, values) {
+        try {
+            let formatted = jobModel.formatJobImage(values);
+            let savedJob = await jobService.uploadJobImage(formatted);
+
+            //Write Dispatch function here
+            return true;
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+    },
 };

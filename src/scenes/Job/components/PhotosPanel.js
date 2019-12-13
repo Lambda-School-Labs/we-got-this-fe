@@ -21,14 +21,19 @@ const PhotosPanel = ({ value, index, job }) => {
 
     return (
         <Box hidden={value !== index}>
-            <ButtonBase
+            {!job.photos || !job.photos.length ? (
+                <p>No Photos</p>
+            ) : (
+                <p>Photos</p>
+            )}
+            {/* <ButtonBase
                 onClick={() => {
                     setOpen(true);
                     setSelectedImg(job.approved_checklist_url);
                 }}
             >
                 <Grid container spacing={2}>
-                    {job.photos &&
+                    {job.photos ? (
                         job.photos.map(photo => (
                             <Grid item xs={6} spacing={1}>
                                 <Paper>
@@ -40,9 +45,14 @@ const PhotosPanel = ({ value, index, job }) => {
                                     <p>{photo.note}</p>
                                 </Paper>
                             </Grid>
-                        ))}
+                        ))
+                    ) : (
+                        <Grid item>
+                            <Paper>No Photos</Paper>
+                        </Grid>
+                    )}
                 </Grid>
-            </ButtonBase>
+            </ButtonBase> */}
             <Dialog open={open}>
                 <DialogContent>
                     <img src={selectedImg} />

@@ -4,6 +4,7 @@ export default {
     formatJob,
     formatGoogleCalendarEvent,
     formatBigCalendarEvent,
+    formatJobImage,
 };
 
 function formatJob(values) {
@@ -126,4 +127,14 @@ function formatBigCalendarEvent(calEvent) {
             };
         }
     }
+}
+
+function formatJobImage(values) {
+    return {
+        jobId: values.jobId || null,
+        photos: values.photos || [],
+        url: values.uploadedImg || values.url || null,
+        tag: values.tag || null,
+        note: values.note || null,
+    };
 }

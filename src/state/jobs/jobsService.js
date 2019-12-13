@@ -33,4 +33,26 @@ export const service = {
 
         console.log('UpdatedJobs: ', updatedJobs);
     },
+    async uploadJobImage(values) {
+        try {
+            let updatedImgs = await db
+                .collection('jobs')
+                .doc(`${values.jobId}`)
+                .update({
+                    photos: [
+                        ...values.photos,
+                        {
+                            url: values.url,
+                            tag: values.tag,
+                            note: values.note,
+                        },
+                    ],
+                });
+
+            console.log('Updated Images', updatedImgs);
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+    },
 };
