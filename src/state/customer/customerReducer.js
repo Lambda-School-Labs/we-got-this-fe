@@ -1,5 +1,4 @@
 import { types } from './customerActions';
-import { Stats } from 'fs';
 // import service from './customerService';
 
 export const customerState = {
@@ -75,6 +74,32 @@ export default function reducer(state, action) {
             return {
                 ...state,
                 customers: [...state.customers],
+            };
+        case types.ADD_UPDATE_IMAGE_TO_JOB:
+            //desctructure needed elements off payload
+            let { url, tag, note } = payload;
+
+            //Get the job that needs to be updated
+
+            let customerJob = state.customerJobs.find(
+                job => job.docId == payload.jobId
+            );
+
+            //Add the photo to the job
+            //If there is no property photo property on the job already
+            if (!customerJob.photos) {
+                customerJob.photos = [{ url, tag, note }];
+            } else {
+                //There are photos already on the job
+                customerJob.photos = [
+                    ...customerJob.photos,
+                    { url, tag, note },
+                ];
+            }
+
+            return {
+                ...state,
+                customerJobs: [...state.customerJobs],
             };
 
         default:

@@ -64,7 +64,10 @@ const PhotosPanel = ({ value, index, job }) => {
                                         </Paper>
                                     )}
                                     dialogContent={close => (
-                                        <NewPhoto handleClose={close} />
+                                        <NewPhoto
+                                            handleClose={close}
+                                            photo={photo}
+                                        />
                                     )}
                                     title="New Photo"
                                     size="xs"

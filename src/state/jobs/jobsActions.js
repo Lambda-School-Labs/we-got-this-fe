@@ -17,6 +17,7 @@ export const types = {
     SET_SLOT_EVENT: 'jobs/set_slot_event',
     GET_ALL_JOBS: 'calendar/get_all_jobs',
     ADD_JOB_TO_JOBS: 'jobs/add_job_to_jobs',
+    ADD_UPDATE_PHOTO_ON_JOB: 'jobs/add_update_photo_on_job',
 };
 
 export const actions = {
@@ -208,6 +209,11 @@ export const actions = {
             let savedJob = await jobService.uploadJobImage(formatted);
 
             //Write Dispatch function here
+            dispatch({
+                type: customerTypes.ADD_UPDATE_IMAGE_TO_JOB,
+                payload: formatted,
+            });
+
             return true;
         } catch (err) {
             console.log(err);

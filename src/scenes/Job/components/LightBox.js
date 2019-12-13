@@ -49,16 +49,7 @@ const Image = styled(({ img, ...other }) => <ButtonBase {...other} />)({
     },
 });
 
-const ViewPhoto = ({ handleClose }) => {
-    return (
-        <>
-            <Image />
-            <Button onClick={handleClose()}>Close</Button>
-        </>
-    );
-};
-
-export const NewPhoto = ({ handleClose }) => {
+export const NewPhoto = ({ handleClose, photo }) => {
     const [{ customers }, dispatch] = useStateValue();
     const [uploadedImg, setUploadedImg] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -118,7 +109,7 @@ export const NewPhoto = ({ handleClose }) => {
                             style={{ display: 'none' }}
                         />
                         <Image
-                            img={uploadedImg}
+                            img={(photo && photo.url) || uploadedImg}
                             onClick={() => fileInput.current.click()}
                         >
                             <p>Click to change</p>
@@ -135,8 +126,8 @@ export const NewPhoto = ({ handleClose }) => {
             >
                 <Formik
                     initialValues={{
-                        tag: '',
-                        note: '',
+                        tag: (photo && photo.tag) || '',
+                        note: (photo && photo.note) || '',
                     }}
                     onSubmit={async values => {
                         let res = await actions.uploadJobImage(dispatch, {
