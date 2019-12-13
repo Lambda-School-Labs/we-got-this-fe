@@ -75,7 +75,7 @@ export default function reducer(state, action) {
                 ...state,
                 customers: [...state.customers],
             };
-        case types.ADD_UPDATE_IMAGE_TO_JOB:
+        case types.ADD_IMAGE_TO_JOB:
             //desctructure needed elements off payload
             let { url, tag, note } = payload;
 
@@ -96,6 +96,32 @@ export default function reducer(state, action) {
                     { url, tag, note },
                 ];
             }
+
+            return {
+                ...state,
+                customerJobs: [...state.customerJobs],
+            };
+        case types.UPDATE_IMAGE_ON_JOB:
+            //  let {url, tag, note} = payload;
+
+            //Get Index
+            let customerJobFirst = state.customerJobs.find(
+                job => job.docId == payload.jobId
+            );
+
+            //Get item in index
+            let photoIndex = customerJobFirst.photos.findIndex(photo => {
+                return (
+                    photo.url === payload.url ||
+                    photo.tag === payload.tag ||
+                    photo.note === payload.note
+                );
+            });
+            customerJobFirst.photos[photoIndex] = {
+                url: payload.url,
+                tag: payload.tag,
+                note: payload.note,
+            };
 
             return {
                 ...state,

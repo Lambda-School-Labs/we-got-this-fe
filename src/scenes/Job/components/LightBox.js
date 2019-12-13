@@ -51,7 +51,9 @@ const Image = styled(({ img, ...other }) => <ButtonBase {...other} />)({
 
 export const NewPhoto = ({ handleClose, photo }) => {
     const [{ customers }, dispatch] = useStateValue();
-    const [uploadedImg, setUploadedImg] = useState(null);
+    const [uploadedImg, setUploadedImg] = useState(
+        (photo && photo.url) || null
+    );
     const [loading, setLoading] = useState(false);
     const location = useLocation();
     const fileInput = useRef(null);
@@ -130,14 +132,27 @@ export const NewPhoto = ({ handleClose, photo }) => {
                         note: (photo && photo.note) || '',
                     }}
                     onSubmit={async values => {
-                        let res = await actions.uploadJobImage(dispatch, {
-                            ...values,
-                            uploadedImg,
-                            jobId: location.state,
-                            photos: getPhotos(),
-                        });
-                        if (res === true) {
-                            handleClose();
+                        //This is my janky check if the form was loaded with props and should be an update action
+                        if (photo) {
+                            let res = await actions.updateJobImage(dispatch, {
+                                ...values,
+                                uploadedImg,
+                                jobId: location.state,
+                                photos: getPhotos(),
+                            });
+                            if (res === true) {
+                                handleClose();
+                            }
+                        } else {
+                            let res = await actions.uploadJobImage(dispatch, {
+                                ...values,
+                                uploadedImg,
+                                jobId: location.state,
+                                photos: getPhotos(),
+                            });
+                            if (res === true) {
+                                handleClose();
+                            }
                         }
                     }}
                 >

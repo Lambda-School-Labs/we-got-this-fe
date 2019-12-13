@@ -55,4 +55,27 @@ export const service = {
             return err;
         }
     },
+    async updateJobImage(values) {
+        let { jobId, photos, url, tag, note } = values;
+        try {
+            //update photos
+            let photoIndex = photos.findIndex(
+                photo =>
+                    photo.url == url || photo.tag == tag || photo.note == note
+            );
+
+            photos[photoIndex] = { url, tag, note };
+
+            await db
+                .collection('jobs')
+                .doc(`${values.jobId}`)
+                .update({
+                    photos: [...photos],
+                });
+            return true;
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+    },
 };

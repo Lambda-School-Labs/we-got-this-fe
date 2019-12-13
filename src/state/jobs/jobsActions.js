@@ -210,7 +210,7 @@ export const actions = {
 
             //Write Dispatch function here
             dispatch({
-                type: customerTypes.ADD_UPDATE_IMAGE_TO_JOB,
+                type: customerTypes.ADD_IMAGE_TO_JOB,
                 payload: formatted,
             });
 
@@ -218,6 +218,21 @@ export const actions = {
         } catch (err) {
             console.log(err);
             return err;
+        }
+    },
+    async updateJobImage(dispatch, values) {
+        try {
+            let formatted = jobModel.formatJobImage(values);
+            await jobService.updateJobImage(formatted);
+
+            dispatch({
+                type: customerTypes.UPDATE_IMAGE_ON_JOB,
+                payload: formatted,
+            });
+            return true;
+        } catch (err) {
+            return err;
+            console.log(err);
         }
     },
 };
