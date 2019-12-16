@@ -1,55 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 //State
 import Firebase from '../../../config/firebase';
 import { useStateValue } from '../../../state';
 
 //Components
-import { Dialog, Button, ButtonBase, Grid } from '@material-ui/core';
-import { styled, useTheme } from '@material-ui/core/styles';
+import { Button, Grid } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 import { Formik, Form } from 'formik';
 import { useLocation } from 'react-router-dom';
 
 //Custom Components
-import DialogWrapper from '../../../components/dialogs/DialogWrapper';
 import MuiTextInput from '../../../components/formItems/MuiTextInput';
 import MuiTextAreaInput from '../../../components/formItems/MuiTextAreaInput';
 import { SplashLoading } from '../../../components';
+import Image from './Image';
 
 //Actions
 import { actions } from '../../../state/jobs/jobsActions';
 
 const storageRef = Firebase.getStorageRef();
 
-const Image = styled(({ img, ...other }) => <ButtonBase {...other} />)({
-    width: '100%',
-    height: 250,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundImage: props =>
-        props.img
-            ? `url(${props.img})`
-            : 'url(https://www.chalktalksports.com/on/demandware.static/Sites-ChalkTalkSports-Site/-/default/dw552617e4/images/Placeholder.jpg)',
-
-    '& p': {
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        color: '#fff',
-        visibility: 'hidden',
-        opacity: 0,
-    },
-
-    '&:hover p': {
-        opacity: 1,
-        visibility: 'visible',
-    },
-});
-
-export const NewPhoto = ({ handleClose, photo }) => {
+const NewPhoto = ({ handleClose, photo }) => {
     const [{ customers }, dispatch] = useStateValue();
     const [uploadedImg, setUploadedImg] = useState(
         (photo && photo.url) || null
@@ -189,27 +161,4 @@ export const NewPhoto = ({ handleClose, photo }) => {
     );
 };
 
-const LightBox = ({ src, newPhoto }) => {
-    return (
-        <DialogWrapper
-            trigger={click => (
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    fullWidth
-                    onClick={() => click()}
-                >
-                    Add Photo
-                </Button>
-            )}
-            dialogContent={close => <NewPhoto handleClose={close} />}
-            title="New Photo"
-            size="xs"
-            showTitle={false}
-            noPadding={true}
-        />
-    );
-};
-
-export default LightBox;
+export default NewPhoto;

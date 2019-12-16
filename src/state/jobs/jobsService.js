@@ -17,12 +17,10 @@ export const service = {
     },
 
     async addJobToCustomer(customerDocId, jobDocId) {
-        let customer = (
-            await db
-                .collection('customers')
-                .doc(`${customerDocId}`)
-                .get()
-        ).data();
+        let customer = (await db
+            .collection('customers')
+            .doc(`${customerDocId}`)
+            .get()).data();
 
         console.log('AddJobToCustomer: ', customer);
 
@@ -77,5 +75,11 @@ export const service = {
             console.log(err);
             return err;
         }
+    },
+    async saveChecklistToJob(jobId, downloadURL) {
+        await db
+            .collection('jobs')
+            .doc(`${jobId}`)
+            .update({ approved_checklist_url: downloadURL });
     },
 };
