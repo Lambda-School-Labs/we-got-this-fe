@@ -13,7 +13,7 @@ import NewJob_02 from '../../components/dialogs/NewJob_02';
 
 import Filters from './components/Filters';
 
-const AllCalendar = () => {
+const AllCalendar = ({ history }) => {
     //Get Google API
     const DraggableCalendar = withDragAndDrop(Calendar);
     const localizer = momentLocalizer(moment);
@@ -111,6 +111,11 @@ const AllCalendar = () => {
                 max={new Date(2019, 11, 13, 18)}
                 onSelectEvent={event => {
                     console.log(event);
+                    if (!!event.details) {
+                        history.push(
+                            `/customers/${event.details.customerId}/${event.details.jobId}`
+                        );
+                    }
                 }}
                 eventPropGetter={formatEvent}
                 components={{

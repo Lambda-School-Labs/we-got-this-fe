@@ -91,7 +91,9 @@ const Job = ({ match, location, history }) => {
 
     useEffect(() => {
         let index = customers.customerJobs.findIndex(job => {
-            return job.docId == location.state;
+            return (
+                job.docId == location.state || job.docId == match.params.job_id
+            );
         });
         let job = customers.customerJobs[index];
         setJob(job);

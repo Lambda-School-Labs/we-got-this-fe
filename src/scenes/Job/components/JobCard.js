@@ -42,7 +42,7 @@ const JobCard = ({ job }) => {
                         />
                     )}
                     title="CheckList Photo"
-                    size="sm"
+                    size="xs"
                 />
             </Grid>
             <Grid item style={{ margin: theme.spacing(1) }}>

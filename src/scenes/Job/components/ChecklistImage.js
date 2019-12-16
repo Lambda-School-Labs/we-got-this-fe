@@ -14,8 +14,8 @@ import { service } from '../../../state/jobs/jobsService';
 const storageRef = Firebase.getStorageRef();
 
 const Image = styled(({ img, ...other }) => <ButtonBase {...other} />)({
-    width: 128,
-    height: 128,
+    width: '100%',
+    height: 400,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
