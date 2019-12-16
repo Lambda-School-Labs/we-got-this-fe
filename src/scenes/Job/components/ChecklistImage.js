@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 //styles
 import { styled } from '@material-ui/core/styles';
 import { useStateValue } from '../../../state';
-import { service } from '../../../state/jobs/jobsService';
+import { actions } from '../../../state/jobs/jobsActions';
 
 const storageRef = Firebase.getStorageRef();
 
@@ -83,7 +83,12 @@ const ChecklistImage = ({ img, approved = false, handleClose }) => {
                     setLoading(false);
                     setUploadedImg(downloadURL);
                     if (approved === true) {
-                        service.saveChecklistToJob(location.state, downloadURL);
+                        actions.saveChecklistToJob(
+                            dispatch,
+                            location.state,
+                            downloadURL
+                        );
+                        handleClose();
                     }
                     console.log('The download URL is: ', downloadURL);
                 });

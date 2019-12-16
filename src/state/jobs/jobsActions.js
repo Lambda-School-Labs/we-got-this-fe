@@ -34,7 +34,10 @@ export const actions = {
         dispatch({ type: types.CLEAR_FILTERS });
     },
     setNewServiceFormOpen(dispatch, boolean) {
-        dispatch({ type: types.SET_NEW_SERVICE_FORM_OPEN, payload: boolean });
+        dispatch({
+            type: types.SET_NEW_SERVICE_FORM_OPEN,
+            payload: boolean,
+        });
     },
     setNewServiceForm_02Open(dispatch, boolean) {
         dispatch({
@@ -46,9 +49,18 @@ export const actions = {
         dispatch({ type: types.SET_SLOT_EVENT, payload: slotEvent });
     },
     setNewJobCustomer(dispatch, customer) {
-        dispatch({ type: types.SET_NEW_JOB_CUSTOMER, payload: customer });
-        dispatch({ type: types.SET_NEW_SERVICE_FORM_OPEN, payload: false });
-        dispatch({ type: types.SET_NEW_SERVICE_FORM_02_OPEN, payload: true });
+        dispatch({
+            type: types.SET_NEW_JOB_CUSTOMER,
+            payload: customer,
+        });
+        dispatch({
+            type: types.SET_NEW_SERVICE_FORM_OPEN,
+            payload: false,
+        });
+        dispatch({
+            type: types.SET_NEW_SERVICE_FORM_02_OPEN,
+            payload: true,
+        });
     },
 
     async getAllCalendarEvents(dispatch) {
@@ -232,6 +244,18 @@ export const actions = {
             return true;
         } catch (err) {
             return err;
+            console.log(err);
+        }
+    },
+    async saveChecklistToJob(dispatch, jobId, downloadURL) {
+        try {
+            await jobService.saveChecklistToJob(jobId, downloadURL);
+
+            dispatch({
+                type: customerTypes.UPLOAD_UPDATE_CHECKLIST,
+                payload: { jobId, downloadURL },
+            });
+        } catch (err) {
             console.log(err);
         }
     },

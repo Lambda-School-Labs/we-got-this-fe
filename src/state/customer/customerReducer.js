@@ -128,6 +128,17 @@ export default function reducer(state, action) {
                 customerJobs: [...state.customerJobs],
             };
 
+        case types.UPLOAD_UPDATE_CHECKLIST:
+            let checklistJob = state.customerJobs.find(
+                job => job.docId == payload.jobId
+            );
+
+            checklistJob.approved_checklist_url = payload.downloadURL;
+
+            return {
+                ...state,
+                customerJobs: [...state.customerJobs],
+            };
         default:
             return {
                 ...state,
