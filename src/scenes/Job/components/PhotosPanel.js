@@ -21,7 +21,9 @@ const PhotosPanel = ({ value, index, job }) => {
     return (
         <Box hidden={value !== index}>
             {!job.photos || !job.photos.length ? (
-                <p>No Photos</p>
+                <Grid item xs={6}>
+                    <p>No Photos</p>
+                </Grid>
             ) : (
                 <Grid container spacing={2} justify="space-between">
                     {job.photos.map(photo => (

@@ -20,8 +20,11 @@ import ChecklistImage from './components/ChecklistImage';
 const useStyles = makeStyles(theme => ({
     root: {
         marginLeft: theme.spacing(2),
-        flexGrow: 1,
         width: '100%',
+    },
+    tabs: {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
     },
 }));
 
@@ -78,7 +81,7 @@ const AddNote = () => {
     );
 };
 
-const Job = ({ location, history }) => {
+const Job = ({ match, location, history }) => {
     const [value, setValue] = useState(0);
     const [{ customers }, dipatch] = useStateValue();
     const [job, setJob] = useState(null);
@@ -99,28 +102,36 @@ const Job = ({ location, history }) => {
     };
 
     return (
-        <Grid container item className={classes.root} alignItems="stretch">
+        <Grid container item className={classes.root} direction="column">
             {!job ? (
                 <h2>Loading...</h2>
             ) : (
                 <>
                     {mobile ? (
-                        <Grid item xs={12}>
+                        <Grid item>
                             <IconButton onClick={() => history.goBack()}>
                                 <ArrowBackIcon />
                                 {customers.currentCustomer.name}
                             </IconButton>
                         </Grid>
                     ) : (
-                        <Grid item xs={6}>
-                            <IconButton onClick={() => history.goBack()}>
+                        <Grid item>
+                            <IconButton
+                                onClick={() =>
+                                    history.replace(
+                                        `/customers/${match.params.customer_id}`
+                                    )
+                                }
+                            >
                                 <CloseIcon />
                             </IconButton>
                         </Grid>
                     )}
                     <Grid item>
-                        <JobCard job={job} />
-                        <Grid container>
+                        <Grid item>
+                            <JobCard job={job} />
+                        </Grid>
+                        <Grid container className={classes.tabs}>
                             <Grid item>
                                 <Tabs
                                     value={value}

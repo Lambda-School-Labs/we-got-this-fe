@@ -47,7 +47,7 @@ const Image = styled(({ img, ...other }) => <ButtonBase {...other} />)({
     Example Props:
         "img": "http://example.com/"
 */
-const ChecklistImage = ({ img, approved = false }) => {
+const ChecklistImage = ({ img, approved = false, handleClose }) => {
     const [{ customers }, dispatch] = useStateValue();
     const [loading, setLoading] = useState(false);
     const [uploadedImg, setUploadedImg] = useState(null);
@@ -108,7 +108,9 @@ const ChecklistImage = ({ img, approved = false }) => {
                     />
                     <Image
                         img={img || uploadedImg}
-                        onClick={() => fileInput.current.click()}
+                        onClick={() => {
+                            fileInput.current.click();
+                        }}
                     >
                         <p>Click to change</p>
                     </Image>
