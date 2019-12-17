@@ -92,6 +92,8 @@ const Job = ({ match, location, history }) => {
     useEffect(() => {
         let index = customers.customerJobs.findIndex(job => {
             return (
+                //Checks for both to handle select from the customer view
+                // and from the calendar
                 job.docId == location.state || job.docId == match.params.job_id
             );
         });
