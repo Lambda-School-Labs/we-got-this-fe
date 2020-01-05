@@ -1,42 +1,42 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 //Components
 import EditCustomerForm from '../../../components/forms/EditCustomerForm';
 import DialogWrapper from '../../../components/dialogs/DialogWrapper';
 import CustomerImage from './CustomerImage';
 import {
-    Grid,
-    IconButton,
-    Box,
-    makeStyles,
-    Typography,
-    Paper,
+	Grid,
+	IconButton,
+	Box,
+	makeStyles,
+	Typography,
+	Paper,
 } from '@material-ui/core';
 
 //styles
-import { styled, withTheme } from '@material-ui/core/styles';
+import {styled, withTheme} from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 
 //State
-import { useStateValue } from '../../../state';
-import { actions } from '../../../state/customer/customerActions';
+import {useStateValue} from '../../../state';
+import {actions} from '../../../state/customer/customerActions';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        // width: '40%',
-        // margin: theme.spacing(1),
-    },
+	root: {
+		// width: '40%',
+		// margin: theme.spacing(1),
+	},
 }));
 
 const Title = styled(Box)({
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'flex-start',
+	alignItems: 'center',
 });
 
 const CustomerDetails = styled(withTheme(Grid))(props => ({
-    margin: props.theme.spacing(1),
+	margin: props.theme.spacing(1),
 }));
 
 /*
@@ -56,48 +56,48 @@ const CustomerDetails = styled(withTheme(Grid))(props => ({
             "schedule": null
         }
 */
-const CustomerCard = ({ customer }) => {
-    const classes = useStyles();
-    const [, dispatch] = useStateValue();
+const CustomerCard = ({customer}) => {
+	const classes = useStyles();
+	const [, dispatch] = useStateValue();
 
-    useEffect(() => {
-        if (!customer.img) {
-            actions.getCustomerImage(dispatch, customer.docId);
-        }
-    }, [customer.docId, customer.img, dispatch]);
+	useEffect(() => {
+		if (!customer.img) {
+			actions.getCustomerImage(dispatch, customer.docId);
+		}
+	}, [customer.docId, customer.img, dispatch]);
 
-    let { address } = customer.locations[0];
-    let fullAddress = `${address.street} ${address.city}, ${address.state} ${address.zipcode}`;
+	let {address} = customer.locations[0];
+	let fullAddress = `${address.street} ${address.city}, ${address.state} ${address.zipcode}`;
 
-    return (
-        <Grid component={Paper} container item>
-            <Grid item>
-                <CustomerImage
-                    img={customer.img}
-                    //    https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?)'
-                />
-            </Grid>
-            <CustomerDetails item>
-                <Title>
-                    <Typography variant="h6">{customer.name}</Typography>
-                    <DialogWrapper
-                        trigger={click => (
-                            <IconButton size="small" onClick={() => click()}>
-                                <EditIcon />
-                            </IconButton>
-                        )}
-                        dialogContent={close => (
-                            <EditCustomerForm handleClose={close} />
-                        )}
-                        title="Edit Customer"
-                        size="sm"
-                    />
-                </Title>
-                <p>{fullAddress}</p>
-                <p>{customer.contact.phone}</p>
-            </CustomerDetails>
-        </Grid>
-    );
+	return (
+		<Grid component={Paper} container item>
+			<Grid item>
+				<CustomerImage
+					img={customer.img}
+					//    https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?)'
+				/>
+			</Grid>
+			<CustomerDetails item>
+				<Title>
+					<Typography variant='h6'>{customer.name}</Typography>
+					<DialogWrapper
+						trigger={click => (
+							<IconButton size='small' onClick={() => click()}>
+								<EditIcon />
+							</IconButton>
+						)}
+						dialogContent={close => (
+							<EditCustomerForm handleClose={close} />
+						)}
+						title='Edit Customer'
+						size='sm'
+					/>
+				</Title>
+				<p>{fullAddress}</p>
+				<p>{customer.contact.phone}</p>
+			</CustomerDetails>
+		</Grid>
+	);
 };
 
 export default CustomerCard;

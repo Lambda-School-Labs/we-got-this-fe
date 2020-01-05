@@ -22,31 +22,12 @@ import { useStateValue } from '../../state';
 import { actions } from '../../state/customer/customerActions';
 
 //Styles
-import { makeStyles } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-        flexDirection: 'row',
-    },
-    column: {
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-}));
 
 const Customer = ({ match }) => {
     const [loading, setLoading] = useState(true);
     const [{ customers }, dispatch] = useStateValue();
-    const classes = useStyles();
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -58,7 +39,7 @@ const Customer = ({ match }) => {
             console.log('Bypassing');
             setLoading(false);
         }
-        //If the page is refreshed and all that's available is the match.params
+        //If the page is refreshed or redirected to and all that's available is the match.params
         else {
             console.log('Getting current customer');
             actions.getCurrentCustomer(dispatch, customer_id).then(res => {

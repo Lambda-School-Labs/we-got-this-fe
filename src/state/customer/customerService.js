@@ -20,12 +20,14 @@ export const service = {
     async getCustomers() {
         let customers = [];
         let querySnapshot = await db.collection('customers').get();
+
         querySnapshot.forEach(doc => {
             let docId = doc.id;
             let customerData = doc.data();
             let customer = { docId, ...customerData };
             customers.push(customer);
         });
+
         return customers;
     },
 

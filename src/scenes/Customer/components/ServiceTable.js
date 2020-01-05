@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+// TODO: Fix this in the schema first
 const teams = techsArray => {
     let team = techsArray.reduce((acc, curr) => {
         return acc + curr.name + ' & ';
