@@ -102,11 +102,11 @@ export const actions = {
 
         let allCalEvents = await Promise.all(promises);
 
-        console.log('All Cal Events', allCalEvents);
+        
 
         let flattened = allCalEvents.flat();
 
-        console.log('Flattened', flattened);
+        
 
         let formatted = flattened.map(event =>
             jobModel.formatBigCalendarEvent(event)
@@ -117,7 +117,7 @@ export const actions = {
             payload: formatted,
         });
 
-        console.log(formatted);
+        
     },
 
     async getAllJobs(dispatch) {
@@ -129,7 +129,7 @@ export const actions = {
                 payload: jobs,
             });
         } catch (err) {
-            console.log(err);
+            
         }
     },
 
@@ -160,7 +160,7 @@ export const actions = {
                     dispatch,
                     customer
                 );
-                console.log('New Customer', newCustomer);
+                
 
                 //Replace the jobDetails customer with the new one
                 jobDetails.customer = newCustomer;
@@ -171,7 +171,7 @@ export const actions = {
                 );
                 //Now create the job
                 let newJobDetails = jobModel.formatJob(jobDetails);
-                console.log('New Job Details', newJobDetails);
+                
                 newJobDocId = await jobService.scheduleNewJob(newJobDetails);
 
                 //Now add the job Id back to the customer
@@ -211,7 +211,7 @@ export const actions = {
 
             return true;
         } catch (error) {
-            console.log('Scheduling Job Error: ', error);
+            
             return error;
         }
     },
@@ -228,14 +228,14 @@ export const actions = {
 
             return true;
         } catch (err) {
-            console.log(err);
+            
             return err;
         }
     },
     async updateJobImage(dispatch, values) {
         try {
             let formatted = jobModel.formatJobImage(values);
-            await jobService.updateJobImage(formatted);
+            await jobService.updateJobImage(values);
 
             dispatch({
                 type: customerTypes.UPDATE_IMAGE_ON_JOB,
@@ -244,7 +244,23 @@ export const actions = {
             return true;
         } catch (err) {
             return err;
-            console.log(err);
+            
+        }
+    },
+    async deleteJobImage(dispatch, values) {
+        try {
+            let formatted = jobModel.formatJobImage(values);
+            console.log({values, formatted})
+            await jobService.updateJobImage(formatted);
+
+            dispatch({
+                type: customerTypes.DELETE_IMAGE_ON_JOB,
+                payload: formatted,
+            });
+            return true;
+        } catch (err) {
+            return err;
+            
         }
     },
     async saveChecklistToJob(dispatch, jobId, downloadURL) {
@@ -256,7 +272,7 @@ export const actions = {
                 payload: { jobId, downloadURL },
             });
         } catch (err) {
-            console.log(err);
+            
         }
     },
 };
