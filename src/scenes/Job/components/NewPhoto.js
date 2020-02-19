@@ -48,13 +48,13 @@ const NewPhoto = ({ handleClose, photo }) => {
             },
             error => {
                 //error handler
-                console.log(error);
+                
             },
             () => {
                 uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
                     setLoading(false);
                     setUploadedImg(downloadURL);
-                    console.log('The download URL is: ', downloadURL);
+                    
                 });
             }
         );
@@ -65,8 +65,27 @@ const NewPhoto = ({ handleClose, photo }) => {
             job => job.docId == location.state
         );
         let photos = job.photos || [];
+        //console.log(photos)
         return photos;
     };
+
+    async function handleDelete(){
+        const photos = getPhotos();
+        
+        let res = await actions.deleteJobImage(dispatch, {
+            jobId: location.state,
+            photos: photos,
+            photoIndex: photos.indexOf(photo)
+        });
+
+        if (res instanceof Error) {
+            console.error(res);
+        }
+
+        if (res === true) {
+            handleClose();
+        }
+    }
 
     return (
         <Grid container>
@@ -143,8 +162,19 @@ const NewPhoto = ({ handleClose, photo }) => {
                                 <MuiTextAreaInput name="note" label="Notes" />
                             </Grid>
                             <Grid item>
+                                {photo ?
+                                    <Button
+                                        style={{ marginTop: 30 }}
+                                        onClick={handleDelete}
+                                        variant="outlined"
+                                        color="warning"
+                                        fullWidth
+                                    >
+                                        Delete Photo
+                                    </Button>
+                                : null}
                                 <Button
-                                    style={{ marginTop: 30 }}
+                                    style={{ marginTop: 10 }}
                                     type="submit"
                                     variant="contained"
                                     color="primary"
