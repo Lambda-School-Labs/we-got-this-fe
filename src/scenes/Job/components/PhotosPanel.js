@@ -73,7 +73,7 @@ const PhotosPanel = ({ value, index, job }) => {
 
 const useStyles = makeStyles({
     gridItem: {
-        maxWidth: '300px'
+        maxWidth: '197px'
     }
 })
 
