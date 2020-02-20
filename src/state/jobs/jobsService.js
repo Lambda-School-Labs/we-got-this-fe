@@ -77,17 +77,17 @@ export const service = {
         }
     },
     async deleteJobImage(values) {
-        let { jobId, photos, photoIndex } = values;
         try {
+            let { jobId, photos, photoIndex } = values;
             photos = photos.slice();
             photos.splice(photoIndex, 1);
-            console.log({photos})
 
             await db
                 .collection('jobs')
                 .doc(`${jobId}`)
                 .update({photos});
-            return true;
+            
+            return photos;
         } catch (err) {
             
             return err;

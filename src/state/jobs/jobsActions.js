@@ -219,6 +219,7 @@ export const actions = {
         try {
             let formatted = jobModel.formatJobImage(values);
             let savedJob = await jobService.uploadJobImage(formatted);
+            console.log('uploadJobImage', {values, formatted})
 
             //Write Dispatch function here
             dispatch({
@@ -235,7 +236,7 @@ export const actions = {
     async updateJobImage(dispatch, values) {
         try {
             let formatted = jobModel.formatJobImage(values);
-            await jobService.updateJobImage(values);
+            await jobService.updateJobImage(formatted);
 
             dispatch({
                 type: customerTypes.UPDATE_IMAGE_ON_JOB,
@@ -250,8 +251,8 @@ export const actions = {
     async deleteJobImage(dispatch, values) {
         try {
             let formatted = jobModel.formatJobImage(values);
-            console.log({values, formatted})
-            await jobService.updateJobImage(formatted);
+            let photos = await jobService.deleteJobImage(values);
+            formatted.photos = photos;
 
             dispatch({
                 type: customerTypes.DELETE_IMAGE_ON_JOB,
