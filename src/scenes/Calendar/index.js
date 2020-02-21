@@ -69,8 +69,6 @@ const AllCalendar = ({history}) => {
 						job.details.team !== null
 					) {
 						// return the team document which matches the teamFilter
-						console.log('jobs', jobs);
-						console.log('jobs team filter', jobs.teamFilter);
 
 						return jobs;
 					}
@@ -108,7 +106,7 @@ const AllCalendar = ({history}) => {
 		if (!event.details || event.details.team == null)
 			return {
 				style: {
-					backgroundColor: 'lightgrey',
+					backgroundColor: 'grey',
 				},
 			};
 		//For events requested by filter
