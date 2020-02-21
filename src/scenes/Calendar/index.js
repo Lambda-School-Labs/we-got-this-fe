@@ -69,15 +69,10 @@ const AllCalendar = ({history}) => {
 						job.details.team !== null
 					) {
 						// return the team document which matches the teamFilter
-						// I want to say if the document id matches the team filter set the background color to orange
 						console.log('jobs', jobs);
 						console.log('jobs team filter', jobs.teamFilter);
 
-						// if ( job.details.team.docId == jobs.teamFilter){
-						// return jobs;
-						// }
 						return jobs;
-						// job.details.team.docId == jobs.teamFilter; // return the docId that matches the teamFilter
 					}
 					return true;
 				})
