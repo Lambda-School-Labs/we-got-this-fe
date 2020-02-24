@@ -49,15 +49,19 @@ const NewCustomerForm = ({ handleClose }) => {
                 notes: '',
                 payment: '',
                 hearabout: '',
+               
+
             }}
             validationSchema={Yup.object().shape({
                 name: Yup.string().required('Must enter a First Name'),
-                email: Yup.string().email(),
+                email: Yup.string().email('Must enter an email'),
                 phoneNumber: Yup.string().required('Must enter a Phone Number'),
                 street: Yup.string().required('Must enter an Address'),
                 city: Yup.string().required('Must enter an City'),
                 region: Yup.string().required('Must enter a State'),
-                zipcode: Yup.number().required('Must enter an Zip'),
+                zipcode: Yup.number().required('Must enter a Zip'),
+                payment: Yup.string().required('Must select a Payment Type'),
+                hearabout: Yup.string().required('Must select an Ad Type'),
             })}
             onSubmit={(values, { resetForm }) => {
                 actions.addCustomer(dispatch, { ...values }).then(res => {
