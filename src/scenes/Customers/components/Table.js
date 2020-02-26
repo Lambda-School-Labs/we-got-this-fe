@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {
 	Table,
@@ -7,6 +7,7 @@ import {
 	TableHead,
 	TableRow,
 	Button,
+	InputBase,
 } from '@material-ui/core';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import {Link} from 'react-router-dom';
@@ -14,6 +15,7 @@ import {routes} from '../../../constants/routes';
 import {actions} from '../../../state/customer/customerActions';
 import {useStateValue} from '../../../state';
 // import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+
 
 const useStyles = makeStyles(theme => ({
 	table: {
@@ -48,38 +50,44 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const headerCells = [
-	{
-		id: 'name',
-		align: 'left',
-		label: 'Customer Name',
-	},
-	{
-		id: 'phone',
-		align: 'left',
-		label: 'Phone Number',
-	},
-	{
-		id: 'street',
-		align: 'left',
-		label: 'Street Address',
-	},
-	{
-		id: 'zip',
-		align: 'left',
-		label: 'Zip',
-	},
-	{
-		id: 'type',
-		align: 'left',
-		label: 'Customer Type',
-	},
-	{
-		id: '',
-		align: '',
-		label: '',
-	},
-];
+
+	const headerCells = [
+		
+
+		{
+			id: 'name',
+			align: 'left',
+			label: 'Customer Name',
+		},
+		{
+			id: 'phone',
+			align: 'left',
+			label: 'Phone Number',
+		},
+		{
+			id: 'street',
+			align: 'left',
+			label: 'Street Address',
+		},
+		{
+			id: 'zip',
+			align: 'left',
+			label: 'Zip',
+		},
+		{
+			id: 'type',
+			align: 'left',
+			label: 'Customer Type',
+		},
+		{
+			id: '',
+			align: '',
+			label: '',
+		},
+	];
+	
+
+
 
 function desc(a, b, orderBy) {
 	if (orderBy == 'street') {
@@ -118,13 +126,46 @@ function getSorting(order, orderBy) {
 		: (a, b) => -desc(a, b, orderBy);
 }
 
-const CustomerTable = ({customers, onRequestSort, orderBy, order}) => {
+
+
+const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, props}) => {
+	// console.log(customers);
 	const [, dispatch] = useStateValue();
 	const classes = useStyles();
 
+	const [query, setQuery] = useState("")
+
+	// const customerNames = customers.map(customer => {
+	// 	return customer.name		
+	// })
+	// console.log(customerNames)
+
+	const people = customers.filter(data =>
+		data.name.toLowerCase().includes(query.toLowerCase())
+		)
+
+		console.log(people)
+
+		const handleInputChange = event => {
+			setQuery(event.target.value);
+		}
+
 	const createSortHandler = property => event => {
 		onRequestSort(event, property);
+
+		
 	};
+		
+		
+	  
+	  
+	// 	const handleInputChange = event => {
+	// 	  setQuery(event.target.value);
+	// 	};
+	// const customerList = headerCells.filter(customer =>
+	// 	customer.toLowerCase().includes(query.toLowerCase())
+	//   );
+
 	//   const handleFilterChange = e => setFilter(e.target.value);
 
 	//   const filters = {
@@ -135,13 +176,41 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order}) => {
 
 	// const [filter, setFilter] = useState('all');
 
+// 	const [searchTerm, setSearchTerm] = React.useState("");
+//  const [searchResults, setSearchResults] = React.useState([]);
+//  const handleChange = event => {
+//     setSearchTerm(event.target.value);
+//   };
+//  React.useEffect(() => {
+//     const results = headerCells.filter(name =>
+//       name[0].id.toLowerCase().includes(searchTerm)
+//     );
+//     setSearchResults(results);
+//   }, [searchTerm]);
+
 	return (
 		<>
+		<div className="Characters">
+		
+		<form className="search">
+		<input
+        type="text"
+        placeholder="Search"
+        value={query}
+		onChange={handleInputChange}
+		autoComplete="off"
+		tabIndex="0"
+      />
+	  </form>
+      
 			<Table className={classes.table} size='small'>
+				
 				<TableHead>
+					
 					<TableRow className={classes.header}>
 						{headerCells.map(headCell => {
 							return (
+								
 								<TableCell
 									key={headCell.id}
 									align={headCell.align}
@@ -149,32 +218,42 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order}) => {
 										orderBy === headCell.id ? order : false
 									}
 								>
+									
 									<TableSortLabel
 										active={orderBy === headCell.id}
 										direction={order}
 										onClick={createSortHandler(headCell.id)}
 									>
 										{headCell.label}
+										
 									</TableSortLabel>
+									
 								</TableCell>
 							);
 						})}
+						
 					</TableRow>
+					
 				</TableHead>
+				
 				<TableBody>
+				
 					{stableSort(
-						customers.length ? customers : [],
-						getSorting(order, orderBy),
+						people.length ? people : [],
+						getSorting(order, orderBy), people
 					).map(customer => {
 						return (
+							
 							<TableRow
 								className={classes.border}
 								key={customer.docId}
 							>
+								{/* Potential starting point */}
 								<TableCell
 									data-testid='names'
 									component='th'
 									scope='row'
+									
 								>
 									{customer.name}
 								</TableCell>
@@ -187,10 +266,14 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order}) => {
 								<TableCell align='left'>
 									{customer.locations[0].address.zipcode}
 								</TableCell>
-								{/* <TableCell align="right">
+
+
+								<TableCell align="right">
                                     {customer.nextServiceDate ||
                                         'No service scheduled'}
-                                </TableCell> */}
+                                </TableCell>
+
+
 								<TableCell
 									className={classes.header}
 									align='left'
@@ -220,6 +303,7 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order}) => {
 					})}
 				</TableBody>
 			</Table>
+			</div>
 		</>
 	);
 };

@@ -7,6 +7,8 @@ export const customerState = {
 	currentCustomer: null,
 };
 
+console.log(customerState)
+
 export default function reducer(state, action) {
 	let {payload} = action;
 
