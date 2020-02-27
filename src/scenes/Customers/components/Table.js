@@ -144,7 +144,7 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 		data.name.toLowerCase().includes(query.toLowerCase())
 		)
 
-		console.log(people)
+		// console.log(people)
 
 		const handleInputChange = event => {
 			setQuery(event.target.value);
@@ -159,12 +159,7 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 		
 	  
 	  
-	// 	const handleInputChange = event => {
-	// 	  setQuery(event.target.value);
-	// 	};
-	// const customerList = headerCells.filter(customer =>
-	// 	customer.toLowerCase().includes(query.toLowerCase())
-	//   );
+
 
 	//   const handleFilterChange = e => setFilter(e.target.value);
 
@@ -176,17 +171,7 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 
 	// const [filter, setFilter] = useState('all');
 
-// 	const [searchTerm, setSearchTerm] = React.useState("");
-//  const [searchResults, setSearchResults] = React.useState([]);
-//  const handleChange = event => {
-//     setSearchTerm(event.target.value);
-//   };
-//  React.useEffect(() => {
-//     const results = headerCells.filter(name =>
-//       name[0].id.toLowerCase().includes(searchTerm)
-//     );
-//     setSearchResults(results);
-//   }, [searchTerm]);
+
 
 	return (
 		<>
@@ -195,7 +180,7 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 		<form className="search">
 		<input
         type="text"
-        placeholder="Search"
+        placeholder="Search by Name"
         value={query}
 		onChange={handleInputChange}
 		autoComplete="off"
