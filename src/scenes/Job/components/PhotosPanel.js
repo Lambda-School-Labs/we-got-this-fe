@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, ButtonBase, Paper, Grid } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
+import { styled, makeStyles } from '@material-ui/core/styles';
 
 import NewPhoto from './NewPhoto';
 import DialogWrapper from '../../../components/dialogs/DialogWrapper';
@@ -18,6 +18,8 @@ const Image = styled(({ url, ...other }) => <ButtonBase {...other} />)({
 });
 
 const PhotosPanel = ({ value, index, job }) => {
+    const classes = useStyles();
+    
     return (
         <Box hidden={value !== index}>
             {!job.photos || !job.photos.length ? (
@@ -25,10 +27,10 @@ const PhotosPanel = ({ value, index, job }) => {
                     <p>No Photos</p>
                 </Grid>
             ) : (
-                <Grid container spacing={2} justify="space-between">
+                <Grid container spacing={2}>
                     {job.photos.map(photo => (
                         <>
-                            <Grid item xs={6}>
+                            <Grid item xs={6} classes={{item:classes.gridItem}}>
                                 <DialogWrapper
                                     trigger={click => (
                                         <Paper>
@@ -67,5 +69,12 @@ const PhotosPanel = ({ value, index, job }) => {
         </Box>
     );
 };
+
+
+const useStyles = makeStyles({
+    gridItem: {
+        maxWidth: '197px'
+    }
+})
 
 export default PhotosPanel;

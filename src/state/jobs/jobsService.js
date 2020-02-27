@@ -12,7 +12,7 @@ export const service = {
         let docRef = await db.collection('jobs').add({ ...values });
         let docId = (await docRef.get()).id;
 
-        console.log('NewJob DocRef: ', docId);
+        
         return docId;
     },
 
@@ -22,14 +22,14 @@ export const service = {
             .doc(`${customerDocId}`)
             .get()).data();
 
-        console.log('AddJobToCustomer: ', customer);
+        
 
         let updatedJobs = await db
             .collection('customers')
             .doc(`${customerDocId}`)
             .update({ jobs: [...customer.jobs, `${jobDocId}`] });
 
-        console.log('UpdatedJobs: ', updatedJobs);
+        
     },
     async uploadJobImage(values) {
         try {
@@ -47,9 +47,9 @@ export const service = {
                     ],
                 });
 
-            console.log('Updated Images', updatedImgs);
+            
         } catch (err) {
-            console.log(err);
+            
             return err;
         }
     },
@@ -72,7 +72,24 @@ export const service = {
                 });
             return true;
         } catch (err) {
-            console.log(err);
+            
+            return err;
+        }
+    },
+    async deleteJobImage(values) {
+        try {
+            let { jobId, photos, photoIndex } = values;
+            photos = photos.slice();
+            photos.splice(photoIndex, 1);
+
+            await db
+                .collection('jobs')
+                .doc(`${jobId}`)
+                .update({photos});
+            
+            return photos;
+        } catch (err) {
+            
             return err;
         }
     },

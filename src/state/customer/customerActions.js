@@ -11,6 +11,7 @@ export const types = {
 	ADD_JOB_TO_CUSTOMER: 'ADD_JOB_TO_CUSTOMER',
 	ADD_IMAGE_TO_JOB: 'ADD_IMAGE_TO_JOB',
 	UPDATE_IMAGE_ON_JOB: 'UPDATE_IMAGE_ON_JOB',
+	DELETE_IMAGE_ON_JOB: 'DELETE_IMAGE_ON_JOB',
 	UPLOAD_UPDATE_CHECKLIST: 'UPLOAD_UPDATE_CHECKLIST',
 };
 
@@ -34,7 +35,7 @@ export const actions = {
 
 	async getCustomers(dispatch) {
 		try {
-			console.log('Action to get customers called');
+			
 			let customers = await service.getCustomers();
 			if (!customers) {
 				throw new Error('Failed to get customers');
@@ -65,7 +66,7 @@ export const actions = {
 
 	async updateCustomer(dispatch, values) {
 		const formatted = customerModel.formatUpdateCustomer(values);
-		console.log('Update Action Formatted', formatted);
+		
 		try {
 			let updatedCustomer = await service.updateCustomer(
 				values.docId,
@@ -86,7 +87,7 @@ export const actions = {
 			if (!jobs) {
 				throw new Error('Failed to get jobs');
 			}
-			console.log('Returned Action Jobs: ', jobs);
+			
 			dispatch({
 				type: types.GET_CUSTOMER_JOBS,
 				payload: jobs,
@@ -99,12 +100,12 @@ export const actions = {
 
 	async getCurrentCustomer(dispatch, customerId) {
 		try {
-			console.log('Action: ', customerId);
+			
 			let customer = await service.getCurrentCustomer(customerId);
 			if (!customer) {
 				throw new Error('Failed to get current Customer');
 			}
-			console.log('Returned Customer: ', customer);
+			
 			dispatch({
 				type: types.SET_CURRENT_CUSTOMER,
 				payload: customer,

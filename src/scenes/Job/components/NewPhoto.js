@@ -7,6 +7,7 @@ import { useStateValue } from '../../../state';
 //Components
 import { Button, Grid } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { Formik, Form } from 'formik';
 import { useLocation } from 'react-router-dom';
 
@@ -48,13 +49,13 @@ const NewPhoto = ({ handleClose, photo }) => {
             },
             error => {
                 //error handler
-                console.log(error);
+                
             },
             () => {
                 uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
                     setLoading(false);
                     setUploadedImg(downloadURL);
-                    console.log('The download URL is: ', downloadURL);
+                    
                 });
             }
         );
@@ -65,8 +66,27 @@ const NewPhoto = ({ handleClose, photo }) => {
             job => job.docId == location.state
         );
         let photos = job.photos || [];
+        //console.log(photos)
         return photos;
     };
+
+    async function handleDelete(){
+        const photos = getPhotos();
+        
+        let res = await actions.deleteJobImage(dispatch, {
+            jobId: location.state,
+            photos: photos,
+            photoIndex: photos.indexOf(photo)
+        });
+
+        if (res instanceof Error) {
+            console.error(res);
+        }
+
+        if (res === true) {
+            handleClose();
+        }
+    }
 
     return (
         <Grid container>
@@ -144,14 +164,25 @@ const NewPhoto = ({ handleClose, photo }) => {
                             </Grid>
                             <Grid item>
                                 <Button
-                                    style={{ marginTop: 30 }}
+                                    style={{ marginTop: 20 }}
                                     type="submit"
                                     variant="contained"
                                     color="primary"
-                                    fullWidth
+                                    
                                 >
-                                    Save Photo
+                                    Save
                                 </Button>
+                                {photo ?
+                                    <Button
+                                        style={{ marginTop: 20 , marginLeft:7 }}
+                                        onClick={handleDelete}
+                                        variant="contained"
+                                        color="secondary"
+                                        startIcon={<DeleteIcon />}
+                                    >
+                                        Delete
+                                    </Button>
+                                : null}
                             </Grid>
                         </Grid>
                     </Form>
