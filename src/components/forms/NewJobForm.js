@@ -260,11 +260,13 @@ const NewJobForm = ({handleClose}) => {
                             label="Payment Method"
                             data={paymentOptions}
                         />
+                        <hr/>
                         <MuiSingleSelectInput
                             name="hearabout"
                             label="How did you hear about us?"
                             data={referralOptions}
                         />
+                        <hr/>
                         <MuiTextAreaInput
                             name="notes"
                             label="Notes"
