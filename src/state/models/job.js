@@ -86,7 +86,7 @@ function formatBigCalendarEvent(calEvent) {
             details: {
                 customerName: customer.name || 'Unknown Name',
                 customerId: customer.docId || 'Unknown Doc Id',
-                jobId: newJobDocId || 'Unkownn job id',
+                jobId: newJobDocId || 'Unknown job id',
                 zipcode: address.zipcode || 'Unknown Zipcode',
                 teamName: team.name || 'Unknown Team',
                 teamId: team.docId || 'Unknown Team Id',
@@ -108,7 +108,7 @@ function formatBigCalendarEvent(calEvent) {
                 details: {
                     customerName: shared.customerName || 'Unknown Name',
                     customerId: shared.customerId || 'Unknown customer Doc Id',
-                    jobId: shared.jobId || 'Unkownn job',
+                    jobId: shared.jobId || 'Unknown job',
                     zipcode: shared.zipcode || 'Unknown Zipcode',
                     teamName: shared.teamName || 'Unknown Team Name',
                     teamId: shared.teamId || 'Unknown Team Id',
