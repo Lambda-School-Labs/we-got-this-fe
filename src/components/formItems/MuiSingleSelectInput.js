@@ -11,12 +11,14 @@ const MuiSingleSelectInput = ({
 }) => {
 	const [field, meta] = useField(props);
 	return (
-		<TextField
+		<TextField id="outlined-basic standard-multiline-flexible" variant="outlined"
+          multiline
+          rowsMax="3"
 			select
 			type={props.type}
 			name={props.name}
 			label={label}
-			id={label}
+			
 			margin='none'
 			error={meta.touched && !!meta.error}
 			{...field}

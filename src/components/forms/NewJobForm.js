@@ -173,6 +173,7 @@ const NewJobForm = ({handleClose}) => {
 								docId: '',
 								name: '',
 								phoneNumber: '',
+                                email:'',
 								street: '',
 								region: 'ID',
 								city: '',
@@ -184,7 +185,7 @@ const NewJobForm = ({handleClose}) => {
 							validationSchema={Yup.object().shape({
 								name: Yup.string().required(),
 								phoneNumber: Yup.string().required(),
-                                email: Yup.string().email(),
+                                email: Yup.string().required().email(),
 								street: Yup.string().required(),
 								city: Yup.string().required(),
 								region: Yup.string().required(),
@@ -253,7 +254,7 @@ const NewJobForm = ({handleClose}) => {
 											type='number'
 										/>
 									</Grid>
-                                    <Grid item className={classes.column} xs={6}>
+                                    <Grid item className={classes.column} xs={12}>
                         <MuiSingleSelectInput
                             name="payment"
                             label="Payment Method"
