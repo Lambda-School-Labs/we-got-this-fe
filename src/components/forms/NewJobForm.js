@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, {useState, useEffect} from 'react';
 import {useStateValue, withState} from '../../state';
 import {styled, makeStyles, withTheme} from '@material-ui/core/styles';
@@ -48,6 +49,7 @@ const NewJobForm = ({handleClose}) => {
 	const [loading, setLoading] = useState(true);
 	const [{customers, jobs}, dispatch] = useStateValue();
 	const [selectedCustomer, setSelectedCustomer] = useState();
+    const [newCustomer, setNewCustomer] = useState();
     const classes = useStyles();
 	//
 	//If there are no customers, get the customers from the database
@@ -92,10 +94,17 @@ const NewJobForm = ({handleClose}) => {
 	};
 
 	const handleExistingCustomerSubmit = e => {
-		e.preventDefault();
-
+		
+           e.preventDefault();
 		if (selectedCustomer) {
+           
 			jobActions.setNewJobCustomer(dispatch, selectedCustomer);
+		}
+	};
+    const handleNewCustomerSubmit = e => {
+	    	 e.preventDefault();
+            if (newCustomer) {
+			customerActions.addCustomer(dispatch, newCustomer);
 		}
 	};
     
@@ -167,8 +176,9 @@ const NewJobForm = ({handleClose}) => {
 					</Grid>
 
 					{/* New Customer Form */}
+                  
 					<Grid item xs={12}>
-						<Formik
+						<Formik 
 							initialValues={{
 								docId: '',
 								name: '',
@@ -196,9 +206,10 @@ const NewJobForm = ({handleClose}) => {
 							onSubmit={(values, {resetForm}) => {
 								console.log(values);
 								jobActions.setNewJobCustomer(dispatch, values);
+                                customerActions.addCustomer(dispatch, values);
 							}}
 						>
-							<Form>
+							<Form onSubmit={handleNewCustomerSubmit}>
 								<Grid container spacing={1}>
 									<Grid item xs={12}>
 										<h3 style={{marginTop: 20}}>
