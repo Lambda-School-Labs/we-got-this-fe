@@ -128,7 +128,7 @@ export const actions = {
 		try {
 			let customerImg = await service.getCustomerImage(customerId);
 			if (!customerImg) {
-				throw new Error('Failed to get customer image');
+				throw new Error('Fialed to get customer image');
 			}
 			dispatch({
 				type: types.GET_CUSTOMER_IMAGE,

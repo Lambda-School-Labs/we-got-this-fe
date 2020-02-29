@@ -5,9 +5,9 @@ import { TextField } from '@material-ui/core';
 const MuiTextAreaInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
     return (
-        <TextField id="outlined-basic standard-multiline-flexible" variant="outlined"
-          multiline
-          rowsMax="4"
+        <TextField
+            multiline
+            rows={4}
             type={props.type}
             name={props.name}
             label={label}
