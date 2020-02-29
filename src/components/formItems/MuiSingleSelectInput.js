@@ -9,27 +9,29 @@ const MuiSingleSelectInput = ({
     displayKey,
     ...props
 }) => {
-    const [field, meta] = useField(props);
-    return (
-        <TextField
-            select
-            type={props.type}
-            name={props.name}
-            label={label}
-            margin="none"
-            error={meta.touched && !!meta.error}
-            {...field}
-            {...props}
-            style={{ width: '100%' }}
-        >
-            {data &&
-                data.map((item, i) => (
-                    <MenuItem key={i} value={item.value || item[valueKey]}>
-                        {item.display || item[displayKey]}
-                    </MenuItem>
-                ))}
-        </TextField>
-    );
+
+	const [field, meta] = useField(props);
+	return (
+		<TextField id="outlined-basic standard-multiline-flexible" variant="outlined"
+          multiline
+          rowsMax="3"
+			select
+			type={props.type}
+			name={props.name}
+			label={label}
+			error={meta.touched && !!meta.error}
+			{...field}
+			{...props}
+			style={{width: '100%'}}
+		>
+			{data &&
+				data.map((item, i) => (
+					<MenuItem key={i} value={item.value || item[valueKey]}>
+						{item.display || item[displayKey]}
+					</MenuItem>
+				))}
+		</TextField>
+	);
 };
 
 export default MuiSingleSelectInput;
