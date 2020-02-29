@@ -1,14 +1,15 @@
 import React from 'react';
-import {useField} from 'formik';
-import {TextField, MenuItem} from '@material-ui/core';
+import { useField } from 'formik';
+import { TextField, MenuItem } from '@material-ui/core';
 
 const MuiSingleSelectInput = ({
-	label,
-	data,
-	valueKey,
-	displayKey,
-	...props
+    label,
+    data,
+    valueKey,
+    displayKey,
+    ...props
 }) => {
+
 	const [field, meta] = useField(props);
 	return (
 		<TextField id="outlined-basic standard-multiline-flexible" variant="outlined"

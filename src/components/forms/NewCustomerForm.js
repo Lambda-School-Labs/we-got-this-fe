@@ -65,7 +65,7 @@ const NewCustomerForm = ({ handleClose }) => {
             })}
             onSubmit={(values, { resetForm }) => {
                 actions.addCustomer(dispatch, { ...values }).then(res => {
-                    if (res === true) {
+                    if (res == true) {
                         console.log('redirecting');
                     }
                 });

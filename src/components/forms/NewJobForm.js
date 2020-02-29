@@ -204,9 +204,9 @@ const NewJobForm = ({handleClose}) => {
                                 hearabout: Yup.string().required(),
 							})}
 							onSubmit={(values, {resetForm}) => {
-								console.log(values);
+                
 								jobActions.setNewJobCustomer(dispatch, values);
-                                customerActions.addCustomer(dispatch, values);
+                customerActions.addCustomer(dispatch, values);
 							}}
 						>
 							<Form onSubmit={handleNewCustomerSubmit}>
@@ -306,3 +306,4 @@ const NewJobForm = ({handleClose}) => {
 };
 
 export default NewJobForm;
+
