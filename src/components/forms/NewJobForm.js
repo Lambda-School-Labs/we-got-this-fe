@@ -31,6 +31,7 @@ import MuiSingleSelectInput from '../formItems/MuiSingleSelectInput';
 import paymentOptions from '../../constants/paymentOptions';
 import referralOptions from '../../constants/referralOptions';
 
+
 import moment from 'moment';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -94,7 +95,13 @@ const NewJobForm = ({ handleClose }) => {
             </Box>
         );
     };
+const handleExistingCustomerSubmit = e => {
+        e.preventDefault();
 
+        if (selectedCustomer) {
+            jobActions.setNewJobCustomer(dispatch, selectedCustomer);
+        }
+    };
 
     return (
         <>
@@ -110,7 +117,7 @@ const NewJobForm = ({ handleClose }) => {
 
                     {/* Select Customer Form Option */}
                     <Grid item xs={12}>
-                        <form>
+                        <form onSubmit={handleExistingCustomerSubmit}>
                             <Grid container spacing={1}>
                                 <Grid item xs={12}>
                                     <h3>Select Existing Customer</h3>
@@ -252,7 +259,7 @@ const NewJobForm = ({ handleClose }) => {
                                             type="number"
                                         />
                                     </Grid>
-                                    <Grid item className={classes.column} xs={12}>
+                      <Grid item className={classes.column} xs={12}>
                         <MuiSingleSelectInput
                             name="payment"
                             label="Payment Method"
