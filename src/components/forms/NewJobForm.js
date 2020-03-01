@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useStateValue, withState } from '../../state';
 import { styled, makeStyles, withTheme } from '@material-ui/core/styles';
+import MuiTextAreaInput from '../formItems/MuiTextAreaInput';
 import {
     Grid,
     TextField,
@@ -27,8 +28,18 @@ import MuiTextInput from '../formItems/MuiTextInput';
 import MuiPhoneInput from '../formItems/MuiPhoneInput';
 import MuiSingleSelectInput from '../formItems/MuiSingleSelectInput';
 
+import paymentOptions from '../../constants/paymentOptions';
+import referralOptions from '../../constants/referralOptions';
+
 import moment from 'moment';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+
+const useStyles = makeStyles({
+    column: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+});
 
 const SelectedTime = styled(withTheme(Paper))(props => ({
     padding: props.theme.spacing(1),
@@ -39,6 +50,7 @@ const NewJobForm = ({ handleClose }) => {
     const [loading, setLoading] = useState(true);
     const [{ customers, jobs }, dispatch] = useStateValue();
     const [selectedCustomer, setSelectedCustomer] = useState();
+    const classes = useStyles();
 
     //
     //If there are no customers, get the customers from the database
@@ -164,18 +176,24 @@ const NewJobForm = ({ handleClose }) => {
                                 docId: '',
                                 name: '',
                                 phoneNumber: '',
+                                email: '',
                                 street: '',
                                 region: 'ID',
                                 city: '',
                                 zipcode: '',
+                                hearabout: '',
+                                payment: '',
                             }}
                             validationSchema={Yup.object().shape({
                                 name: Yup.string().required(),
                                 phoneNumber: Yup.string().required(),
+                                email: Yup.string().required().email(),
                                 street: Yup.string().required(),
                                 city: Yup.string().required(),
                                 region: Yup.string().required(),
                                 zipcode: Yup.number().required(),
+                                hearabout: Yup.string().required(),
+                                payment: Yup.string().required(),
                             })}
                             onSubmit={(values, { resetForm }) => {
                                 console.log(values);
@@ -194,6 +212,13 @@ const NewJobForm = ({ handleClose }) => {
                                         <MuiTextInput
                                             name="name"
                                             label="Name"
+                                            type="text"
+                                        />
+                                    </Grid>
+                                    <Grid item xs={5}>
+                                        <MuiTextInput
+                                            name="email"
+                                            label="Email"
                                             type="text"
                                         />
                                     </Grid>
@@ -232,6 +257,23 @@ const NewJobForm = ({ handleClose }) => {
                                             type="number"
                                         />
                                     </Grid>
+                                    <Grid item className={classes.column} xs={12}>
+                        <MuiSingleSelectInput
+                            name="payment"
+                            label="Payment Method"
+                            data={paymentOptions}
+                        />
+                        <MuiSingleSelectInput
+                            name="hearabout"
+                            label="How did you hear about us?"
+                            data={referralOptions}
+                        />
+                        <MuiTextAreaInput
+                            name="notes"
+                            label="Notes"
+                            type="text"
+                        />
+                    </Grid>
                                 </Grid>
                                 <Button
                                     type="submit"
