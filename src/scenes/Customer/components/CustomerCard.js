@@ -67,7 +67,6 @@ const CustomerCard = ({customer}) => {
 	}, [customer.docId, customer.img, dispatch]);
 
 	let {address} = customer.locations && customer.locations[0];
-	debugger;
 	let fullAddress =
 		address &&
 		`${address.street} ${address.city}, ${address.state} ${address.zipcode}`;
@@ -85,7 +84,7 @@ const CustomerCard = ({customer}) => {
 					<Typography variant='h6'>{customer.name}</Typography>
 					<DialogWrapper
 						trigger={click => (
-							<IconButton size='medium' onClick={() => click()}>
+							<IconButton size='small' onClick={() => click()}>
 								<EditIcon />
 							</IconButton>
 						)}
