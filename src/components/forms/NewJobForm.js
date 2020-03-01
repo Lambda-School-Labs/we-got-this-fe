@@ -50,6 +50,7 @@ const NewJobForm = ({ handleClose }) => {
     const [loading, setLoading] = useState(true);
     const [{ customers, jobs }, dispatch] = useStateValue();
     const [selectedCustomer, setSelectedCustomer] = useState();
+    const [newCustomer, setNewCustomer] = useState();
     const classes = useStyles();
 
     //
@@ -94,13 +95,6 @@ const NewJobForm = ({ handleClose }) => {
         );
     };
 
-    const handleExistingCustomerSubmit = e => {
-        e.preventDefault();
-
-        if (selectedCustomer) {
-            jobActions.setNewJobCustomer(dispatch, selectedCustomer);
-        }
-    };
 
     return (
         <>
@@ -116,7 +110,7 @@ const NewJobForm = ({ handleClose }) => {
 
                     {/* Select Customer Form Option */}
                     <Grid item xs={12}>
-                        <form onSubmit={handleExistingCustomerSubmit}>
+                        <form>
                             <Grid container spacing={1}>
                                 <Grid item xs={12}>
                                     <h3>Select Existing Customer</h3>
@@ -198,9 +192,10 @@ const NewJobForm = ({ handleClose }) => {
                             onSubmit={(values, { resetForm }) => {
                                 console.log(values);
                                 jobActions.setNewJobCustomer(dispatch, values);
+                               
                             }}
                         >
-                            <Form>
+                            <Form >
                                 <Grid container spacing={1}>
                                     <Grid item xs={12}>
                                         <h3 style={{ marginTop: 20 }}>
