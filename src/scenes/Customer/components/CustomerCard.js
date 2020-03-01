@@ -50,7 +50,7 @@ const CustomerDetails = styled(withTheme(Grid))(props => ({
             "jobs": "Array[1]",
             "locations": "Array[1]",
             "name": "Zoe",
-            "notes": "What a beautiful woman!",
+            "notes": "What a beautiful house!",
             "payment": null,
             "paymentAmount": null,
             "schedule": null
@@ -96,8 +96,11 @@ const CustomerCard = ({customer}) => {
 						size='sm'
 					/>
 				</Title>
-				<p>{fullAddress}</p>
-				<p>{customer.contact.phone}</p>
+				<p><strong>Address:</strong> {fullAddress}</p>
+				<p><strong>Phone:</strong> {customer.contact.phone}</p>
+				<p><strong>Email:</strong> {customer.contact.email}</p>
+				<p><strong>Payment Type:</strong> {customer.payment}</p>
+				<p><strong>How did they hear about us?</strong> {customer.hearabout}</p>
 			</CustomerDetails>
 		</Grid>
 	);
