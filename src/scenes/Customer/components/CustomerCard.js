@@ -95,11 +95,11 @@ const CustomerCard = ({customer}) => {
 						size='sm'
 					/>
 				</Title>
-				<p><strong>Address:</strong> {fullAddress}</p>
-				<p><strong>Phone:</strong> {customer.contact.phone}</p>
-				<p><strong>Email:</strong> {customer.contact.email}</p>
-				<p><strong>Payment Type:</strong> {customer.payment}</p>
-				<p><strong>How did they hear about us?</strong> {customer.hearabout}</p>
+				<strong>Address:</strong> <Typography variant='body2'>{fullAddress}</Typography>
+				<strong>Phone:</strong> <Typography variant='body2'>{customer.contact.phone}</Typography>
+				<strong>Email:</strong> <Typography variant='body2'>{customer.contact.email}</Typography>
+				<strong>Payment Type:</strong> <Typography variant='body2'>{customer.payment}</Typography>
+				<strong>How did they hear about us?</strong> <Typography variant='body2'>{customer.hearabout}</Typography>
 			</CustomerDetails>
 		</Grid>
 	);
