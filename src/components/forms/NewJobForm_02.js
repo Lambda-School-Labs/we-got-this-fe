@@ -52,19 +52,19 @@ const typeOptions = [
 
 const recurringOptions = [
 	{
-		value: 'RRULE:FREQ=DAILY;UNTIL=20200701T170000Z',
+		value: 'RRULE:FREQ=DAILY;COUNT=52',
 		display: 'Daily',
 	},
 	{
-		value: 'RRULE:FREQ=WEEKLY;UNTIL=20200701T170000Z',
+		value: 'RRULE:FREQ=WEEKLY;COUNT=52',
 		display: 'Weekly',
 	},
 	{
-		value: 'RRULE:FREQ=MONTHLY;UNTIL=20200701T170000Z',
+		value: 'RRULE:FREQ=MONTHLY;COUNT=52',
 		display: 'Monthly',
 	},
 	{
-		value: 'RRULE:FREQ=YEARLY;UNTIL=20200701T170000Z',
+		value: 'RRULE:FREQ=YEARLY;COUNT=52',
 		display: 'Yearly',
 	},
 ];
@@ -289,20 +289,26 @@ const NewJobForm_02 = ({handleClose}) => {
 															valueKey='docId'
 														/>
 													</Grid>
-													<Grid
-														style={recurringStyles}
-														item
-														xs={6}
-													>
-														<MuiSingleSelectInput
-															className='recurring'
-															name='recurringType'
-															label='Recurring'
-															data={
-																recurringOptions
+													{formik.values
+														.cleaningType ===
+													'recurring' ? (
+														<Grid
+															style={
+																recurringStyles
 															}
-														/>
-													</Grid>
+															item
+															xs={6}
+														>
+															<MuiSingleSelectInput
+																className='recurring'
+																name='recurringType'
+																label='Recurring'
+																data={
+																	recurringOptions
+																}
+															/>
+														</Grid>
+													) : null}
 												</Grid>
 												<Button
 													type='submit'
