@@ -192,7 +192,7 @@ const handleExistingCustomerSubmit = e => {
                                 street: Yup.string().required(),
                                 city: Yup.string().required(),
                                 region: Yup.string().required(),
-                                zipcode: Yup.number().required(),
+                                zipcode: Yup.number().min(5).max(5).required(),
                                 hearabout: Yup.string().required(),
                                 payment: Yup.string().required(),
                             })}
