@@ -26,6 +26,7 @@ import SplashLoading from '../loading/SplashLoading';
 
 import MuiSingleSelectInput from '../formItems/MuiSingleSelectInput';
 
+
 const SelectedBox = styled(withTheme(Paper))(props => ({
 	padding: props.theme.spacing(1),
 	margin: props.theme.spacing(1),

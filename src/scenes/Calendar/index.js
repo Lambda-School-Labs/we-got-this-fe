@@ -57,8 +57,9 @@ const AllCalendar = ({history}) => {
 
 	//Memoized the the filters is only rerendered when the teamFitler changes
 	let filters = useMemo(() => {
+		console.log('jobs', jobs);
 		//Team Filter
-		console.log(jobs);
+
 		return (
 			jobs.jobs
 				.filter(job => {
@@ -67,7 +68,9 @@ const AllCalendar = ({history}) => {
 						!!job.details &&
 						job.details.team !== null
 					) {
-						return job.details.team.docId == jobs.teamFilter;
+						// return the team document which matches the teamFilter
+
+						return jobs;
 					}
 					return true;
 				})
@@ -97,12 +100,27 @@ const AllCalendar = ({history}) => {
 		);
 	};
 
-	const formatEvent = event => {
+	const formatEvent = (event, job) => {
+		console.log(jobs);
 		//For events that weren't created in the system
-		if (!event.details || event.details.team == null) {
+		if (!event.details || event.details.team == null)
 			return {
 				style: {
 					backgroundColor: 'grey',
+				},
+			};
+		//For events requested by filter
+		else if (event.details.team.docId == jobs.teamFilter) {
+			return {
+				style: {
+					backgroundColor: '',
+				},
+			};
+		} else {
+			//For events not requested by filter
+			return {
+				style: {
+					backgroundColor: '#69C8FF',
 				},
 			};
 		}
