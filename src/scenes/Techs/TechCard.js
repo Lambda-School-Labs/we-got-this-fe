@@ -29,9 +29,22 @@ const useStyles = makeStyles(theme => ({
         },
 
         '& .photo': {
-            maxWidth: '120px',
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '100%',
+            height: 'auto',
             borderRadius: "6px 0px 0px 6px",
         },
+    },
+
+    photoWrapper: {
+        position: 'relative',
+        width: '120px',
+        height: '120px',
+        overflow: 'hidden'
     },
 
     info: {
@@ -83,7 +96,9 @@ const TechCard = ({ docId, displayName, photoUrl, disabled, team, handleEdit }) 
 
     return (
         <div className={classes.root}>
-            <img className="photo" src={photoUrl || PlaceholderPerson} alt={displayName} />
+            <div className={classes.photoWrapper}>
+                <img className="photo" src={photoUrl || PlaceholderPerson} alt={displayName} />
+            </div>
             <div className={classes.info}>
                 <h2>{displayName}</h2>
                 <p>{team && team.name}</p>

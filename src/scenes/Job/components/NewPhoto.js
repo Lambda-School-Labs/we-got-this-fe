@@ -7,6 +7,7 @@ import { useStateValue } from '../../../state';
 //Components
 import { Button, Grid } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { Formik, Form } from 'formik';
 import { useLocation } from 'react-router-dom';
 
@@ -162,26 +163,26 @@ const NewPhoto = ({ handleClose, photo }) => {
                                 <MuiTextAreaInput name="note" label="Notes" />
                             </Grid>
                             <Grid item>
-                                {photo ?
-                                    <Button
-                                        style={{ marginTop: 30 }}
-                                        onClick={handleDelete}
-                                        variant="outlined"
-                                        color="warning"
-                                        fullWidth
-                                    >
-                                        Delete Photo
-                                    </Button>
-                                : null}
                                 <Button
-                                    style={{ marginTop: 10 }}
+                                    style={{ marginTop: 20 }}
                                     type="submit"
                                     variant="contained"
                                     color="primary"
-                                    fullWidth
+                                    
                                 >
-                                    Save Photo
+                                    Save
                                 </Button>
+                                {photo ?
+                                    <Button
+                                        style={{ marginTop: 20 , marginLeft:7 }}
+                                        onClick={handleDelete}
+                                        variant="contained"
+                                        color="secondary"
+                                        startIcon={<DeleteIcon />}
+                                    >
+                                        Delete
+                                    </Button>
+                                : null}
                             </Grid>
                         </Grid>
                     </Form>

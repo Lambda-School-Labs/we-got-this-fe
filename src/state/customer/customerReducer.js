@@ -7,6 +7,8 @@ export const customerState = {
 	currentCustomer: null,
 };
 
+console.log(customerState)
+
 export default function reducer(state, action) {
 	let {payload} = action;
 
@@ -124,6 +126,26 @@ export default function reducer(state, action) {
 				...state,
 				customerJobs: [...state.customerJobs],
 			};
+
+		case types.DELETE_IMAGE_ON_JOB: (function(){
+			//desctructure needed elements off payload
+			let {photos} = payload;
+
+			//Get the job that needs to be updated
+
+			let customerJob = state.customerJobs.find(
+				job => job.docId == payload.jobId,
+			);
+
+			//Add the photo to the job
+			//If there is no property photo property on the job already
+			customerJob.photos = payload.photos;
+
+			return {
+				...state,
+				customerJobs: [...state.customerJobs],
+			};
+		})();
 
 		case types.UPLOAD_UPDATE_CHECKLIST:
 			let checklistJob = state.customerJobs.find(
