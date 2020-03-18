@@ -18,6 +18,7 @@ export const types = {
 	GET_ALL_JOBS: 'calendar/get_all_jobs',
 	ADD_JOB_TO_JOBS: 'jobs/add_job_to_jobs',
 	ADD_UPDATE_PHOTO_ON_JOB: 'jobs/add_update_photo_on_job',
+	ADD_JOB_TIME: 'jobs/add_job_time',
 };
 
 export const actions = {
@@ -248,6 +249,7 @@ export const actions = {
 				type: customerTypes.DELETE_IMAGE_ON_JOB,
 				payload: formatted,
 			});
+
 			return true;
 		} catch (err) {
 			return err;
@@ -262,5 +264,19 @@ export const actions = {
 				payload: {jobId, downloadURL},
 			});
 		} catch (err) {}
+	},
+	async addJobTime(dispatch, values) {
+		try {
+			let time = jobModel.formatJobTime(values);
+			await jobService.addJobTime(time);
+
+			dispatch({
+				type: types.ADD_JOB_TIME,
+				payload: {time},
+			});
+			return true;
+		} catch (err) {
+			return err;
+		}
 	},
 };

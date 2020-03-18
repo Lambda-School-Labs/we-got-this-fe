@@ -5,6 +5,7 @@ export default {
 	formatGoogleCalendarEvent,
 	formatBigCalendarEvent,
 	formatJobImage,
+	formatJobTime,
 };
 
 function formatJob(values) {
@@ -142,5 +143,14 @@ function formatJobImage(values) {
 		url: values.uploadedImg || values.url || null,
 		tag: values.tag || null,
 		note: values.note || null,
+	};
+}
+
+function formatJobTime(values) {
+	return {
+		h: values.h || 0,
+		m: values.m || 0,
+		s: values.s || 0,
+		ms: values.ms || 0,
 	};
 }
