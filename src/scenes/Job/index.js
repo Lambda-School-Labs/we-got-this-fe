@@ -16,6 +16,7 @@ import Image from './components/Image';
 import NewPhoto from './components/NewPhoto';
 import JobCard from './components/JobCard';
 import ChecklistImage from './components/ChecklistImage';
+import StopWatch from './components/StopWatch';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -134,6 +135,7 @@ const Job = ({match, location, history}) => {
 					<Grid item>
 						<Grid item>
 							<JobCard job={job} />
+							<StopWatch />
 						</Grid>
 						<Grid container className={classes.tabs}>
 							<Grid item>
