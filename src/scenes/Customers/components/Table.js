@@ -144,7 +144,16 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 		data.name.toLowerCase().includes(query.toLowerCase())
 		)
 
-		// console.log(people)
+		const locations = people.filter((element) =>
+			element.locations.some((locations) => locations.address === 1))
+			
+
+			const address = locations.filter(data =>
+				data.city.toLowerCase().includes(query.toLowerCase())) 
+			
+		console.log(people)
+		console.log(locations)
+		console.log(address)
 
 		const handleInputChange = event => {
 			setQuery(event.target.value);
@@ -225,7 +234,7 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 				
 					{stableSort(
 						people.length ? people : [],
-						getSorting(order, orderBy), people
+						getSorting(order, orderBy), people, address 
 					).map(customer => {
 						return (
 							
@@ -233,7 +242,7 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 								className={classes.border}
 								key={customer.docId}
 							>
-								{/* Potential starting point */}
+								
 								<TableCell
 									data-testid='names'
 									component='th'

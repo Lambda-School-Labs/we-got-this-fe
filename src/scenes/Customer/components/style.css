@@ -1,0 +1,25 @@
+
+
+.customerDetails{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+@media (max-width: 600px){
+
+    .Image{
+        margin: 50%;
+    }
+    
+    .ImageSize{
+        width: 100%;
+    }
+    
+    
+    .CustomerNotes{
+        display: none;
+    }
+
+}
+

@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 const CustomerNotes = ({ customer }) => {
     const classes = useStyles();
     return (
+        <div className="CustomerNotes">
         <Grid
             component={Paper}
             item
@@ -42,6 +43,7 @@ const CustomerNotes = ({ customer }) => {
             <Typography variant="h6">Customer Notes</Typography>
             {customer.notes || 'No notes yet'}
         </Grid>
+        </div>
     );
 };
 

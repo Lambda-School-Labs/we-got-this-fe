@@ -12,8 +12,8 @@ import {useStateValue} from '../../../state';
 const storageRef = Firebase.getStorageRef();
 
 const Image = styled(({img, ...other}) => <ButtonBase {...other} />)({
-	width: 128,
-	height: 128,
+	width: 177,
+	height: 190,
 	backgroundSize: 'cover',
 	backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',
