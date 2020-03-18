@@ -13,6 +13,7 @@ export const types = {
 	UPDATE_IMAGE_ON_JOB: 'UPDATE_IMAGE_ON_JOB',
 	DELETE_IMAGE_ON_JOB: 'DELETE_IMAGE_ON_JOB',
 	UPLOAD_UPDATE_CHECKLIST: 'UPLOAD_UPDATE_CHECKLIST',
+	ADD_JOB_TIME: 'ADD_JOB_TIME',
 };
 
 export const actions = {
@@ -35,7 +36,6 @@ export const actions = {
 
 	async getCustomers(dispatch) {
 		try {
-			
 			let customers = await service.getCustomers();
 			if (!customers) {
 				throw new Error('Failed to get customers');
@@ -66,7 +66,7 @@ export const actions = {
 
 	async updateCustomer(dispatch, values) {
 		const formatted = customerModel.formatUpdateCustomer(values);
-		
+
 		try {
 			let updatedCustomer = await service.updateCustomer(
 				values.docId,
@@ -87,7 +87,7 @@ export const actions = {
 			if (!jobs) {
 				throw new Error('Failed to get jobs');
 			}
-			
+
 			dispatch({
 				type: types.GET_CUSTOMER_JOBS,
 				payload: jobs,
@@ -100,12 +100,11 @@ export const actions = {
 
 	async getCurrentCustomer(dispatch, customerId) {
 		try {
-			
 			let customer = await service.getCurrentCustomer(customerId);
 			if (!customer) {
 				throw new Error('Failed to get current Customer');
 			}
-			
+
 			dispatch({
 				type: types.SET_CURRENT_CUSTOMER,
 				payload: customer,

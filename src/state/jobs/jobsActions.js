@@ -18,7 +18,6 @@ export const types = {
 	GET_ALL_JOBS: 'calendar/get_all_jobs',
 	ADD_JOB_TO_JOBS: 'jobs/add_job_to_jobs',
 	ADD_UPDATE_PHOTO_ON_JOB: 'jobs/add_update_photo_on_job',
-	ADD_JOB_TIME: 'jobs/add_job_time',
 };
 
 export const actions = {
@@ -271,7 +270,7 @@ export const actions = {
 			await jobService.addJobTime(time);
 
 			dispatch({
-				type: types.ADD_JOB_TIME,
+				type: customerTypes.ADD_JOB_TIME,
 				payload: {time},
 			});
 			return true;
