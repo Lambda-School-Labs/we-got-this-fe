@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
 import Firebase from '../../../config/firebase';
-
+import { makeStyles } from '@material-ui/core/styles';
 //Components
 import {ButtonBase} from '@material-ui/core';
 import SplashLoading from '../../../components/loading/SplashLoading';
@@ -12,11 +12,16 @@ import {useStateValue} from '../../../state';
 const storageRef = Firebase.getStorageRef();
 
 const Image = styled(({img, ...other}) => <ButtonBase {...other} />)({
-	width: 177,
-	height: 190,
+	width: 128,
+	height: 128,
 	backgroundSize: 'cover',
 	backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',
+	// [ButtonBase.breakpoints.down('xs')]: {
+	// 	width: 177,
+	// 	height: 190,
+	// 	top: 40,
+	//   },
 	backgroundImage: props =>
 		props.img
 			? `url(${props.img})`
@@ -39,17 +44,34 @@ const Image = styled(({img, ...other}) => <ButtonBase {...other} />)({
 	},
 });
 
-/*
+
+
+/*1
     Displays a specific customer's headshot image.
 
     Example Props:
         "img": "http://example.com/"
 */
 const CustomerImage = ({img}) => {
+	
 	const [{customers}, dispatch] = useStateValue();
 	const [loading, setLoading] = useState(false);
 	const [uploadedImg, setUploadedImg] = useState(null);
 	const fileInput = useRef(null);
+	const useStyles = makeStyles(theme => ({
+		mobileImage:{  
+				width: 128,
+				height: 128,
+				backgroundSize: 'cover',
+				backgroundPosition: 'center',
+				backgroundRepeat: 'no-repeat',
+				[theme.breakpoints.down('xs')]: {
+			 	width: 177,
+			 	height: 190,
+			 	
+			   },}
+	}))
+	const classes = useStyles();
 
 	const handleFileChange = e => {
 		let uploadTask = storageRef
@@ -76,6 +98,8 @@ const CustomerImage = ({img}) => {
 		);
 	};
 
+	
+
 	return (
 		<>
 			{loading ? (
@@ -91,7 +115,7 @@ const CustomerImage = ({img}) => {
 						onChange={e => handleFileChange(e)}
 						style={{display: 'none'}}
 					/>
-					<Image
+					<Image className={classes.mobileImage}
 						img={img || uploadedImg}
 						onClick={() => fileInput.current.click()}
 					>
