@@ -3,6 +3,7 @@ export const routes = {
     HOME: '/',
     PROFILE: '/profile',
     JOBS: '/jobs',
+    WELCOME: '/welcome',
     TECHS: '/techs',
     CREATE_CUSTOMER_FORM: '/create-customer',
     CREATE_TEAM_FORM: '/teams/create',
@@ -20,6 +21,10 @@ export const privateRoutes = [
     {
         name: 'Dashboard',
         path: routes.HOME,
+    },
+    {
+        name: 'Welcome',
+        path: routes.WELCOME,
     },
     {
         name: 'Profile',

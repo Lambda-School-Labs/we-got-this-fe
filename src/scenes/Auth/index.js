@@ -58,7 +58,7 @@ const Auth = () => {
 						console.log(result);
 						if (result == true) {
 							setTimeout(() => {
-								history.push(routes.HOME);
+								history.push(routes.WELCOME);
 							}, 500);
 						}
 					}}
