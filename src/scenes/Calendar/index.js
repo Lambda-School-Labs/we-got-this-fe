@@ -55,7 +55,7 @@ const AllCalendar = ({history}) => {
 		actions.setNewServiceFormOpen(dispatch, true);
 	}
 
-	//Memoized the the filters is only rerendered when the teamFitler changes
+	//Memoized the the filters is only rerendered when the teamFilter changes
 	let filters = useMemo(() => {
 		console.log('jobs', jobs);
 		//Team Filter
@@ -137,8 +137,13 @@ const AllCalendar = ({history}) => {
 				selectable
 				localizer={localizer}
 				events={filters}
-				views={[Views.MONTH, Views.WORK_WEEK, Views.DAY, Views.AGENDA]}
-				defaultView={Views.WORK_WEEK}
+				views={[Views.MONTH, Views.WORK_WEEK, Views.DAY, Views.AGENDA]} 
+					defaultView={
+					(auth.currentUser.roles.includes('admin')) ? 
+					Views.WORK_WEEK:
+					Views.DAY
+				}
+				
 				onSelectSlot={event => {
 					openScheduleForm(event);
 				}}
@@ -156,6 +161,7 @@ const AllCalendar = ({history}) => {
 					event: Event,
 				}}
 				style={{height: 500}}
+				
 			/>
 			<NewJob />
 			<NewJob_02 />
