@@ -26,6 +26,7 @@ import Customers from './Customers';
 import Customer from './Customer';
 import Techs from './Techs';
 import Job from './Job';
+import Welcome from './Welcome';
 
 //Styles
 import RootContainer from '../components/styles/containers/RootContainer';
@@ -120,6 +121,11 @@ function App() {
                                 exact
                                 path={routes.HOME}
                                 component={Calendar}
+                            />
+                            <PrivateRoute
+                                exact
+                                path={routes.WELCOME}
+                                component={Welcome}
                             />
                             <Route exact path={routes.AUTH} component={Auth} />
                             <PrivateRoute
