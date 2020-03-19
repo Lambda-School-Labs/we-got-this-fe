@@ -147,10 +147,14 @@ function formatJobImage(values) {
 }
 
 function formatJobTime(values) {
+	console.log(values);
 	return {
-		h: values.h || 0,
-		m: values.m || 0,
-		s: values.s || 0,
-		ms: values.ms || 0,
+		jobId: values.jobId || null,
+		time: {
+			h: values.h || '',
+			m: values.m || '',
+			s: values.s || '',
+			ms: values.ms || '',
+		},
 	};
 }

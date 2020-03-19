@@ -97,10 +97,12 @@ export const service = {
 				.collection('jobs')
 				.doc(`${values.jobId}`)
 				.update({
-					time: values,
+					time: {},
+					jobId: '',
 				});
+			console.log('addJobTime');
 		} catch (err) {
-			return err;
+			return console.log(err);
 		}
 	},
 };

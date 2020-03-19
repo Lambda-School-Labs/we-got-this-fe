@@ -265,13 +265,15 @@ export const actions = {
 		} catch (err) {}
 	},
 	async addJobTime(dispatch, values) {
+		console.log(values);
 		try {
-			let time = jobModel.formatJobTime(values);
-			await jobService.addJobTime(time);
+			let formatted = jobModel.formatJobTime(values);
+			await jobService.addJobTime(formatted);
+			console.log('addJobTime', {values});
 
 			dispatch({
 				type: customerTypes.ADD_JOB_TIME,
-				payload: {time},
+				payload: formatted,
 			});
 			return true;
 		} catch (err) {
