@@ -64,13 +64,28 @@ const AllCalendar = ({history}) => {
 			jobs.jobs
 				.filter(job => {
 					if (
-						jobs.teamFilter !== null &&
+						auth.currentUser.roles.includes('admin') &&
+						auth.currentUser.roles.includes('tech') &&
 						!!job.details &&
 						job.details.team !== null
 					) {
 						// return the team document which matches the teamFilter
 
 						return jobs;
+					}
+					return true;
+				})
+				.filter(job => {
+					if (
+						!auth.currentUser.roles.includes('admin') &&
+						!!job.details &&
+						job.details.team !== null
+					) {
+						// return the team document which matches the teamFilter
+
+						return job.details.team.users.includes(
+							auth.currentUser.docRef,
+						);
 					}
 					return true;
 				})
@@ -101,26 +116,40 @@ const AllCalendar = ({history}) => {
 	};
 
 	const formatEvent = (event, job) => {
-		console.log(jobs);
 		//For events that weren't created in the system
 		if (!event.details || event.details.team == null)
 			return {
 				style: {
-					backgroundColor: 'grey',
+					backgroundColor: '#BDBDBD',
+					border: 'none',
+					opacity: '60%',
+					borderRadius: '5px',
 				},
 			};
 		//For events requested by filter
 		else if (event.details.team.docId == jobs.teamFilter) {
+			console.log(event);
 			return {
 				style: {
-					backgroundColor: '',
+					backgroundColor: '#69C8FF',
+					border: 'none',
+					boxShadow: '10px 5px 20px black',
+					borderRadius: '5px',
+					position: 'absolute',
+					zIndex: '2',
 				},
 			};
 		} else {
 			//For events not requested by filter
 			return {
 				style: {
-					backgroundColor: '#69C8FF',
+					backgroundColor: '',
+					border: 'none',
+					opacity: '80%',
+					boxShadow: '5px 5px 50px black',
+					borderRadius: '5px',
+					position: 'absolute',
+					zIndex: '1',
 				},
 			};
 		}
