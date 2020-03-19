@@ -103,7 +103,8 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
       height: 100,
-      bottom: 40,
+      bottom: 20,
+      fontSize: 40,   
     },
   },
   imageMarked: {
