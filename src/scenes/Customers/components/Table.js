@@ -8,6 +8,7 @@ import {
 	TableRow,
 	Button,
 	InputBase,
+	TextField
 } from '@material-ui/core';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import {Link} from 'react-router-dom';
@@ -22,12 +23,31 @@ const useStyles = makeStyles(theme => ({
 		width: '95%',
 		marginLeft: '62px',
 		backgroundColor: '#FFFFFF',
+		[theme.breakpoints.down('xs')]: {
+			
+			
+			
+			// display: 'flex',
+			// flexDirection: 'column'
+			
+			
+			
+			
+		  },
 	},
 	header: {
 		'& th': {
 			fontWeight: 600,
 			width: '200px',
 			backgroundColor: '#FFFAFA',
+			[theme.breakpoints.down('xs')]: {
+				
+				width: '50 !important',
+				display: 'none'
+				
+				
+				
+			  },
 		},
 	},
 	button: {
@@ -47,7 +67,28 @@ const useStyles = makeStyles(theme => ({
 	},
 	border: {
 		border: '1px solid #F2EEEE',
+		
+		padding: '50%'
+
 	},
+	breakpointRemove: { 
+		[theme.breakpoints.down('xs')]: {
+		display: 'none'
+		}
+	},
+	test: {
+		[theme.breakpoints.down('xs')]: {
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginLeft: '-35%'
+		}
+	},
+	searchBar: {
+		
+	}
+	
 }));
 
 
@@ -144,7 +185,16 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 		data.name.toLowerCase().includes(query.toLowerCase())
 		)
 
-		// console.log(people)
+		const locations = people.filter((element) =>
+			element.locations.some((locations) => locations.address === 1))
+			
+
+			const address = locations.filter(data =>
+				data.city.toLowerCase().includes(query.toLowerCase())) 
+			
+		console.log(people)
+		console.log(locations)
+		console.log(address)
 
 		const handleInputChange = event => {
 			setQuery(event.target.value);
@@ -175,10 +225,10 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 
 	return (
 		<>
-		<div className="Characters">
+		<div className={classes.test}>
 		
-		<form className="search">
-		<input
+		<TextField className="search"
+		
         type="text"
         placeholder="Search by Name"
         value={query}
@@ -186,8 +236,8 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 		autoComplete="off"
 		tabIndex="0"
       />
-	  </form>
-      
+	  
+      <div>
 			<Table className={classes.table} size='small'>
 				
 				<TableHead>
@@ -225,16 +275,16 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 				
 					{stableSort(
 						people.length ? people : [],
-						getSorting(order, orderBy), people
+						getSorting(order, orderBy), people, address 
 					).map(customer => {
 						return (
 							
-							<TableRow
+							<TableRow 
 								className={classes.border}
 								key={customer.docId}
 							>
-								{/* Potential starting point */}
-								<TableCell
+								
+								<TableCell 
 									data-testid='names'
 									component='th'
 									scope='row'
@@ -242,18 +292,18 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 								>
 									{customer.name}
 								</TableCell>
-								<TableCell align='left'>
+								<TableCell align='left' className={classes.breakpointRemove}>
 									{customer.contact.phone}
 								</TableCell>
-								<TableCell data-testid='street' align='left'>
+								<TableCell data-testid='street' align='left' className={classes.breakpointRemove}>
 									{customer.locations[0].address.street}
 								</TableCell>
-								<TableCell align='left'>
+								<TableCell align='left' className={classes.breakpointRemove}>
 									{customer.locations[0].address.zipcode}
 								</TableCell>
 
 
-								<TableCell align="right">
+								<TableCell align="right" className={classes.breakpointRemove}>
                                     {customer.nextServiceDate ||
                                         'No service scheduled'}
                                 </TableCell>
@@ -262,6 +312,7 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 								<TableCell
 									className={classes.header}
 									align='left'
+									className={classes.breakpointRemove}
 								>
 									{customer.type || 'Unknown'}
 								</TableCell>
@@ -288,6 +339,7 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 					})}
 				</TableBody>
 			</Table>
+			</div>
 			</div>
 		</>
 	);
