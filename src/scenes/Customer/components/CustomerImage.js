@@ -66,8 +66,8 @@ const CustomerImage = ({img}) => {
 				backgroundPosition: 'center',
 				backgroundRepeat: 'no-repeat',
 				[theme.breakpoints.down('xs')]: {
-			 	width: 177,
-			 	height: 190,
+			 	width: 200,
+			 	height: 250,
 			 	
 			   },}
 	}))

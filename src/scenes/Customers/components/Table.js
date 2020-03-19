@@ -8,6 +8,7 @@ import {
 	TableRow,
 	Button,
 	InputBase,
+	TextField
 } from '@material-ui/core';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import {Link} from 'react-router-dom';
@@ -76,11 +77,16 @@ const useStyles = makeStyles(theme => ({
 		}
 	},
 	test: {
+		[theme.breakpoints.down('xs')]: {
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginLeft: '-35%'
+		}
+	},
+	searchBar: {
+		
 	}
 	
 }));
@@ -221,8 +227,8 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 		<>
 		<div className={classes.test}>
 		
-		<form className="search">
-		<input
+		<TextField className="search"
+		
         type="text"
         placeholder="Search by Name"
         value={query}
@@ -230,7 +236,7 @@ const CustomerTable = ({customers, onRequestSort, orderBy, order, customerName, 
 		autoComplete="off"
 		tabIndex="0"
       />
-	  </form>
+	  
       <div>
 			<Table className={classes.table} size='small'>
 				
