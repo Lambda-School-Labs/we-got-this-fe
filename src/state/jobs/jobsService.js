@@ -92,13 +92,14 @@ export const service = {
 			.update({approved_checklist_url: downloadURL});
 	},
 	async addJobTime(values) {
+		console.log(values);
 		try {
 			await db
 				.collection('jobs')
 				.doc(`${values.jobId}`)
 				.update({
-					time: {},
-					jobId: '',
+					time: values.time,
+					jobId: values.jobId,
 				});
 			console.log('addJobTime');
 		} catch (err) {

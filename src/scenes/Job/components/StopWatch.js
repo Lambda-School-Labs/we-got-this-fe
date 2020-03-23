@@ -5,8 +5,9 @@ import {useStateValue} from '../../../state';
 import {actions} from '../../../state/jobs/jobsActions';
 import {useLocation} from 'react-router-dom';
 
-function StopWatch() {
+function StopWatch({job}) {
 	// TODO: try to fetch existing value from database (job document) and use that value as initial value for the timer
+	console.log(job);
 	const [{time: timeFromDb}, dispatch] = useStateValue();
 	const [time, setTime] = useState(timeFromDb || {ms: 0, s: 0, m: 0, h: 0});
 	const [interv, setInterv] = useState();

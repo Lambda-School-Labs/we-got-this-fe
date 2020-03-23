@@ -151,10 +151,10 @@ function formatJobTime(values) {
 	return {
 		jobId: values.jobId || null,
 		time: {
-			h: values.h || '',
-			m: values.m || '',
-			s: values.s || '',
-			ms: values.ms || '',
+			h: values.time.h || 0,
+			m: values.time.m || 0,
+			s: values.time.s || 0,
+			ms: values.time.ms || 0,
 		},
 	};
 }
