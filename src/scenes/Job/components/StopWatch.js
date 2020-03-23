@@ -1,14 +1,21 @@
 import React, {useState} from 'react';
 import StopWatchDisplay from './StopWatchDisplay';
 import StopWatchButtons from './StopWatchButtons';
+import {useStateValue} from '../../../state';
+import {actions} from '../../../state/jobs/jobsActions';
+import {useLocation} from 'react-router-dom';
 
-function StopWatch() {
-	const [time, setTime] = useState({ms: 0, s: 0, m: 0, h: 0});
+function StopWatch({job}) {
+	// TODO: try to fetch existing value from database (job document) and use that value as initial value for the timer
+	console.log(job);
+	const [{time: timeFromDb}, dispatch] = useStateValue();
+	const [time, setTime] = useState(timeFromDb || {ms: 0, s: 0, m: 0, h: 0});
 	const [interv, setInterv] = useState();
 	const [status, setStatus] = useState(0);
 	// Not started = 0
 	// started = 1
 	// stopped = 2
+	const location = useLocation();
 
 	const start = () => {
 		run();
@@ -41,6 +48,8 @@ function StopWatch() {
 	const stop = () => {
 		clearInterval(interv);
 		setStatus(2);
+		actions.addJobTime(dispatch, {time: time, jobId: location.state});
+		// TODO: add time elapsed to database using the existing redux store
 	};
 
 	const reset = () => {

@@ -135,7 +135,7 @@ const Job = ({match, location, history}) => {
 					<Grid item>
 						<Grid item>
 							<JobCard job={job} />
-							<StopWatch />
+							<StopWatch job={job} />
 						</Grid>
 						<Grid container className={classes.tabs}>
 							<Grid item>

@@ -248,6 +248,7 @@ export const actions = {
 				type: customerTypes.DELETE_IMAGE_ON_JOB,
 				payload: formatted,
 			});
+
 			return true;
 		} catch (err) {
 			return err;
@@ -262,5 +263,21 @@ export const actions = {
 				payload: {jobId, downloadURL},
 			});
 		} catch (err) {}
+	},
+	async addJobTime(dispatch, values) {
+		console.log(values);
+		try {
+			let formatted = jobModel.formatJobTime(values);
+			await jobService.addJobTime(formatted);
+			console.log('addJobTime', {values});
+
+			dispatch({
+				type: customerTypes.ADD_JOB_TIME,
+				payload: formatted,
+			});
+			return true;
+		} catch (err) {
+			return err;
+		}
 	},
 };
