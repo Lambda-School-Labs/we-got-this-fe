@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect, useRef} from 'react';
 import './style.css';
 //Components
@@ -122,3 +123,6 @@ const CustomerCard = ({customer}) => {
 };
 
 export default CustomerCard;
+
+
+
