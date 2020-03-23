@@ -1,10 +1,10 @@
 import React from 'react';
 
 //Components
-import {Paper, Typography, Grid} from '@material-ui/core';
+import { Paper, Typography, Grid } from '@material-ui/core';
 
 //Styling
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 /*
     Displays extra information about a customer and their needs,
@@ -25,29 +25,24 @@ import {makeStyles} from '@material-ui/core/styles';
         }
 */
 const useStyles = makeStyles(theme => ({
-	root: {
-		padding: theme.spacing(1),
-		[theme.breakpoints.down('xs')]: {
-			display: 'none',
-		},
-	},
+    root: {
+        padding: theme.spacing(1),
+    },
 }));
 
-const CustomerNotes = ({customer}) => {
-	const classes = useStyles();
-	return (
-		<div className='CustomerNotes'>
-			<Grid
-				component={Paper}
-				item
-				className={classes.root}
-				justify='space-between'
-			>
-				<Typography variant='h6'>Customer Notes</Typography>
-				{customer.notes || 'No notes yet'}
-			</Grid>
-		</div>
-	);
+const CustomerNotes = ({ customer }) => {
+    const classes = useStyles();
+    return (
+        <Grid
+            component={Paper}
+            item
+            className={classes.root}
+            justify="space-between"
+        >
+            <Typography variant="h6">Customer Notes</Typography>
+            {customer.notes || 'No notes yet'}
+        </Grid>
+    );
 };
 
 export default CustomerNotes;
