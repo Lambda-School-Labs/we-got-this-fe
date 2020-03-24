@@ -128,12 +128,10 @@ const AllCalendar = ({history}) => {
 			};
 		//For events requested by filter
 		else if (event.details.team.docId == jobs.teamFilter) {
-			console.log(event);
 			return {
 				style: {
 					backgroundColor: '#69C8FF',
 					border: 'none',
-					boxShadow: '10px 5px 20px black',
 					borderRadius: '5px',
 					position: 'absolute',
 					zIndex: '2',
@@ -143,10 +141,9 @@ const AllCalendar = ({history}) => {
 			//For events not requested by filter
 			return {
 				style: {
-					backgroundColor: '',
+					backgroundColor: '#2877bf',
 					border: 'none',
 					opacity: '80%',
-					boxShadow: '5px 5px 50px black',
 					borderRadius: '5px',
 					position: 'absolute',
 					zIndex: '1',
@@ -166,13 +163,12 @@ const AllCalendar = ({history}) => {
 				selectable
 				localizer={localizer}
 				events={filters}
-				views={[Views.MONTH, Views.WORK_WEEK, Views.DAY, Views.AGENDA]} 
-					defaultView={
-					(auth.currentUser.roles.includes('admin')) ? 
-					Views.WORK_WEEK:
-					Views.DAY
+				views={[Views.MONTH, Views.WORK_WEEK, Views.DAY, Views.AGENDA]}
+				defaultView={
+					auth.currentUser.roles.includes('admin')
+						? Views.WORK_WEEK
+						: Views.DAY
 				}
-				
 				onSelectSlot={event => {
 					openScheduleForm(event);
 				}}
@@ -190,7 +186,6 @@ const AllCalendar = ({history}) => {
 					event: Event,
 				}}
 				style={{height: 500}}
-				
 			/>
 			<NewJob />
 			<NewJob_02 />
