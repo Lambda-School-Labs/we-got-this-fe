@@ -71,6 +71,7 @@ const useStyles = makeStyles(theme => ({
 		marginLeft: '50px',
 		marginRight: '20px',
 		marginBottom: '40px',
+		borderRadius: '4px',
 	},
 }));
 
