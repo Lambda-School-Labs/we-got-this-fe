@@ -16,6 +16,7 @@ import {
 //styles
 import {styled, withTheme} from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
+// import './style.css';
 
 //State
 import {useStateValue} from '../../../state';
@@ -33,6 +34,11 @@ const Title = styled(Box)({
 	flexDirection: 'row',
 	justifyContent: 'flex-start',
 	alignItems: 'center',
+});
+
+const MediaFlex = styled(Box)({
+	display: 'flex',
+	flexDirection: 'row',
 });
 
 const CustomerDetails = styled(withTheme(Grid))(props => ({
@@ -72,36 +78,61 @@ const CustomerCard = ({customer}) => {
 		`${address.street} ${address.city}, ${address.state} ${address.zipcode}`;
 
 	return (
-		<Grid component={Paper} container item>
-			<Grid item>
-				<CustomerImage
-					img={customer.img}
-					//    https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?)'
-				/>
+		<div className='customerDetails'>
+			<Grid component={Paper} container item>
+				<div>
+					<Grid item className='Image'>
+						<CustomerImage
+							className='ImageSize'
+							img={customer.img}
+							//    https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?)'
+						/>
+					</Grid>
+				</div>
+				<div>
+					<CustomerDetails item>
+						<Title>
+							<Typography variant='h6'>
+								{customer.name}
+							</Typography>
+							<DialogWrapper
+								trigger={click => (
+									<IconButton
+										size='small'
+										onClick={() => click()}
+									>
+										<EditIcon />
+									</IconButton>
+								)}
+								dialogContent={close => (
+									<EditCustomerForm handleClose={close} />
+								)}
+								title='Edit Customer'
+								size='sm'
+							/>
+						</Title>
+						<strong>Address:</strong>{' '}
+						<Typography variant='body2'>{fullAddress}</Typography>
+						<strong>Phone:</strong>{' '}
+						<Typography variant='body2'>
+							{customer.contact.phone}
+						</Typography>
+						<strong>Email:</strong>{' '}
+						<Typography variant='body2'>
+							{customer.contact.email}
+						</Typography>
+						<strong>Payment Type:</strong>{' '}
+						<Typography variant='body2'>
+							{customer.payment}
+						</Typography>
+						<strong>How did they hear about us?</strong>{' '}
+						<Typography variant='body2'>
+							{customer.hearabout}
+						</Typography>
+					</CustomerDetails>
+				</div>
 			</Grid>
-			<CustomerDetails item>
-				<Title>
-					<Typography variant='h6'>{customer.name}</Typography>
-					<DialogWrapper
-						trigger={click => (
-							<IconButton size='small' onClick={() => click()}>
-								<EditIcon />
-							</IconButton>
-						)}
-						dialogContent={close => (
-							<EditCustomerForm handleClose={close} />
-						)}
-						title='Edit Customer'
-						size='sm'
-					/>
-				</Title>
-				<strong>Address:</strong> <Typography variant='body2'>{fullAddress}</Typography>
-				<strong>Phone:</strong> <Typography variant='body2'>{customer.contact.phone}</Typography>
-				<strong>Email:</strong> <Typography variant='body2'>{customer.contact.email}</Typography>
-				<strong>Payment Type:</strong> <Typography variant='body2'>{customer.payment}</Typography>
-				<strong>How did they hear about us?</strong> <Typography variant='body2'>{customer.hearabout}</Typography>
-			</CustomerDetails>
-		</Grid>
+		</div>
 	);
 };
 
