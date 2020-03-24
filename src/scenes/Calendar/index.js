@@ -27,7 +27,6 @@ const useStyles = makeStyles(theme => ({
 		textDecoration: 'none',
 		backgroundColor: '#2877bf',
 		color: 'white',
-		marginBottom: '40px',
 	},
 	main: {
 		width: '100%',
@@ -42,12 +41,12 @@ const useStyles = makeStyles(theme => ({
 		background: 'whitesmoke',
 		border: '1px solid #2877bf',
 		borderRadius: '4px',
+		marginBottom: '20px',
 	},
 	info: {
 		display: 'flex',
 		flexWrap: 'wrap',
 		justifyContent: 'space-between',
-		marginLeft: '15px',
 	},
 	profilePic: {
 		height: '125px',
