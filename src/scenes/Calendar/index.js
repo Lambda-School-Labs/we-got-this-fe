@@ -71,6 +71,7 @@ const useStyles = makeStyles(theme => ({
 		marginLeft: '50px',
 		marginRight: '20px',
 		marginBottom: '40px',
+		borderRadius: '4px',
 	},
 }));
 
@@ -178,7 +179,15 @@ const AllCalendar = ({history}) => {
 
 	const formatEvent = (event, job) => {
 		//For events that weren't created in the system
-		if (!event.details || event.details.team == null)
+		console.log(event);
+		console.log(job);
+		if (event.title.includes('Interview'))
+			return {
+				style: {
+					backgroundColor: '#BDBDBD',
+				},
+			};
+		else if (!event.details || event.details.team == null)
 			return {
 				style: {
 					backgroundColor: '#BDBDBD',

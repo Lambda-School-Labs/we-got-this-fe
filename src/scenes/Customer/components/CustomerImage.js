@@ -6,7 +6,7 @@ import {ButtonBase} from '@material-ui/core';
 import SplashLoading from '../../../components/loading/SplashLoading';
 
 //styles
-import {styled} from '@material-ui/core/styles';
+import {makeStyles, styled} from '@material-ui/core/styles';
 import {useStateValue} from '../../../state';
 
 const storageRef = Firebase.getStorageRef();
@@ -38,6 +38,19 @@ const Image = styled(({img, ...other}) => <ButtonBase {...other} />)({
 		visibility: 'visible',
 	},
 });
+const useStyles = makeStyles(theme => ({
+	mobileImage: {
+		width: 128,
+		height: 128,
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
+		backgroundRepeat: 'no-repeat',
+		[theme.breakpoints.down('xs')]: {
+			width: 195,
+			height: 250,
+		},
+	},
+}));
 
 /*
     Displays a specific customer's headshot image.
@@ -49,6 +62,7 @@ const CustomerImage = ({img}) => {
 	const [{customers}, dispatch] = useStateValue();
 	const [loading, setLoading] = useState(false);
 	const [uploadedImg, setUploadedImg] = useState(null);
+	const classes = useStyles();
 	const fileInput = useRef(null);
 
 	const handleFileChange = e => {
@@ -92,6 +106,7 @@ const CustomerImage = ({img}) => {
 						style={{display: 'none'}}
 					/>
 					<Image
+						className={classes.mobileImage}
 						img={img || uploadedImg}
 						onClick={() => fileInput.current.click()}
 					>
