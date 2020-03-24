@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		margin: '0px auto',
+		marginBottom: '10px',
 		background: 'whitesmoke',
 		border: '1px solid #2877bf',
 		borderRadius: '4px',
@@ -32,8 +33,8 @@ const useStyles = makeStyles(theme => ({
 		marginRight: '15px',
 	},
 	profilePic: {
-		height: '125px',
-		width: '125px',
+		height: '100px',
+		width: '100px',
 		borderRadius: '5px',
 		border: '1px solid white',
 		margin: '5px 5px',
@@ -63,11 +64,12 @@ const useStyles = makeStyles(theme => ({
 		fontSize: '18px',
 	},
 	bigBtns: {
-		margin: '25px auto',
+		margin: '0px auto',
 		backgroundImage: `url(${'https://qph.fs.quoracdn.net/main-qimg-00b9dd8d87de34da9de0234aeb447b5f'})`,
 		display: 'flex',
 		flexWrap: 'wrap',
 		justifyContent: 'space-evenly',
+		marginBottom: '25px',
 	},
 
 	title: {
