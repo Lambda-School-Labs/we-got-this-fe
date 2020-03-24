@@ -1,27 +1,30 @@
 import React from 'react';
+import {Button} from '@material-ui/core';
 
 function StopWatchButtons(props) {
 	return (
 		<div>
 			{props.status === 0 ? (
-				<button
-					className='stopwatch-btn stopwatch-btn-gre'
+				<Button
+					variant='contained'
+					color='primary'
 					onClick={props.start}
 				>
 					Start
-				</button>
+				</Button>
 			) : (
 				''
 			)}
 
 			{props.status === 1 ? (
 				<div>
-					<button
-						className='stopwatch-btn stopwatch-btn-red'
+					<Button
+						variant='contained'
+						color='secondary'
 						onClick={props.stop}
 					>
 						Stop
-					</button>
+					</Button>
 				</div>
 			) : (
 				''
