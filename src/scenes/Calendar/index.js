@@ -67,6 +67,12 @@ const useStyles = makeStyles(theme => ({
 		color: '#2877bf',
 		marginTop: '15px',
 	},
+	signout: {
+		marginTop: '40px',
+		marginLeft: '50px',
+		marginRight: '20px',
+		marginBottom: '40px',
+	},
 }));
 
 const AllCalendar = ({history}) => {
@@ -210,7 +216,7 @@ const AllCalendar = ({history}) => {
 
 	return (
 		<>
-			{auth.currentUser.roles.includes('tech') ? (
+			{!auth.currentUser.roles.includes('admin') ? (
 				<div className={classes.profile}>
 					<div className={classes.info}>
 						<div>
@@ -231,6 +237,7 @@ const AllCalendar = ({history}) => {
 						</div>
 					</div>
 					<Button
+						className={classes.signout}
 						variant='contained'
 						color='secondary'
 						onClick={() => {
@@ -241,6 +248,7 @@ const AllCalendar = ({history}) => {
 					</Button>
 				</div>
 			) : null}
+			{auth.currentUser.roles.includes('admin') ? <Jobs /> : null}
 			<Filters />
 			{jobs.jobs.length == 0 ? (
 				<p>Getting Events or there are no events</p>
@@ -284,6 +292,37 @@ const AllCalendar = ({history}) => {
 
 			<NewJob />
 			<NewJob_02 />
+			{!auth.currentUser.roles.includes('admin') ? null : (
+				<div className={classes.profile}>
+					<div className={classes.info}>
+						<div>
+							<img
+								className={classes.profilePic}
+								src='https://static.wixstatic.com/media/96e345_6604b08d98c64c4592edee1c680b76a8~mv2.jpg/v1/fill/w_430,h_584,al_c,q_80,usm_0.66_1.00_0.01/96e345_6604b08d98c64c4592edee1c680b76a8~mv2.webp'
+							/>
+						</div>
+						<div>
+							<h1 className={classes.title}>We Got This</h1>{' '}
+							<h1 className={classes.admin}>
+								{auth.currentUser &&
+									auth.currentUser.displayName}{' '}
+							</h1>
+							<p className={classes.email}>
+								{auth.currentUser && auth.currentUser.email}
+							</p>
+						</div>
+					</div>
+					<Button
+						className={classes.signout}
+						color='secondary'
+						onClick={() => {
+							logout.logout(dispatch);
+						}}
+					>
+						Sign Out
+					</Button>
+				</div>
+			)}
 		</>
 	);
 };
