@@ -12,6 +12,22 @@ import NewJob from '../../components/dialogs/NewJob';
 import NewJob_02 from '../../components/dialogs/NewJob_02';
 
 import Filters from './components/Filters';
+import {Button} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+	button: {
+		display: 'flex',
+		fontSize: '14px',
+		margin: '10px auto',
+		padding: '5px',
+		width: '100%',
+		textDecoration: 'none',
+		backgroundColor: '#2877bf',
+		color: 'white',
+		marginBottom: '40px',
+	},
+}));
 
 const AllCalendar = ({history}) => {
 	//Get Google API
@@ -19,7 +35,7 @@ const AllCalendar = ({history}) => {
 	const localizer = momentLocalizer(moment);
 	const [{auth, jobs, teams}, dispatch] = useStateValue();
 	const services = {team: useService(teamService, dispatch)};
-
+	const classes = useStyles();
 	let allViews = Object.keys(Views).map(k => Views[k]);
 
 	//Get the calendar Events for this month + 2 more
@@ -187,6 +203,14 @@ const AllCalendar = ({history}) => {
 				}}
 				style={{height: 500}}
 			/>
+			<Button
+				href={`${'https://calendar.google.com/calendar/r'}`}
+				className={classes.button}
+				variant='contained'
+			>
+				Modify Appointments
+			</Button>
+
 			<NewJob />
 			<NewJob_02 />
 		</>
