@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 		flexDirection: 'row',
 		width: '100%',
 		justifyContent: 'space-between',
-		margin: '20px auto',
+		margin: '0 auto',
 		background: 'whitesmoke',
 		border: '1px solid #2877bf',
 		borderRadius: '4px',
