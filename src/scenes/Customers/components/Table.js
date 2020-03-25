@@ -258,7 +258,7 @@ const CustomerTable = ({
 										>
 											{customer.name}
 										</TableCell>
-										<TableCell align='left'>
+										<TableCell align='left' className={classes.breakpointRemove}>
 											{customer.contact.phone}
 										</TableCell>
 										<TableCell
@@ -297,6 +297,7 @@ const CustomerTable = ({
 											{customer.type || 'Unknown'}
 										</TableCell>
 										<TableCell
+										
 											className={classes.spacing}
 											align='left'
 										>

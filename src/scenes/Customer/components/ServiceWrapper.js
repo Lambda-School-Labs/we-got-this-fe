@@ -28,7 +28,7 @@ const ServiceWrapper = ({ jobPaths, customer, location, match }) => {
             return <h2>No Services Performed</h2>;
         } else {
             return (
-                <ServiceTable
+                <ServiceTable 
                     jobs={customers.customerJobs}
                     match={match}
                     location={location}
