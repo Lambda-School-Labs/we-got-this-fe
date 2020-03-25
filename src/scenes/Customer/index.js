@@ -122,7 +122,7 @@ const Customer = ({match}) => {
             This is for displaying the side by side of the Job component on desktop but not on mobile
         */}
 
-			{!mobile && <Route path={routes.JOB_DETAILS} component={Job} />}
+			{/* {!mobile && <Route path={routes.JOB_DETAILS} component={Job} />} */}
 		</Grid>
 	);
 };

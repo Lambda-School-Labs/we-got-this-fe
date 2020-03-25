@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import { routes } from '../../../constants/routes';
+import Job from '../../Job';
 import {
     Toolbar,
     Tooltip,
@@ -14,12 +15,20 @@ import {
     Button,
     IconButton,
     Typography,
+    useMediaQuery,
+    useTheme
 } from '@material-ui/core';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
 
 const useStyles = makeStyles(theme => ({
+    
     root: {
         width: '100%',
+        color: 'red'
     },
     paper: {
         marginTop: theme.spacing(3),
@@ -30,8 +39,20 @@ const useStyles = makeStyles(theme => ({
     header: {
         '& th': {
             fontWeight: 600,
+            border: '1px solid red'
         },
     },
+    fu: {
+        width: '1200px',
+        border: '1px solid green',
+        
+    },
+    fu2: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        border: '1px solid green'
+    }
 }));
 
 // TODO: Fix this in the schema first
@@ -67,6 +88,8 @@ const teams = techsArray => {
 const ServiceTable = ({ jobs, match, location }) => {
     console.log(('Service Table Location: ', location));
     const classes = useStyles();
+    // const mobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const theme = useTheme();
 
     return (
         <>
@@ -79,23 +102,31 @@ const ServiceTable = ({ jobs, match, location }) => {
                         <TableCell align="right"> </TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
+                </Table>
+                
+                <TableBody >
                     {jobs.length &&
                         jobs.map((job, i) => {
                             let scheduledDate = moment(job.details.arrivalWindowStart).format('LL');
                             return (
-                                <TableRow key={i}>
-                                    <TableCell component="th" scope="row">
+                                
+                                <ExpansionPanel className={classes.fu}>
+                                    <div className={classes.header}>
+                                    <TableRow key={i} >
+                                    <TableCell component="th" scope="row" >
                                         {scheduledDate}
                                     </TableCell>
-                                    <TableCell align="right">
+                                    <TableCell align="right"> 
                                         {job.team.name}
                                     </TableCell>
                                     <TableCell align="right">
                                         {job.type || 'Unknown'}
                                     </TableCell>
                                     <TableCell align="right">
-                                        <Button
+                                        
+                                    <ExpansionPanelSummary 
+                                        expandIcon={<Button
+                                                                        
                                             variant="outlined"
                                             color="primary"
                                             size="small"
@@ -106,13 +137,32 @@ const ServiceTable = ({ jobs, match, location }) => {
                                             }}
                                         >
                                             Details
-                                        </Button>
+                                        </Button>}
+                                            aria-controls="panel1a-content"
+                                            id="panel1a-header"
+                                            >
+                                    </ExpansionPanelSummary>
+            
+                                        
+                                        
                                     </TableCell>
+                                    
                                 </TableRow>
+                                </div>
+          <Typography className={classes.heading}><Route path={routes.JOB_DETAILS} component={Job} /></Typography>
+        
+
+                                
+                                
+                                </ExpansionPanel>
+                                
                             );
                         })}
+                        
                 </TableBody>
-            </Table>
+                
+            {/* </Table> */}
+            
         </>
     );
 };

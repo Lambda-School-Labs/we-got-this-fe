@@ -10,6 +10,8 @@ const useStyles = makeStyles(theme => ({
 	main: {
 		width: '100%',
 		borderRadius: '4px',
+		display: 'flex',
+		flexDirection: 'column'
 	},
 	profile: {
 		display: 'flex',
