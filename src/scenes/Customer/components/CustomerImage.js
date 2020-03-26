@@ -12,8 +12,8 @@ import {useStateValue} from '../../../state';
 const storageRef = Firebase.getStorageRef();
 
 const Image = styled(({img, ...other}) => <ButtonBase {...other} />)({
-	width: 128,
-	height: 128,
+	width: 350,
+	height: 350,
 	backgroundSize: 'cover',
 	backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',
@@ -39,9 +39,9 @@ const Image = styled(({img, ...other}) => <ButtonBase {...other} />)({
 	},
 });
 const useStyles = makeStyles(theme => ({
-	mobileImage: {
-		width: 128,
-		height: 128,
+	Image: {
+		width: 350,
+		height: 350,
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
 		backgroundRepeat: 'no-repeat',
@@ -106,7 +106,7 @@ const CustomerImage = ({img}) => {
 						style={{display: 'none'}}
 					/>
 					<Image
-						className={classes.mobileImage}
+						className={classes.Image}
 						img={img || uploadedImg}
 						onClick={() => fileInput.current.click()}
 					>

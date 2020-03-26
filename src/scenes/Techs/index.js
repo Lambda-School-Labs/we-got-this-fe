@@ -3,6 +3,7 @@ import {Grid, Button, Select, MenuItem, FormControl} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import TechCard from './TechCard';
 import Profile from '../Profile';
+import Jobs from '../Jobs';
 import {useStateValue} from '../../state';
 import teamService from '../../state/team/teamService';
 import {actions} from '../../state/auth/authActions';
@@ -147,6 +148,7 @@ const Techs = ({history}) => {
 		<SplashLoading height='25%' width='25%' />
 	) : (
 		<>
+			<div className={classes.main}>{/* <Jobs /> */}</div>
 			<div className={classes.main}>
 				<div className={classes.row}>
 					<h1 className={classes.title}>Technicians</h1>
