@@ -2,20 +2,24 @@ import React, {useState, useEffect} from 'react';
 import {useStateValue} from '../../state';
 import {actions} from '../../state/auth/authActions';
 import {makeStyles} from '@material-ui/core/styles';
-import UserTable from '../Profile/Component/UserTable';
-import EditUser from '../../components/dialogs/EditUser';
 
 import {Button} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
 	profile: {
 		display: 'flex',
+		flexDirection: 'row',
+		width: '100%',
 		justifyContent: 'space-between',
-		alignItems: 'center',
-		marginBottom: '50px',
+		margin: '0 auto',
+		background: 'whitesmoke',
+		border: '1px solid #2877bf',
+		borderRadius: '4px',
+		marginBottom: '20px',
 	},
 	info: {
 		display: 'flex',
+		flexWrap: 'wrap',
 		justifyContent: 'space-between',
 	},
 	edit: {
@@ -24,12 +28,11 @@ const useStyles = makeStyles(theme => ({
 		marginRight: '15px',
 	},
 	profilePic: {
-		height: '100px',
-		width: '100px',
+		height: '125px',
+		width: '125px',
 		borderRadius: '5px',
-		border: '1px solid black',
-		marginTop: '6px',
-		marginRight: '15px',
+		border: '1px solid white',
+		margin: '5px 5px',
 	},
 	admin: {
 		fontWeight: 'bolder',
@@ -42,6 +45,17 @@ const useStyles = makeStyles(theme => ({
 		color: '#989B9E',
 		fontSize: '14px',
 		marginTop: '0',
+	},
+	title: {
+		color: '#2877bf',
+		marginTop: '15px',
+	},
+	signout: {
+		marginTop: '40px',
+		marginLeft: '50px',
+		marginRight: '20px',
+		marginBottom: '40px',
+		borderRadius: '4px',
 	},
 }));
 
@@ -79,6 +93,7 @@ const Profile = () => {
 						/>
 					</div>
 					<div>
+						<h1 className={classes.title}>We Got This</h1>{' '}
 						<h1 className={classes.admin}>
 							{auth.currentUser && auth.currentUser.displayName}{' '}
 						</h1>
@@ -86,12 +101,12 @@ const Profile = () => {
 							{auth.currentUser && auth.currentUser.email}
 						</p>
 					</div>
-					<div className={classes.edit}>
-						<EditUser user={auth.currentUser} />
-					</div>
 				</div>
+				{/* <div className={classes.edit}>
+                   <EditUser user={auth.currentUser} />
+               </div> */}
 				<Button
-					variant='contained'
+					className={classes.signout}
 					color='secondary'
 					onClick={() => {
 						actions.logout(dispatch);
@@ -100,12 +115,6 @@ const Profile = () => {
 					Sign Out
 				</Button>
 			</div>
-
-			{loading || !auth.users ? (
-				<h2>Loading...</h2>
-			) : (
-				<UserTable users={auth.users} />
-			)}
 		</>
 	);
 };

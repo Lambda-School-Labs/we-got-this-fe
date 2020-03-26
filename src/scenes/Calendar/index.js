@@ -8,8 +8,8 @@ import {actions} from '../../state/jobs/jobsActions';
 import {actions as logout} from '../../state/auth/authActions';
 import {useStateValue, useService} from '../../state';
 import teamService from '../../state/team/teamService';
-
-import Jobs from '../Jobs/index';
+import Profile from '../Profile';
+import Jobs from '../Jobs';
 import NewJob from '../../components/dialogs/NewJob';
 import NewJob_02 from '../../components/dialogs/NewJob_02';
 
@@ -27,51 +27,6 @@ const useStyles = makeStyles(theme => ({
 		textDecoration: 'none',
 		backgroundColor: '#2877bf',
 		color: 'white',
-	},
-	main: {
-		width: '100%',
-		borderRadius: '4px',
-	},
-	profile: {
-		display: 'flex',
-		flexDirection: 'row',
-		width: '100%',
-		justifyContent: 'space-between',
-		margin: '0 auto',
-		background: 'whitesmoke',
-		border: '1px solid #2877bf',
-		borderRadius: '4px',
-		marginBottom: '20px',
-	},
-	info: {
-		display: 'flex',
-		flexWrap: 'wrap',
-		justifyContent: 'space-between',
-	},
-	profilePic: {
-		height: '125px',
-		width: '125px',
-		borderRadius: '5px',
-		border: '1px solid white',
-		margin: '5px 5px',
-	},
-	admin: {
-		fontWeight: 'bolder',
-		fontSize: '15px',
-		marginBottom: '0',
-		color: '#626262',
-		textShadow: '3px 2px 2px white',
-	},
-	title: {
-		color: '#2877bf',
-		marginTop: '15px',
-	},
-	signout: {
-		marginTop: '40px',
-		marginLeft: '50px',
-		marginRight: '20px',
-		marginBottom: '40px',
-		borderRadius: '4px',
 	},
 }));
 
@@ -178,16 +133,7 @@ const AllCalendar = ({history}) => {
 	};
 
 	const formatEvent = (event, job) => {
-		//For events that weren't created in the system
-		console.log(event);
-		console.log(job);
-		if (event.title.includes('Interview'))
-			return {
-				style: {
-					backgroundColor: '#BDBDBD',
-				},
-			};
-		else if (!event.details || event.details.team == null)
+		if (!event.details || event.details.team == null)
 			return {
 				style: {
 					backgroundColor: '#BDBDBD',
@@ -224,38 +170,7 @@ const AllCalendar = ({history}) => {
 
 	return (
 		<>
-			{!auth.currentUser.roles.includes('admin') ? (
-				<div className={classes.profile}>
-					<div className={classes.info}>
-						<div>
-							<img
-								className={classes.profilePic}
-								src='https://static.wixstatic.com/media/96e345_6604b08d98c64c4592edee1c680b76a8~mv2.jpg/v1/fill/w_430,h_584,al_c,q_80,usm_0.66_1.00_0.01/96e345_6604b08d98c64c4592edee1c680b76a8~mv2.webp'
-							/>
-						</div>
-						<div>
-							<h1 className={classes.title}>We Got This</h1>{' '}
-							<h1 className={classes.admin}>
-								{auth.currentUser &&
-									auth.currentUser.displayName}{' '}
-							</h1>
-							<p className={classes.email}>
-								{auth.currentUser && auth.currentUser.email}
-							</p>
-						</div>
-					</div>
-					<Button
-						className={classes.signout}
-						variant='contained'
-						color='secondary'
-						onClick={() => {
-							logout.logout(dispatch);
-						}}
-					>
-						Sign Out
-					</Button>
-				</div>
-			) : null}
+			{!auth.currentUser.roles.includes('admin') ? <Profile /> : null}
 			{auth.currentUser.roles.includes('admin') ? <Jobs /> : null}
 			<Filters />
 			{jobs.jobs.length == 0 ? (
@@ -300,37 +215,7 @@ const AllCalendar = ({history}) => {
 
 			<NewJob />
 			<NewJob_02 />
-			{!auth.currentUser.roles.includes('admin') ? null : (
-				<div className={classes.profile}>
-					<div className={classes.info}>
-						<div>
-							<img
-								className={classes.profilePic}
-								src='https://static.wixstatic.com/media/96e345_6604b08d98c64c4592edee1c680b76a8~mv2.jpg/v1/fill/w_430,h_584,al_c,q_80,usm_0.66_1.00_0.01/96e345_6604b08d98c64c4592edee1c680b76a8~mv2.webp'
-							/>
-						</div>
-						<div>
-							<h1 className={classes.title}>We Got This</h1>{' '}
-							<h1 className={classes.admin}>
-								{auth.currentUser &&
-									auth.currentUser.displayName}{' '}
-							</h1>
-							<p className={classes.email}>
-								{auth.currentUser && auth.currentUser.email}
-							</p>
-						</div>
-					</div>
-					<Button
-						className={classes.signout}
-						color='secondary'
-						onClick={() => {
-							logout.logout(dispatch);
-						}}
-					>
-						Sign Out
-					</Button>
-				</div>
-			)}
+			{!auth.currentUser.roles.includes('admin') ? null : <Profile />}
 		</>
 	);
 };
