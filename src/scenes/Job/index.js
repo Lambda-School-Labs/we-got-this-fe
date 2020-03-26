@@ -20,29 +20,12 @@ import StopWatch from './components/StopWatch';
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		margin: '0 20px',
+		marginLeft: theme.spacing(2),
 		width: '100%',
 	},
 	tabs: {
 		marginTop: theme.spacing(1),
 		marginBottom: theme.spacing(1),
-	},
-	row: {
-		display: 'flex',
-		flexDirection: 'row',
-		margin: '0 20px',
-		justifyContent: 'space-between',
-		maxWidth: '90%',
-	},
-	timer: {
-		margin: '10px 50px',
-		fontSize: '40px',
-		color: '#2678C0',
-	},
-	photos: {
-		width: '90%',
-		margin: '20px 30px',
-		color: '#2678C0',
 	},
 }));
 
@@ -151,17 +134,10 @@ const Job = ({match, location, history}) => {
 					)}
 					<Grid item>
 						<Grid item>
-							<div className={classes.row}>
-								<JobCard
-									job={job}
-									className={classes.customer}
-								/>
-								<div className={classes.timer}>
-									<StopWatch job={job} />
-								</div>
-							</div>
+							<JobCard job={job} />
+							<StopWatch job={job} />
 						</Grid>
-						<Grid item className={classes.photos}>
+						<Grid container className={classes.tabs}>
 							<Grid item>
 								<Tabs
 									value={value}
@@ -170,14 +146,14 @@ const Job = ({match, location, history}) => {
 									textColor='primary'
 									scrollButtons='off'
 								>
+									<Tab label='Photos' />
 									{/* <Tab label='Job Notes' /> */}
 								</Tabs>
 							</Grid>
-							<Grid item>
+							<Grid item style={{marginTop: 10, marginLeft: 10}}>
 								{value == 0 ? <AddPhoto /> : <AddNote />}
 							</Grid>
 						</Grid>
-
 						<PhotosPanel value={value} index={0} job={job} />
 						{/* <NotesPanel value={value} index={1} job={job} /> */}
 					</Grid>

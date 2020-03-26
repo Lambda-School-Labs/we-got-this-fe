@@ -14,12 +14,15 @@ import {makeStyles} from '@material-ui/core/styles';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CustomerTable from './components/Table';
 import Profile from '../Profile';
-import Jobs from '../Jobs';
 import {useStateValue} from '../../state';
 import {actions} from '../../state/customer/customerActions';
 import CustomerTableHeader from './components/TableHeader';
 
 const useStyles = makeStyles(theme => ({
+	flex: {
+		display: 'flex',
+		marginLeft: '63px',
+	},
 	butns: {
 		display: 'flex',
 		justifyContent: 'flex-end',
@@ -41,6 +44,11 @@ const useStyles = makeStyles(theme => ({
 		justifyContent: 'space-between',
 	},
 
+	margin: {
+		marginLeft: '175px',
+		marginBottom: '15px',
+		width: '163px',
+	},
 	main: {
 		padding: '3px',
 		borderRadius: '5px',
@@ -79,8 +87,8 @@ const Customers = () => {
 
 	return (
 		<>
-			<div className={classes.main}>{/* <Jobs /> */}</div>
 			<div className={classes.main}>
+				{' '}
 				<div className={classes.row}>
 					<h1 className={classes.title}>Customers</h1>
 
