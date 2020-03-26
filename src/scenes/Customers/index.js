@@ -79,10 +79,7 @@ const Customers = () => {
 
 	return (
 		<>
-			<div className={classes.main}>
-				{' '}
-				<Jobs />
-			</div>
+			<div className={classes.main}>{/* <Jobs /> */}</div>
 			<div className={classes.main}>
 				<div className={classes.row}>
 					<h1 className={classes.title}>Customers</h1>

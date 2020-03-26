@@ -181,10 +181,7 @@ const AllCalendar = ({history}) => {
 		<>
 			{!auth.currentUser.roles.includes('admin') ? <Profile /> : null}
 			{auth.currentUser.roles.includes('admin') ? (
-				<div className={classes.main}>
-					{' '}
-					<Jobs />
-				</div>
+				<div className={classes.main}> {/* <Jobs /> */}</div>
 			) : null}
 			<div className={classes.main}>
 				<Filters />

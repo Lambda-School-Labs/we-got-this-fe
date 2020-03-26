@@ -148,9 +148,7 @@ const Techs = ({history}) => {
 		<SplashLoading height='25%' width='25%' />
 	) : (
 		<>
-			<div className={classes.main}>
-				<Jobs />
-			</div>
+			<div className={classes.main}>{/* <Jobs /> */}</div>
 			<div className={classes.main}>
 				<div className={classes.row}>
 					<h1 className={classes.title}>Technicians</h1>
