@@ -100,7 +100,7 @@ const ServiceTable = ({jobs, match, location}) => {
 						<TableCell align='right'>Type</TableCell>
 						<TableCell align='right'> </TableCell>
 					</TableHead>
-					{jobs.length &&
+					{/* {jobs.length &&
 						jobs.map((job, i) => {
 							let scheduledDate = moment(
 								job.details.arrivalWindowStart,
@@ -148,7 +148,7 @@ const ServiceTable = ({jobs, match, location}) => {
 									</Typography>
 								</ExpansionPanel>
 							);
-						})}
+						})} */}
 				</TableBody>
 			</Table>
 		</>
