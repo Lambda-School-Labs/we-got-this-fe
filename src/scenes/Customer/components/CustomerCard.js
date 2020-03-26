@@ -24,8 +24,10 @@ import {actions} from '../../../state/customer/customerActions';
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		// width: '40%',
-		// margin: theme.spacing(1),
+		width: '100%',
+	},
+	name: {
+		color: '#2877bf',
 	},
 }));
 
@@ -79,7 +81,7 @@ const CustomerCard = ({customer}) => {
 
 	return (
 		<div className='customerDetails'>
-			<Grid component={Paper} container item>
+			<Grid component={Paper} container item className={classes.root}>
 				<div>
 					<Grid item className='Image'>
 						<CustomerImage
@@ -92,12 +94,13 @@ const CustomerCard = ({customer}) => {
 				<div>
 					<CustomerDetails item>
 						<Title>
-							<Typography variant='h6'>
+							<Typography className={classes.name} variant='h5'>
 								{customer.name}
 							</Typography>
 							<DialogWrapper
 								trigger={click => (
 									<IconButton
+										className={classes.name}
 										size='small'
 										onClick={() => click()}
 									>
@@ -118,7 +121,7 @@ const CustomerCard = ({customer}) => {
 							{customer.contact.phone}
 						</Typography>
 						<strong>Email:</strong>{' '}
-						<Typography variant='body2'>
+						<Typography variant='body2' className={classes.name}>
 							{customer.contact.email}
 						</Typography>
 						<strong>Payment Type:</strong>{' '}

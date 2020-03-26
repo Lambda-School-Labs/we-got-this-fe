@@ -69,7 +69,6 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		flexWrap: 'wrap',
 		justifyContent: 'space-evenly',
-		marginBottom: '25px',
 	},
 
 	title: {

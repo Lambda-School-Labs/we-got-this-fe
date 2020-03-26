@@ -70,7 +70,6 @@ const useStyles = makeStyles(theme => ({
 		margin: '10px 12px 5px 12px',
 		width: '98%',
 		padding: '15px',
-		borderRadius: '4px',
 		[theme.breakpoints.down('xs')]: {
 			width: '55.25%',
 		},
