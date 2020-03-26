@@ -182,7 +182,7 @@ const SideBar = ({history, location}) => {
 								linkTo={routes.PROFILE}
 								icon={SettingsApplications}
 							>
-								Profile
+								Users
 							</Item>
 						</List>
 					</Drawer>

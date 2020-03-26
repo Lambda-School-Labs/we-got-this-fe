@@ -58,7 +58,7 @@ const Customer = ({match}) => {
 
 	return (
 		<Grid container spacing={1} wrap='nowrap'>
-			<Grid
+			{/* <Grid
 				container
 				item
 				spacing={2}
@@ -81,7 +81,7 @@ const Customer = ({match}) => {
 				) : (
 					<>
 						{/* To respond to the size of the jobs on the size*/}
-						{match.isExact ? (
+			{/* {match.isExact ? (
 							<>
 								<Grid item xs={12} sm={6}>
 									<CustomerCard
@@ -117,11 +117,11 @@ const Customer = ({match}) => {
 						</Grid>
 					</>
 				)}
-			</Grid>
+			</Grid> */}{' '}
+			*/}
 			{/*
             This is for displaying the side by side of the Job component on desktop but not on mobile
         */}
-
 			{/* {!mobile && <Route path={routes.JOB_DETAILS} component={Job} />} */}
 		</Grid>
 	);
