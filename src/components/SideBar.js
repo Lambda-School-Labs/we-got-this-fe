@@ -22,8 +22,6 @@ import {
 	People,
 	Contacts,
 	SettingsApplications,
-	AccountBox,
-	EditAttributes,
 } from '@material-ui/icons';
 
 const SideBarContext = createContext();
@@ -180,8 +178,11 @@ const SideBar = ({history, location}) => {
 							<Item linkTo={routes.TECHS} icon={Contacts}>
 								Techs
 							</Item>
-							<Item linkTo={routes.PROFILE} icon={AccountBox}>
-								User Profile
+							<Item
+								linkTo={routes.PROFILE}
+								icon={SettingsApplications}
+							>
+								Profile
 							</Item>
 						</List>
 					</Drawer>
