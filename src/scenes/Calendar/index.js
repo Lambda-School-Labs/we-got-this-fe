@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
 		marginBottom: '20px',
 	},
 	heading: {
-		// color: '#2877bf',
 		margin: '10px auto',
 	},
 }));

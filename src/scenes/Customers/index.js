@@ -8,6 +8,7 @@ import {
 	FormControl,
 	Select,
 	MenuItem,
+	Button,
 } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import FilterListIcon from '@material-ui/icons/FilterList';
@@ -22,19 +23,25 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		marginLeft: '63px',
 	},
-
-	header: {
+	butns: {
 		display: 'flex',
-		flexWrap: 'wrap',
+		justifyContent: 'flex-end',
+		margin: '20px',
+		color: '#2678C0',
+	},
+	button: {
+		margin: '5px',
+		backgroundColor: '#2678C0',
+		fontSize: '12px',
+		padding: '5px',
+		width: '120px',
+		borderRadius: '4px',
+		color: 'white',
+	},
+	row: {
+		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		margin: '0px auto',
-		background: 'whitesmoke',
-		color: '#2877bf',
-		backgroundImage: `url(${'https://qph.fs.quoracdn.net/main-qimg-00b9dd8d87de34da9de0234aeb447b5f'})`,
-		borderRadius: '4px',
-		minHeight: '175px',
-		textShadow: '1px 1px 1px white',
 	},
 
 	margin: {
@@ -43,14 +50,13 @@ const useStyles = makeStyles(theme => ({
 		width: '163px',
 	},
 	main: {
-		padding: '5px',
+		padding: '3px',
 		borderRadius: '5px',
 		boxShadow: '.5px 1px 2px 1px #D8D8D8',
 		marginBottom: '20px',
 	},
-	heading: {
-		margin: '10px 10px',
-		// color: '#2678C0',
+	title: {
+		margin: '25px',
 	},
 }));
 
@@ -82,18 +88,33 @@ const Customers = () => {
 	return (
 		<>
 			<div className={classes.main}>
-				<h1 className={classes.heading}>Customers</h1>
-				{loading ? (
-					<h2>Loading...</h2>
-				) : (
+				{' '}
+				<div className={classes.row}>
+					<h1 className={classes.title}>Customers</h1>
+
+					<div className={classes.butns}>
+						<Button
+							className={classes.button}
+							variant='contained'
+							color='primary'
+						>
+							New Customer
+						</Button>
+					</div>
+				</div>
+			</div>
+			{loading ? (
+				<h2>Loading...</h2>
+			) : (
+				<div className={classes.main}>
 					<CustomerTable
 						customers={customers.customers}
 						onRequestSort={handleRequestSort}
 						orderBy={orderBy}
 						order={order}
 					/>
-				)}{' '}
-			</div>
+				</div>
+			)}{' '}
 			<Profile />
 		</>
 	);

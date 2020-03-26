@@ -10,12 +10,13 @@ const useStyles = makeStyles(theme => ({
 	root: {
 		display: 'flex',
 		// justifyContent: 'center',
-		width: '350px',
+		width: '300px',
 		height: '120px',
 		background: props => props.disabled && '#dcdbdb',
 		backgroundColor: '#FFFFFF',
-		borderRadius: '6px',
-		margin: '10px',
+		borderRadius: '3px',
+		boxShadow: '1px 1px 1px 1px #D8D8D8',
+		// margin: '10px',
 		// border: '1px solid #2678C0',
 
 		'& *': {
@@ -26,6 +27,8 @@ const useStyles = makeStyles(theme => ({
 		'& button': {
 			paddingRight: theme.spacing(1),
 			color: '#2678C0',
+			fontSize: '14px',
+			color: 'grey',
 		},
 
 		'& .photo': {
@@ -36,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 			transform: 'translateY(-50%)',
 			width: '100%',
 			height: 'auto',
-			borderRadius: '6px 0px 0px 6px',
+			borderRadius: '4px 0px 0px 4px',
 		},
 	},
 	main: {
@@ -64,35 +67,36 @@ const useStyles = makeStyles(theme => ({
 	controls: {
 		display: 'flex',
 		width: '100%',
+		fontSize: '14px',
+		color: 'grey',
 		textAlign: 'center',
 		paddingTop: theme.spacing(1),
 	},
 }));
 
 /*
-   Displays information about a specific tech.
- 
-   Example Props:
-       "handleEdit": "handleEdit()",
-       "docId": "mljjtLxunQHGiyGymRmt",
-       "team": {
-           "docId": "gYoobfPzHpk4CYfp3f88",
-           "name": "Clean Team",
-           "users": "Array[3]"
-       },
-       "disabled": true,
-       "displayName": "Tester McGee",
-       "email": "testermcgee@gmail.com",
-       "phone": {
-           "primary": "(555) 555-5555"
-       },
-       "photoUrl": "https://example.com",
-       "role": [
-           "tech"
-       ],
-       "roles": [
-           "tech"
-       ]
+  Displays information about a specific tech.
+  Example Props:
+      "handleEdit": "handleEdit()",
+      "docId": "mljjtLxunQHGiyGymRmt",
+      "team": {
+          "docId": "gYoobfPzHpk4CYfp3f88",
+          "name": "Clean Team",
+          "users": "Array[3]"
+      },
+      "disabled": true,
+      "displayName": "Tester McGee",
+      "email": "testermcgee@gmail.com",
+      "phone": {
+          "primary": "(555) 555-5555"
+      },
+      "photoUrl": "https://example.com",
+      "role": [
+          "tech"
+      ],
+      "roles": [
+          "tech"
+      ]
 */
 const TechCard = ({
 	docId,

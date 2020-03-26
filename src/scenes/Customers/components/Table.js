@@ -68,11 +68,9 @@ const useStyles = makeStyles(theme => ({
 	},
 	searchBar: {
 		margin: '10px 12px 5px 12px',
-		width: '97.8%',
-		padding: '25px',
+		width: '98%',
+		padding: '15px',
 		borderRadius: '4px',
-		backgroundColor: 'white',
-		boxShadow: '.5px 1px 1px 1px #D8D8D8',
 		[theme.breakpoints.down('xs')]: {
 			width: '55.25%',
 		},
