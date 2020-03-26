@@ -28,6 +28,16 @@ const useStyles = makeStyles(theme => ({
 		backgroundColor: '#2877bf',
 		color: 'white',
 	},
+	main: {
+		padding: '10px',
+		borderRadius: '5px',
+		boxShadow: '.5px 1px 2px 1px #D8D8D8',
+		marginBottom: '20px',
+	},
+	heading: {
+		// color: '#2877bf',
+		margin: '10px auto',
+	},
 }));
 
 const AllCalendar = ({history}) => {
@@ -170,52 +180,60 @@ const AllCalendar = ({history}) => {
 
 	return (
 		<>
-			{!auth.currentUser.roles.includes('admin') ? <Profile /> : null}
-			{auth.currentUser.roles.includes('admin') ? <Jobs /> : null}
-			<Filters />
-			{jobs.jobs.length == 0 ? (
-				<p>Getting Events or there are no events</p>
-			) : null}
+			<div className={classes.main}>
+				<h1 className={classes.heading}>Schedule</h1>
+				{!auth.currentUser.roles.includes('admin') ? <Profile /> : null}
+				{/* {auth.currentUser.roles.includes('admin') ? <Jobs /> : null} */}
+				<Filters />
+				{jobs.jobs.length == 0 ? (
+					<p>Getting Events or there are no events</p>
+				) : null}
 
-			<DraggableCalendar
-				selectable
-				localizer={localizer}
-				events={filters}
-				views={[Views.MONTH, Views.WORK_WEEK, Views.DAY, Views.AGENDA]}
-				defaultView={
-					auth.currentUser.roles.includes('admin')
-						? Views.WORK_WEEK
-						: Views.DAY
-				}
-				onSelectSlot={event => {
-					openScheduleForm(event);
-				}}
-				min={new Date(2019, 11, 13, 8)}
-				max={new Date(2019, 11, 13, 18)}
-				onSelectEvent={event => {
-					if (!!event.details) {
-						history.push(
-							`/customers/${event.details.customerId}/${event.details.jobId}`,
-						);
+				<DraggableCalendar
+					selectable
+					localizer={localizer}
+					events={filters}
+					views={[
+						Views.MONTH,
+						Views.WORK_WEEK,
+						Views.DAY,
+						Views.AGENDA,
+					]}
+					defaultView={
+						auth.currentUser.roles.includes('admin')
+							? Views.WORK_WEEK
+							: Views.DAY
 					}
-				}}
-				eventPropGetter={formatEvent}
-				components={{
-					event: Event,
-				}}
-				style={{height: 500}}
-			/>
-			<Button
-				href={`${'https://calendar.google.com/calendar/r'}`}
-				className={classes.button}
-				variant='contained'
-			>
-				Modify Appointments
-			</Button>
+					onSelectSlot={event => {
+						openScheduleForm(event);
+					}}
+					min={new Date(2019, 11, 13, 8)}
+					max={new Date(2019, 11, 13, 18)}
+					onSelectEvent={event => {
+						if (!!event.details) {
+							history.push(
+								`/customers/${event.details.customerId}/${event.details.jobId}`,
+							);
+						}
+					}}
+					eventPropGetter={formatEvent}
+					components={{
+						event: Event,
+					}}
+					style={{height: 500}}
+				/>
+				<Button
+					href={`${'https://calendar.google.com/calendar/r'}`}
+					className={classes.button}
+					variant='contained'
+				>
+					Modify Appointments
+				</Button>
 
-			<NewJob />
-			<NewJob_02 />
-			{!auth.currentUser.roles.includes('admin') ? null : <Profile />}
+				<NewJob />
+				<NewJob_02 />
+				{!auth.currentUser.roles.includes('admin') ? null : <Profile />}
+			</div>
 		</>
 	);
 };
