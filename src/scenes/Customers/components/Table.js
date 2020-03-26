@@ -19,17 +19,16 @@ import {useStateValue} from '../../../state';
 
 const useStyles = makeStyles(theme => ({
 	table: {
-		width: '95%',
-		marginLeft: '62px',
-		backgroundColor: '#FFFFFF',
+		width: '98%',
+		margin: '0 auto',
 	},
 	header: {
 		'& th': {
 			fontWeight: 600,
-			width: '200px',
-			backgroundColor: '#FFFAFA',
-			[theme.breakpoints.down('xs')]: {
-				width: '50 !important',
+			backgroundColor: '#FFFFFF',
+			// width: '100%',
+			[theme.breakpoints.down('lg')]: {
+				width: '100%',
 				display: 'none',
 			},
 		},
@@ -64,14 +63,15 @@ const useStyles = makeStyles(theme => ({
 			flexDirection: 'column',
 			justifyContent: 'center',
 			alignItems: 'center',
-			marginLeft: '-35%',
+			margin: '0 auto',
 		},
 	},
 	searchBar: {
-		marginLeft: '62px',
-		width: '95%',
+		margin: '10px 12px 5px 12px',
+		width: '98%',
+		padding: '15px',
+		borderRadius: '4px',
 		[theme.breakpoints.down('xs')]: {
-			marginLeft: '15.5%',
 			width: '55.25%',
 		},
 	},
@@ -99,14 +99,19 @@ const headerCells = [
 		label: 'Zip',
 	},
 	{
+		id: 'nextServiceDate',
+		align: 'left',
+		label: 'Next Service',
+	},
+	{
 		id: 'type',
 		align: 'left',
 		label: 'Customer Type',
 	},
 	{
-		id: '',
-		align: '',
-		label: '',
+		id: 'docId',
+		align: 'left',
+		label: 'Customer Details',
 	},
 ];
 
@@ -258,7 +263,10 @@ const CustomerTable = ({
 										>
 											{customer.name}
 										</TableCell>
-										<TableCell align='left' className={classes.breakpointRemove}>
+										<TableCell
+											align='left'
+											className={classes.breakpointRemove}
+										>
 											{customer.contact.phone}
 										</TableCell>
 										<TableCell
@@ -297,7 +305,6 @@ const CustomerTable = ({
 											{customer.type || 'Unknown'}
 										</TableCell>
 										<TableCell
-										
 											className={classes.spacing}
 											align='left'
 										>

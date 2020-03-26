@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Grid, Button, Select, MenuItem, FormControl} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import TechCard from './TechCard';
+import Profile from '../Profile';
 import {useStateValue} from '../../state';
 import teamService from '../../state/team/teamService';
 import {actions} from '../../state/auth/authActions';
@@ -13,20 +14,25 @@ import SplashLoading from '../../components/loading/SplashLoading';
 const useStyles = makeStyles(theme => ({
 	butns: {
 		display: 'flex',
-		justifyContent: 'space-between',
+		justifyContent: 'flex-end',
 		margin: '20px',
 		color: '#2678C0',
 	},
 	techs: {
 		'& > *': {
 			marginTop: '30px',
+			display: 'flex',
+			flexWrap: 'wrap',
+			flexDirection: 'row',
+			justifyContent: 'space-between',
+			margin: '0px auto',
+			marginBottom: '20px',
 		},
 	},
 
 	filter: {
-		display: 'flex',
-		justifyContent: 'center',
-		minWidth: '350px',
+		margin: '20px 50px',
+		width: '90%',
 		color: '#2678C0',
 	},
 
@@ -42,76 +48,21 @@ const useStyles = makeStyles(theme => ({
 	row: {
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'center',
+		justifyContent: 'space-between',
 	},
 	main: {
-		padding: '10px',
+		padding: '3px',
 		borderRadius: '5px',
-	},
-	profile: {
-		width: '100%',
-		display: 'flex',
-		flexWrap: 'wrap',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		margin: '0px auto',
-		marginBottom: '10px',
-		background: 'whitesmoke',
-		border: '1px solid #2877bf',
-		color: '#2877bf',
-		borderRadius: '3px',
-	},
-	header: {
-		display: 'flex',
-		flexWrap: 'wrap',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		margin: '0px auto',
-		marginBottom: '10px',
-		background: 'whitesmoke',
-		border: '1px solid #2877bf',
-		color: '#2877bf',
-		borderRadius: '3px',
-		backgroundImage: `url(${'https://qph.fs.quoracdn.net/main-qimg-00b9dd8d87de34da9de0234aeb447b5f'})`,
-		minHeight: '150px',
+		boxShadow: '.5px 1px 3px 1px #D8D8D8',
+		marginBottom: '20px',
 	},
 
-	info: {
-		display: 'flex',
-		justifyContent: 'space-between',
-	},
 	edit: {
 		height: '20px',
 		weight: '20px',
 		marginRight: '15px',
 	},
-	profilePic: {
-		height: '100px',
-		width: '100px',
-		borderRadius: '5px',
-		border: '1px solid white',
-		margin: '5px 25px',
-	},
-	admin: {
-		fontWeight: 'bolder',
-		fontSize: '16px',
-		marginTop: '15px',
-		marginBottom: '0',
-		color: '#626262',
-		textShadow: '3px 2px 2px white',
-	},
-	email: {
-		color: '#2877bf',
-		textShadow: '3px 2px 2px light grey',
-		fontSize: '14px',
-		marginTop: '0',
-	},
-	pickTeam: {
-		margin: '0 auto',
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-evenly',
-	},
+
 	title: {
 		margin: '25px',
 	},
@@ -196,12 +147,10 @@ const Techs = ({history}) => {
 		<SplashLoading height='25%' width='25%' />
 	) : (
 		<>
-			<div className={classes.header}>
-				<div>
+			<div className={classes.main}>
+				<div className={classes.row}>
 					<h1 className={classes.title}>Technicians</h1>
-				</div>
 
-				<div className={classes.butns}>
 					<div className={classes.butns}>
 						<Button
 							className={classes.button}
@@ -221,9 +170,7 @@ const Techs = ({history}) => {
 						</Button>
 					</div>
 				</div>
-			</div>
-			<div className={classes.profile}>
-				<div className={classes.main}>
+				<div>
 					<EditTech
 						open={editDialogData.open}
 						isEditing={editDialogData.isEditing}
@@ -233,15 +180,15 @@ const Techs = ({history}) => {
 						handleSave={handleSave}
 						tech={editDialogData.tech}
 					/>
-					<Grid container spacing={6} className={classes.pickTeam}>
-						<div className={classes.row}></div>
-					</Grid>
-					<FormControl>
-						<Select
-							className={classes.filter}
-							value={filter}
-							onChange={handleFilterChange}
-						>
+					{/* <Grid container spacing={6} className={classes.pickTeam}>
+                       <div className={classes.row}></div>
+                   </Grid> */}
+				</div>
+			</div>
+			<div className={classes.main}>
+				<div>
+					<FormControl className={classes.filter}>
+						<Select value={filter} onChange={handleFilterChange}>
 							<MenuItem value='all'>All</MenuItem>
 							<MenuItem value='active'>Active</MenuItem>
 							<MenuItem value='disabled'>Archived</MenuItem>
@@ -280,35 +227,8 @@ const Techs = ({history}) => {
 								);
 							})}
 				</Grid>
-				<div className={classes.info}>
-					<div>
-						<img
-							className={classes.profilePic}
-							src='https://static.wixstatic.com/media/96e345_6604b08d98c64c4592edee1c680b76a8~mv2.jpg/v1/fill/w_430,h_584,al_c,q_80,usm_0.66_1.00_0.01/96e345_6604b08d98c64c4592edee1c680b76a8~mv2.webp'
-						/>
-					</div>
-					<div>
-						<h1 className={classes.admin}>
-							{auth.currentUser && auth.currentUser.displayName}{' '}
-						</h1>
-						<p className={classes.email}>
-							{auth.currentUser && auth.currentUser.email}
-						</p>
-					</div>
-				</div>
-				<div className={classes.butns}>
-					<div className={classes.butns}>
-						<Button
-							color='secondary'
-							onClick={() => {
-								actions.logout(dispatch);
-							}}
-						>
-							Sign Out
-						</Button>
-					</div>
-				</div>
 			</div>
+			<Profile />
 		</>
 	);
 };
