@@ -27,23 +27,6 @@ const useStyles = makeStyles(theme => ({
 		marginTop: theme.spacing(1),
 		marginBottom: theme.spacing(1),
 	},
-	row: {
-		display: 'flex',
-		flexDirection: 'row',
-		margin: '0 20px',
-		justifyContent: 'space-between',
-		maxWidth: '90%',
-	},
-	timer: {
-		margin: '10px 50px',
-		fontSize: '40px',
-		color: '#2678C0',
-	},
-	photos: {
-		width: '90%',
-		margin: '20px 30px',
-		color: '#2678C0',
-	},
 }));
 
 const teams = techsArray => {
@@ -163,6 +146,7 @@ const Job = ({match, location, history}) => {
 									textColor='primary'
 									scrollButtons='off'
 								>
+									<Tab label='Photos' />
 									{/* <Tab label='Job Notes' /> */}
 								</Tabs>
 							</Grid>
@@ -170,7 +154,6 @@ const Job = ({match, location, history}) => {
 								{value == 0 ? <AddPhoto /> : <AddNote />}
 							</Grid>
 						</Grid>
-
 						<PhotosPanel value={value} index={0} job={job} />
 						{/* <NotesPanel value={value} index={1} job={job} /> */}
 					</Grid>

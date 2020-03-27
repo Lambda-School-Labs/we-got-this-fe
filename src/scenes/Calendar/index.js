@@ -29,7 +29,6 @@ const useStyles = makeStyles(theme => ({
 		color: 'white',
 	},
 	main: {
-		// margin: '20px auto',
 		padding: '10px',
 		borderRadius: '5px',
 		boxShadow: '.5px 1px 2px 1px #D8D8D8',

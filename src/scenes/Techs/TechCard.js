@@ -9,12 +9,16 @@ import PlaceholderPerson from '../../images/placeholderPerson.png';
 const useStyles = makeStyles(theme => ({
 	root: {
 		display: 'flex',
+		// justifyContent: 'center',
 		width: '300px',
 		height: '120px',
 		background: props => props.disabled && '#dcdbdb',
 		backgroundColor: '#FFFFFF',
 		borderRadius: '3px',
 		boxShadow: '1px 1px 1px 1px #D8D8D8',
+		// margin: '10px',
+		// border: '1px solid #2678C0',
+
 		'& *': {
 			margin: '0',
 			padding: '0',
