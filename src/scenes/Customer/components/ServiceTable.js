@@ -103,7 +103,7 @@ const ServiceTable = ({jobs, match, location}) => {
 												className={classes.fu2}
 												expandIcon={
 													<Button
-														variant='outlined'
+														variant='contained'
 														color='primary'
 														size='small'
 														component={Link}
