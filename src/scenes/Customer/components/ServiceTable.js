@@ -92,69 +92,71 @@ const ServiceTable = ({jobs, match, location}) => {
 	return (
 		<>
 			<Table size='small'>
-				<TableHead>
-					<TableRow className={classes.header}>
-						<TableCell>Service Date</TableCell>
-						<TableCell align='right'>Serviced By</TableCell>
-						<TableCell align='right'>Type</TableCell>
-						<TableCell align='right'> </TableCell>
-					</TableRow>
-				</TableHead>
+				<TableBody>
+					<TableHead>
+						<TableRow className={classes.header}>
+							<TableCell>Service Date</TableCell>
+							<TableCell align='right'>Serviced By</TableCell>
+							<TableCell align='right'>Type</TableCell>
+							<TableCell align='right'> </TableCell>
+						</TableRow>
+					</TableHead>
+
+					{jobs.length &&
+						jobs.map((job, i) => {
+							let scheduledDate = moment(
+								job.details.arrivalWindowStart,
+							).format('LL');
+							return (
+								<ExpansionPanel className={classes.fu}>
+									<div className={classes.header}>
+										<TableRow key={i}>
+											<TableCell
+												component='th'
+												scope='row'
+											>
+												{scheduledDate}
+											</TableCell>
+											<TableCell align='right'>
+												{job.team.name}
+											</TableCell>
+											<TableCell align='right'>
+												{job.type || 'Unknown'}
+											</TableCell>
+											<TableCell align='right'>
+												<ExpansionPanelSummary
+													expandIcon={
+														<Button
+															variant='outlined'
+															color='primary'
+															size='small'
+															component={Link}
+															to={{
+																pathname: `${match.url}/${job.docId}`,
+																state:
+																	job.docId,
+															}}
+														>
+															Details
+														</Button>
+													}
+													aria-controls='panel1a-content'
+													id='panel1a-header'
+												></ExpansionPanelSummary>
+											</TableCell>
+										</TableRow>
+									</div>
+									<Typography className={classes.heading}>
+										<Route
+											path={routes.JOB_DETAILS}
+											component={Job}
+										/>
+									</Typography>
+								</ExpansionPanel>
+							);
+						})}
+				</TableBody>
 			</Table>
-
-			<TableBody>
-				{jobs.length &&
-					jobs.map((job, i) => {
-						let scheduledDate = moment(
-							job.details.arrivalWindowStart,
-						).format('LL');
-						return (
-							<ExpansionPanel className={classes.fu}>
-								<div className={classes.header}>
-									<TableRow key={i}>
-										<TableCell component='th' scope='row'>
-											{scheduledDate}
-										</TableCell>
-										<TableCell align='right'>
-											{job.team.name}
-										</TableCell>
-										<TableCell align='right'>
-											{job.type || 'Unknown'}
-										</TableCell>
-										<TableCell align='right'>
-											<ExpansionPanelSummary
-												expandIcon={
-													<Button
-														variant='outlined'
-														color='primary'
-														size='small'
-														component={Link}
-														to={{
-															pathname: `${match.url}/${job.docId}`,
-															state: job.docId,
-														}}
-													>
-														Details
-													</Button>
-												}
-												aria-controls='panel1a-content'
-												id='panel1a-header'
-											></ExpansionPanelSummary>
-										</TableCell>
-									</TableRow>
-								</div>
-								<Typography className={classes.heading}>
-									<Route
-										path={routes.JOB_DETAILS}
-										component={Job}
-									/>
-								</Typography>
-							</ExpansionPanel>
-						);
-					})}
-			</TableBody>
-
-			{/* </Table> */}
 		</>
 	);
 };
