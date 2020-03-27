@@ -27,7 +27,6 @@ import moment from 'moment';
 const useStyles = makeStyles(theme => ({
 	root: {
 		width: '100%',
-		color: 'red',
 	},
 	paper: {
 		marginTop: theme.spacing(3),
@@ -38,18 +37,15 @@ const useStyles = makeStyles(theme => ({
 	header: {
 		'& th': {
 			fontWeight: 600,
-			border: '1px solid red',
 		},
 	},
 	fu: {
 		width: '1200px',
-		border: '1px solid green',
 	},
 	fu2: {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-evenly',
-		border: '1px solid green',
 	},
 }));
 
@@ -94,12 +90,10 @@ const ServiceTable = ({jobs, match, location}) => {
 			<Table size='small'>
 				<TableBody>
 					<TableHead>
-						<TableRow className={classes.header}>
-							<TableCell>Service Date</TableCell>
-							<TableCell align='right'>Serviced By</TableCell>
-							<TableCell align='right'>Type</TableCell>
-							<TableCell align='right'> </TableCell>
-						</TableRow>
+						<TableCell>Service Date</TableCell>
+						<TableCell align='right'>Serviced By</TableCell>
+						<TableCell align='right'>Type</TableCell>
+						<TableCell align='right'> </TableCell>
 					</TableHead>
 
 					{jobs.length &&
@@ -109,43 +103,38 @@ const ServiceTable = ({jobs, match, location}) => {
 							).format('LL');
 							return (
 								<ExpansionPanel className={classes.fu}>
-									<div className={classes.header}>
-										<TableRow key={i}>
-											<TableCell
-												component='th'
-												scope='row'
-											>
-												{scheduledDate}
-											</TableCell>
-											<TableCell align='right'>
-												{job.team.name}
-											</TableCell>
-											<TableCell align='right'>
-												{job.type || 'Unknown'}
-											</TableCell>
-											<TableCell align='right'>
-												<ExpansionPanelSummary
-													expandIcon={
-														<Button
-															variant='outlined'
-															color='primary'
-															size='small'
-															component={Link}
-															to={{
-																pathname: `${match.url}/${job.docId}`,
-																state:
-																	job.docId,
-															}}
-														>
-															Details
-														</Button>
-													}
-													aria-controls='panel1a-content'
-													id='panel1a-header'
-												></ExpansionPanelSummary>
-											</TableCell>
-										</TableRow>
-									</div>
+									<TableRow key={i}>
+										<TableCell component='th' scope='row'>
+											{scheduledDate}
+										</TableCell>
+										<TableCell align='right'>
+											{job.team.name}
+										</TableCell>
+										<TableCell align='right'>
+											{job.type || 'Unknown'}
+										</TableCell>
+										<TableCell align='right'>
+											<ExpansionPanelSummary
+												expandIcon={
+													<Button
+														variant='outlined'
+														color='primary'
+														size='small'
+														component={Link}
+														to={{
+															pathname: `${match.url}/${job.docId}`,
+															state: job.docId,
+														}}
+													>
+														Details
+													</Button>
+												}
+												aria-controls='panel1a-content'
+												id='panel1a-header'
+											></ExpansionPanelSummary>
+										</TableCell>
+									</TableRow>
+
 									<Typography className={classes.heading}>
 										<Route
 											path={routes.JOB_DETAILS}
