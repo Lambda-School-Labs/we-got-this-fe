@@ -8,11 +8,11 @@ https://luxapplication.com/auth
 |                              [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                               |                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)                     |                    [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                     |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)                          |                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                      |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/sanny-sherief-85aa90120/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lucas-bazemore) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michael-demery/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nicholas-interest-1a0957191/) |      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)      |
 
-|                                              [Chris Boydstun](https://github.com/cboydstun)                                              |                                      [Avraham Candinov](https://github.com/avkan1087)                                      |                                            [Katrina Finney](https://github.com/KatrinaFinney)                                             |                                            [Nicole Adams](https://github.com/ndacode)                                             |                                         [Ian Vaughn](https://github.com/Yurimurda)                                         |
-| :--------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: |
-|         [<img src="https://avatars0.githubusercontent.com/u/52934303?s=460&v=4" width = "200" />](https://github.com/cboydstun)          | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UNM5RQ58E-9ae296eac1f6-512" width = "200" />](https://github.com/avkan1087) |        [<img src="https://avatars3.githubusercontent.com/u/54245714?s=460&v=4" width = "200" />](https://github.com/KatrinaFinney)        |       [<img src="https://avatars2.githubusercontent.com/u/53717338?s=460&v=4" width = "200" />](https://github.com/ndacode)       | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULP4KHE6M-59e8f1729c4e-512" width = "200" />](https://github.com/Yurimurda) |
-|                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/cboydstun)                          |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/avkan1087)                   |                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KatrinaFinney)                         |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ndacode)                        |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Yurimurda)                   |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chris-boydstun-4a990615/) |       [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)        | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/katrina-finney-a70b75191/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nicoleadamsmedia/) |       [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)        |
+|                                              [Chris Boydstun](https://github.com/cboydstun)                                              |                                      [Avraham Candinov](https://github.com/avkan1087)                                      |                                            [Katrina Finney](https://github.com/KatrinaFinney)                                             |                                            [Nicole Adams](https://github.com/ndacode)                                             |                                              [Ian Vaughn](https://github.com/Yurimurda)                                               |
+| :--------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: |
+|         [<img src="https://avatars0.githubusercontent.com/u/52934303?s=460&v=4" width = "200" />](https://github.com/cboydstun)          | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UNM5RQ58E-9ae296eac1f6-512" width = "200" />](https://github.com/avkan1087) |        [<img src="https://avatars3.githubusercontent.com/u/54245714?s=460&v=4" width = "200" />](https://github.com/KatrinaFinney)        |       [<img src="https://avatars2.githubusercontent.com/u/53717338?s=460&v=4" width = "200" />](https://github.com/ndacode)       |      [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULP4KHE6M-59e8f1729c4e-512" width = "200" />](https://github.com/Yurimurda)       |
+|                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/cboydstun)                          |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/avkan1087)                   |                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KatrinaFinney)                         |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ndacode)                        |                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Yurimurda)                         |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chris-boydstun-4a990615/) |   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](http://www.linkedin.com/in/avikan)    | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/katrina-finney-a70b75191/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nicoleadamsmedia/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ian-vaughn-80a6601a1/) |
 
 <br>
 <br>
@@ -43,27 +43,25 @@ The app will be a database that stores information regarding business operations
 -   Add and edit customers
 -   Assign jobs to teams
 
-## Tech Stack
+## Tech Stack Summary
 
 ### Front end built using:
 
 #### React
 
--   We learned it in Lambda School
+-   React is a library for building composable user interfaces. It encourages the creation of reusable UI components.
 
-#### Reducers
+#### Redux
 
--   We learned it in Lambda School
+-   Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments.
 
 #### Formik
 
--   We used formik for our forms because they come with .yup validation and we learned it in Lambda
+-   Formik is a small library that helps you with the 3 most annoying parts: getting values in and out of form state, validation and error messages, and handling form submission
 
 #### Material UI
 
--   Makes creating nice looking front-ends easier
--   Simple API usage
--   Comprehensive documentation
+-   React components for faster and easier web development. Build your own design system, or start with Material Design.
 
 #### Front end deployed to `Zeit Now`
 
@@ -121,3 +119,9 @@ Remember that this project is licensed under the MIT license, and by submitting 
 ### Attribution
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
+
+### Known Defects
+
+-   Recurring only creates the same event weekly
+-   The login does work - you have to create a user via google and then re-load the page after you accept all the conditions during the user creation
+-   Google calendar is integrated into the app, but job events are passed down to teams and not team members

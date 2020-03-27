@@ -37,13 +37,23 @@
 		"cypress": "^3.7.0",
 		"jest": "^24.9.0",
 		"react-test-renderer": "^16.12.0"
+		
 	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "npm run test && react-scripts build",
 		"test": "jest",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"coverage": "CI=true yarn test --coverage --watchAll=false || true"
 	},
+	"jest": {
+		"collectCoverageFrom": [
+		  "**/*.{js,jsx}", 
+		  "!**/node_modules/**",
+		  "!**/vendor/**",
+		  "!**/__tests__/**"
+		]
+	  },
 	"eslintConfig": {
 		"extends": "react-app"
 	},
