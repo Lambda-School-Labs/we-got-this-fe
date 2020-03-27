@@ -20,7 +20,7 @@ import StopWatch from './components/StopWatch';
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		margin: '0 20px',
+		marginLeft: theme.spacing(2),
 		width: '100%',
 	},
 	tabs: {
@@ -151,17 +151,10 @@ const Job = ({match, location, history}) => {
 					)}
 					<Grid item>
 						<Grid item>
-							<div className={classes.row}>
-								<JobCard
-									job={job}
-									className={classes.customer}
-								/>
-								<div className={classes.timer}>
-									<StopWatch job={job} />
-								</div>
-							</div>
+							<JobCard job={job} />
+							<StopWatch job={job} />
 						</Grid>
-						<Grid item className={classes.photos}>
+						<Grid container className={classes.tabs}>
 							<Grid item>
 								<Tabs
 									value={value}
@@ -173,7 +166,7 @@ const Job = ({match, location, history}) => {
 									{/* <Tab label='Job Notes' /> */}
 								</Tabs>
 							</Grid>
-							<Grid item>
+							<Grid item style={{marginTop: 10, marginLeft: 10}}>
 								{value == 0 ? <AddPhoto /> : <AddNote />}
 							</Grid>
 						</Grid>

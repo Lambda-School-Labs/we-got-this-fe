@@ -14,7 +14,6 @@ import {makeStyles} from '@material-ui/core/styles';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CustomerTable from './components/Table';
 import Profile from '../Profile';
-import Jobs from '../Jobs';
 import {useStateValue} from '../../state';
 import {actions} from '../../state/customer/customerActions';
 import CustomerTableHeader from './components/TableHeader';
@@ -79,7 +78,9 @@ const Customers = () => {
 
 	return (
 		<>
-			<div className={classes.main}>{/* <Jobs /> */}</div>
+			{/* <div className={classes.main}>
+				<Jobs />
+			</div> */} {''}
 			<div className={classes.main}>
 				<div className={classes.row}>
 					<h1 className={classes.title}>Customers</h1>

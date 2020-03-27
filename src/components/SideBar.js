@@ -176,13 +176,13 @@ const SideBar = ({history, location}) => {
 								Customers
 							</Item>
 							<Item linkTo={routes.TECHS} icon={Contacts}>
-								Techs
+								Teams
 							</Item>
 							<Item
 								linkTo={routes.PROFILE}
 								icon={SettingsApplications}
 							>
-								Users
+								Settings
 							</Item>
 						</List>
 					</Drawer>

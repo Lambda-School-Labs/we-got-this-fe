@@ -29,10 +29,11 @@ const useStyles = makeStyles(theme => ({
 		color: 'white',
 	},
 	main: {
-		margin: '20px auto',
-		padding: '3px',
+		// margin: '20px auto',
+		padding: '10px',
 		borderRadius: '5px',
 		boxShadow: '.5px 1px 2px 1px #D8D8D8',
+		marginBottom: '20px',
 	},
 	heading: {
 		margin: '10px auto',
@@ -179,11 +180,10 @@ const AllCalendar = ({history}) => {
 
 	return (
 		<>
-			{!auth.currentUser.roles.includes('admin') ? <Profile /> : null}
-			{auth.currentUser.roles.includes('admin') ? (
-				<div className={classes.main}> {/* <Jobs /> */}</div>
-			) : null}
 			<div className={classes.main}>
+				<h1 className={classes.heading}>Schedule</h1>
+				{!auth.currentUser.roles.includes('admin') ? <Profile /> : null}
+				{/* {auth.currentUser.roles.includes('admin') ? <Jobs /> : null} */}
 				<Filters />
 				{jobs.jobs.length == 0 ? (
 					<p>Getting Events or there are no events</p>

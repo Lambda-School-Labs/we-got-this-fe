@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 	main: {
 		display: 'flex',
 		justifyContent: 'space-between',
-		margin: '0 auto',
+		margin: '10px auto',
 		color: '#2678C0',
 	},
 

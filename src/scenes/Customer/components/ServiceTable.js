@@ -39,18 +39,17 @@ const useStyles = makeStyles(theme => ({
 		'& th': {
 			fontWeight: 600,
 			border: '1px solid red',
-			justifyContent: 'space-between',
 		},
 	},
 	fu: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		textDecoration: 'bold',
+		width: '1200px',
+		border: '1px solid green',
 	},
-
 	fu2: {
 		display: 'flex',
-		justifyContent: 'space-between',
+		flexDirection: 'row',
+		justifyContent: 'space-evenly',
+		border: '1px solid green',
 	},
 }));
 
@@ -93,21 +92,26 @@ const ServiceTable = ({jobs, match, location}) => {
 	return (
 		<>
 			<Table size='small'>
-				<TableBody>
-					<TableHead>
+				<TableHead>
+					<TableRow className={classes.header}>
 						<TableCell>Service Date</TableCell>
 						<TableCell align='right'>Serviced By</TableCell>
 						<TableCell align='right'>Type</TableCell>
 						<TableCell align='right'> </TableCell>
-					</TableHead>
-					{/* {jobs.length &&
-						jobs.map((job, i) => {
-							let scheduledDate = moment(
-								job.details.arrivalWindowStart,
-							).format('LL');
-							return (
-								<ExpansionPanel>
-									<TableRow key={i} className={classes.fu2}>
+					</TableRow>
+				</TableHead>
+			</Table>
+
+			<TableBody>
+				{jobs.length &&
+					jobs.map((job, i) => {
+						let scheduledDate = moment(
+							job.details.arrivalWindowStart,
+						).format('LL');
+						return (
+							<ExpansionPanel className={classes.fu}>
+								<div className={classes.header}>
+									<TableRow key={i}>
 										<TableCell component='th' scope='row'>
 											{scheduledDate}
 										</TableCell>
@@ -119,10 +123,9 @@ const ServiceTable = ({jobs, match, location}) => {
 										</TableCell>
 										<TableCell align='right'>
 											<ExpansionPanelSummary
-												className={classes.fu2}
 												expandIcon={
 													<Button
-														variant='contained'
+														variant='outlined'
 														color='primary'
 														size='small'
 														component={Link}
@@ -131,7 +134,7 @@ const ServiceTable = ({jobs, match, location}) => {
 															state: job.docId,
 														}}
 													>
-														Service Details
+														Details
 													</Button>
 												}
 												aria-controls='panel1a-content'
@@ -139,18 +142,19 @@ const ServiceTable = ({jobs, match, location}) => {
 											></ExpansionPanelSummary>
 										</TableCell>
 									</TableRow>
+								</div>
+								<Typography className={classes.heading}>
+									<Route
+										path={routes.JOB_DETAILS}
+										component={Job}
+									/>
+								</Typography>
+							</ExpansionPanel>
+						);
+					})}
+			</TableBody>
 
-									<Typography className={classes.heading}>
-										<Route
-											path={routes.JOB_DETAILS}
-											component={Job}
-										/>
-									</Typography>
-								</ExpansionPanel>
-							);
-						})} */}
-				</TableBody>
-			</Table>
+			{/* </Table> */}
 		</>
 	);
 };
