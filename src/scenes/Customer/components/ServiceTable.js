@@ -28,24 +28,9 @@ const useStyles = makeStyles(theme => ({
 	root: {
 		width: '100%',
 	},
-	paper: {
-		marginTop: theme.spacing(3),
-		width: '100%',
-		overflowX: 'auto',
-		marginBottom: theme.spacing(2),
-	},
-	header: {
-		'& th': {
-			fontWeight: 600,
-		},
-	},
-	fu: {
-		width: '1200px',
-	},
 	fu2: {
 		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-evenly',
+		justifyContent: 'space-between',
 	},
 }));
 
@@ -102,8 +87,8 @@ const ServiceTable = ({jobs, match, location}) => {
 								job.details.arrivalWindowStart,
 							).format('LL');
 							return (
-								<ExpansionPanel className={classes.fu}>
-									<TableRow key={i}>
+								<ExpansionPanel>
+									<TableRow key={i} className={classes.fu2}>
 										<TableCell component='th' scope='row'>
 											{scheduledDate}
 										</TableCell>
@@ -115,6 +100,7 @@ const ServiceTable = ({jobs, match, location}) => {
 										</TableCell>
 										<TableCell align='right'>
 											<ExpansionPanelSummary
+												className={classes.fu2}
 												expandIcon={
 													<Button
 														variant='outlined'
@@ -135,7 +121,7 @@ const ServiceTable = ({jobs, match, location}) => {
 										</TableCell>
 									</TableRow>
 
-									<Typography className={classes.heading}>
+									<Typography>
 										<Route
 											path={routes.JOB_DETAILS}
 											component={Job}
