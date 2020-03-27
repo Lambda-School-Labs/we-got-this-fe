@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
 		// width: '40%',
 		// margin: theme.spacing(1),
 	},
+	// name: {
+	// 	color: '#2877bf',
+	// },
 }));
 
 const Title = styled(Box)({

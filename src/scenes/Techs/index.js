@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 			display: 'flex',
 			flexWrap: 'wrap',
 			flexDirection: 'row',
-			justifyContent: 'space-between',
+			justifyContent: 'space-evenly',
 			margin: '0px auto',
 			marginBottom: '20px',
 		},
