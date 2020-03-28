@@ -117,49 +117,49 @@ const Job = ({match, location, history}) => {
 			{!job ? (
 				<h2>Loading...</h2>
 			) : (
-				<>
-					{mobile ? (
-						<Grid item>
-							<IconButton onClick={() => history.goBack()}>
-								<ArrowBackIcon />
-								{customers.currentCustomer.name}
-							</IconButton>
-						</Grid>
-					) : (
-						<Grid item>
-							<IconButton
-								onClick={() =>
-									history.replace(
-										`/customers/${match.params.customer_id}`,
-									)
-								}
-							>
-								<CloseIcon />
-							</IconButton>
-						</Grid>
-					)}
+				// <>
+				// 	{mobile ? (
+				// 		<Grid item>
+				// 			<IconButton onClick={() => history.goBack()}>
+				// 				<ArrowBackIcon />
+				// 				{customers.currentCustomer.name}
+				// 			</IconButton>
+				// 		</Grid>
+				// 	) : (
+				// 		<Grid item>
+				// 			<IconButton
+				// 				onClick={() =>
+				// 					history.replace(
+				// 						`/customers/${match.params.customer_id}`,
+				// 					)
+				// 				}
+				// 			>
+				// 				<CloseIcon />
+				// 			</IconButton>
+				// 		</Grid>
+				// 	)}
+				<Grid item>
 					<Grid item>
-						<Grid item>
-							<JobCard job={job} />
-						</Grid>
-						<Grid container className={classes.tabs}>
-							<Grid item>
-								<Tabs
-									value={value}
-									onChange={handleChange}
-									indicatorColor='primary'
-									textColor='primary'
-									scrollButtons='off'
-								></Tabs>
-							</Grid>
-							<Grid item style={{margin: 'auto', width: '90%'}}>
-								{value == 0 ? <AddPhoto /> : <AddNote />}
-							</Grid>
-						</Grid>
-						<PhotosPanel value={value} index={0} job={job} />
-						{/* <NotesPanel value={value} index={1} job={job} /> */}
+						<JobCard job={job} />
 					</Grid>
-				</>
+					<Grid container className={classes.tabs}>
+						<Grid item>
+							<Tabs
+								value={value}
+								onChange={handleChange}
+								indicatorColor='primary'
+								textColor='primary'
+								scrollButtons='off'
+							></Tabs>
+						</Grid>
+						<Grid item style={{margin: 'auto', width: '90%'}}>
+							{value == 0 ? <AddPhoto /> : <AddNote />}
+						</Grid>
+					</Grid>
+					<PhotosPanel value={value} index={0} job={job} />
+					{/* <NotesPanel value={value} index={1} job={job} /> */}
+				</Grid>
+				// </>
 			)}
 		</Grid>
 	);
